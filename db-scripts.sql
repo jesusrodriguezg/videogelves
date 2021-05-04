@@ -1,5 +1,5 @@
 -- Creamos la base de datos con la codificación de caracteres
-CREATE DATABASE VIDEOGELVES DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+CREATE DATABASE VIDEOGELVES DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
 
 -- Seleccionamos la base de datos
 USE VIDEOGELVES;
@@ -28,9 +28,9 @@ CREATE TABLE PRODUCTO (
     NOMBRE_PRODUCTO         VARCHAR(50) NOT NULL,
     DESCRIPCION             VARCHAR(250) NOT NULL,
     PRECIO                  DECIMAL(4,2) NOT NULL,
-    STOCK	                INT(2) NOT NULL,
+    STOCK                   INTEGER NOT NULL,
     IMAGEN                  VARCHAR(100) NOT NULL,
-    CATEGORIA_ID_CATEGORIA  INT(3) NOT NULL,
+    CATEGORIA_ID_CATEGORIA  INTEGER NOT NULL,
     PRIMARY KEY (ID_PRODUCTO)
 );
 
