@@ -1,0 +1,94 @@
+/* Importación de fuentes Rubik Regular 400 y Poppins Extra-Light 200 / Light 300 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Rubik&display=swap');
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Rubik', 'Arial', sans-serif;
+  font-weight: 700;
+}
+
+p,div{
+  font-family: 'Poppins';
+  font-weight: 300;
+}
+
+a, .enlace-titulo{
+  transition: .4s;
+  text-decoration: none;
+  color: #006294;
+}
+
+a:hover, .enlace-titulo:hover{
+  transition: .4s;
+  text-decoration: none;
+  color: #0088CE;
+}
+
+.product-cards{
+  float: left;
+}
+
+/*
+.product-cards:hover{
+  transition: .5s;
+  box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+}
+*/
+
+.product-cards-console{
+  color: #fff;
+  font-weight: bold;
+}
+
+.product-cards-console span{
+  background-color: #006294;
+}
+
+.nav-category{
+  background-color: #006294;
+}
+
+.nav-category a{
+  display: contents;
+  color: #fff;
+}
+
+.nav-category a > div{
+  transition: .4s;
+}
+
+.nav-category a:hover > div{
+  transition: .4s;
+  background-color: #0083C6;
+}
+
+.nav-category div{
+  font-weight: 600;
+}
+
+.footer{
+  background-color: #006294;
+}
+
+.precio-detalle{
+  color: #006294;
+  font-weight: 800;
+}
+
+.sin-stock{
+  background-color: #ac0000;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Botón basado en las clases de Bootstrap .btn-primary, modificado para que muestre el color corporativo */
+.btn-vg{color:#fff;background-color:#006294;border-color:#fff}
+.btn-vg:hover{color:#fff;background-color:#0088CE;border-color:#0083C6}
+.btn-check:focus+.btn-vg,.btn-vg:focus{color:#fff;background-color:#0088CE;border-color:#0083C6;box-shadow:0 0 0 .25rem rgba(49,132,253,.5)}
+.btn-check:active+.btn-vg,.btn-check:checked+.btn-vg,.btn-vg.active,.btn-vg:active,.show>.btn-vg.dropdown-toggle{color:#fff;background-color:#0083C6;border-color:#0A7ABE}
+.btn-check:active+.btn-vg:focus,.btn-check:checked+.btn-vg:focus,.btn-vg.active:focus,.btn-vg:active:focus,.show>.btn-vg.dropdown-toggle:focus{box-shadow:0 0 0 .25rem rgba(49,132,253,.5)}
+.btn-vg.disabled,.btn-vg:disabled{color:#fff;background-color:#006294;border-color:#006294}
