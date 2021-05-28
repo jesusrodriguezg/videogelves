@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row py-3 justify-content-center">
+    <div class="col-5">
+      <h2 class="text-center">Regístrate en VideoGelves</h2>
+      <hr>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="juan@videogelves.com">
+          <div *ngIf="form.get('email').invalid && form.get('email').errors && (form.get('email').dirty || form.get('email').touched)">
+            <small class="text-danger" *ngIf="form.get('email').errors?.email">Introduzca un email válido</small>
+            <small class="text-danger" *ngIf="form.get('email').hasError('required')">Debe indicar una dirección de email</small>
+            <small class="text-danger" *ngIf="form.get('email').hasError('maxlength')">El email debe tener menos de 50 caracteres</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" formControlName="password" placeholder="********">
+          <div *ngIf="form.get('password').invalid && form.get('password').errors && (form.get('password').dirty || form.get('password').touched)">
+            <small class="text-danger" *ngIf="form.get('password').hasError('required')">Debe indicar una contraseña</small>
+            <small class="text-danger" *ngIf="form.get('password').hasError('minlength')">La contraseña debe tener al menos 6 caracteres</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="conf_password">Confirmar contraseña</label>
+          <input type="password" class="form-control" formControlName="conf_password" placeholder="********">
+          <div *ngIf="form.get('conf_password').invalid && form.get('conf_password').errors && (form.get('conf_password').dirty || form.get('conf_password').touched)">
+            <small class="text-danger" *ngIf="form.get('conf_password').hasError('required')">Por favor, confirme la contraseña</small>
+            <small class="text-danger" *ngIf="form.get('conf_password').hasError('minlength')">La contraseña debe tener al menos 6 caracteres</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
+          <div *ngIf="form.get('nombre').invalid && form.get('nombre').errors && (form.get('nombre').dirty || form.get('nombre').touched)">
+            <small class="text-danger" *ngIf="form.get('nombre').hasError('required')">Debe indicar un nombre</small>
+            <small class="text-danger" *ngIf="form.get('nombre').hasError('maxlength')">El nombre debe tener menos de 25 caracteres</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" class="form-control" formControlName="apellidos" placeholder="Apellidos">
+          <div *ngIf="form.get('apellidos').invalid && form.get('apellidos').errors && (form.get('apellidos').dirty || form.get('apellidos').touched)">
+            <small class="text-danger" *ngIf="form.get('apellidos').hasError('required')">Debe indicar su(s) apellido(s)</small>
+            <small class="text-danger" *ngIf="form.get('apellidos').hasError('maxlength')">Los apellidos deben tener menos de 50 caracteres</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input type="text" class="form-control" formControlName="direccion" placeholder="Dirección">
+          <div *ngIf="form.get('email').invalid && form.get('email').errors && (form.get('email').dirty || form.get('email').touched)">
+            <small class="text-danger" *ngIf="form.get('direccion').hasError('required')">Debe indicar una dirección</small>
+            <small class="text-danger" *ngIf="form.get('direccion').hasError('maxlength')">La dirección debe tener menos de 200 caracteres</small>
+          </div>
+        </div>
+        <br>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-vg">Registrarse</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<h1>Productos de VideoGelves</h1>
+<div class="list-group" *ngFor="let producto of productos">
+  <li class="list-group-item list-group-item-action list-group-item-light">{{producto.nombre_producto}}<button (click)="verDetalleProducto(producto.nombre_producto)" class="btn btn-info">Ver detalle</button><button (click)="verProductosCategoria(producto.categoria_id_categoria)" class="btn btn-info">{{producto.categoria_id_categoria}}</button></li>
+</div>
+

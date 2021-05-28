@@ -1,0 +1,33 @@
+.header{
+  background-color: #006294;
+}
+
+.header-icon{
+  font-size: 2em;
+  color: #fff;
+}
+
+.header-icon {
+  color: #fff!important;
+}
+
+.header-icon:hover {
+  color: #68B9E3!important;
+}
+
+/* Elementos del menú desplegable basados en las clases de .dropdown-item, modificado para que muestre el color corporativo */
+.dropdown-login{display:block;width:100%;padding:.25rem 1rem;clear:both;font-weight:400;color:#006294;text-align:inherit;text-decoration:none;white-space:nowrap;background-color:transparent;border:0}
+.dropdown-item:focus,.dropdown-item:hover{color:#1e2125;background-color:#e9ecef}
+.dropdown-item.active,.dropdown-item:active{color:#fff;text-decoration:none;background-color:#0d6efd}
+.dropdown-item.disabled,.dropdown-item:disabled{color:#adb5bd;pointer-events:none;background-color:transparent}
+.dropdown-menu.show{display:block}
+.dropdown-header{display:block;padding:.5rem 1rem;margin-bottom:0;font-size:.875rem;color:#6c757d;white-space:nowrap}
+.dropdown-item-text{display:block;padding:.25rem 1rem;color:#212529}
+.dropdown-menu-dark{color:#dee2e6;background-color:#343a40;border-color:rgba(0,0,0,.15)}
+.dropdown-menu-dark .dropdown-item{color:#dee2e6}
+.dropdown-menu-dark .dropdown-item:focus,.dropdown-menu-dark .dropdown-item:hover{color:#fff;background-color:rgba(255,255,255,.15)}
+.dropdown-menu-dark .dropdown-item.active,.dropdown-menu-dark .dropdown-item:active{color:#fff;background-color:#0d6efd}
+.dropdown-menu-dark .dropdown-item.disabled,.dropdown-menu-dark .dropdown-item:disabled{color:#adb5bd}
+.dropdown-menu-dark .dropdown-divider{border-color:rgba(0,0,0,.15)}
+.dropdown-menu-dark .dropdown-item-text{color:#dee2e6}
+.dropdown-menu-dark .dropdown-header{color:#adb5bd}
