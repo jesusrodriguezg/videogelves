@@ -37,7 +37,7 @@ CREATE USER 'videogelves'@'localhost' IDENTIFIED BY 'Aabc123.';
 GRANT ALL PRIVILEGES ON VIDEOGELVES.* TO 'videogelves'@'localhost' WITH GRANT OPTION;
 ```
 
-> NOTA: los parámetros relativos a la base de datos ya se encuentran configurados en el archivo .env del proyecto de Laravel que se incluye en este repositorio.
+> NOTA: debes incluir estos parámetros relativos a la base de datos en el archivo .env del proyecto de Laravel.
 
 Crea las tablas con los archivos de migraciones del proyecto de Laravel. En el directorio ```server``` ejecuta el siguiente comando:
 
