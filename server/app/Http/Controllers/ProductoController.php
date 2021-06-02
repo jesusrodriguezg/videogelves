@@ -14,8 +14,8 @@ class ProductoController extends Controller
     }
 
     // Función que recibe un NOMBRE_PRODUCTO y devuelve los datos de ese producto
-    public function getDetalleProducto($nombreProducto){
-        return $this->jsonResponse(Producto::all()->where('nombre_producto',$nombreProducto));
+    public function getDetalleProducto($nombre_producto){
+        return $this->jsonResponse(Producto::all()->where('nombre_producto',$nombre_producto));
     }
 
     // Función que recibe un NOMBRE_CATEGORIA y devuelve los productos de esa categoría
@@ -30,5 +30,10 @@ class ProductoController extends Controller
     {
         return $this->jsonResponse(Categoria::all()
                     ->where('id_categoria',$id_categoria));
+    }
+
+    public function deleteStockProducto($id_producto)
+    {
+        return Producto::find($id_producto)->update(['stock' => 0]);;
     }
 }

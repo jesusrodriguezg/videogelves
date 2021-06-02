@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Producto } from '../producto/producto';
+import { Producto } from '../producto';
 import { ProductoService } from '../services/productos.service';
 
 @Component({
@@ -30,7 +30,6 @@ export class CategoriaComponent implements OnInit {
 
   getProductosCategoria(){
     this._productoService.getProductosCategoria(this.nombreCategoria).subscribe(data => {
-      console.log(data)
       for (let i in data) {
         this.producto = new Producto();
         this.producto.id_producto = data[i].id_producto;
@@ -43,7 +42,6 @@ export class CategoriaComponent implements OnInit {
         this.productos.push(this.producto);
       }
     });
-    console.log(this.productos);
   }
 
   verDetalleProducto(nombre_producto:any):void{

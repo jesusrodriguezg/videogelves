@@ -22,10 +22,10 @@
           <div class="dropdown">
             <a class="header-icon" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a routerLink="/login" *ngIf="!loggedIn" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
-              <li><a routerLink="/register" *ngIf="!loggedIn" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
-              <li><a routerLink="/secure" *ngIf="loggedIn" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
-              <li><a routerLink="/loggedout" *ngIf="loggedIn" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
+              <li><a routerLink="/login" *ngIf="!isUserLogged()" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
+              <li><a routerLink="/register" *ngIf="!isUserLogged()" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
+              <li><a routerLink="/secure" *ngIf="isUserLogged()" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
+              <li><a (click)="logout()" *ngIf="isUserLogged()" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
             </ul>
           </div>
         </div>

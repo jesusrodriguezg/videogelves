@@ -36,13 +36,20 @@ class User extends Authenticatable
         'admin' => 'N'
     ];
 
+    // Definimos los campos que quedan ocultos al hacer una consulta
+    // a la BD y serializar el resultado como array u objeto JSON
+    protected $hidden = [
+        'password',
+        'admin',
+        'remember_token',
+    ];
+
     /**
      * Definimos los campos que no se pueden rellenar de forma masiva.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
+    protected $guarded = [
         'admin',
         'remember_token',
     ];

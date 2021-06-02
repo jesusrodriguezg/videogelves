@@ -12,12 +12,10 @@ export class NavbarComponent implements OnInit {
   constructor(private _userService: UserService) {
   }
   ngOnInit(): void {
-    this.isUserLogged();
   }
 
   isUserLogged(){
-    this.loggedIn = this._userService.isUserLoggedIn();
-    console.log('isLogged', this.loggedIn);
+    return localStorage.getItem('usuario');
   }
 
   logout(): void {

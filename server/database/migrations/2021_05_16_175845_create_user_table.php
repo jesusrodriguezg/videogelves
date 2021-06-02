@@ -23,7 +23,7 @@ class CreateUserTable extends Migration
             $table->string('apellidos',50)->nullable(false);
             $table->string('direccion',200)->nullable(false);
             $table->char('admin',1)->nullable(false);
-            $table->$table->rememberToken();
+            $table->rememberToken();
 
             // Añadimos las opciones de la tabla: motor de BD, conjunto de caracteres y cotejamiento
             $table->engine = 'InnoDB';

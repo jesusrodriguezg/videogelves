@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../services/productos.service';
-import { Producto } from '../producto/producto';
+import { Producto } from '../producto';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,6 @@ export class DetalleComponent implements OnInit {
     private activatedRoute:ActivatedRoute) {
       this.activatedRoute.params.subscribe(params => {
         this.nombreProducto = decodeURI(params['nombreProducto']);
-        console.log(this.nombreProducto)
       })
     }
 
@@ -28,7 +27,6 @@ export class DetalleComponent implements OnInit {
 
   getProductoDetalle() {
     this._productoService.getProductoDetalle(this.nombreProducto).subscribe(data => {
-      console.log(data);
       for (let i in data) {
         this.producto.id_producto = data[i].id_producto;
         this.producto.nombre_producto = data[i].nombre_producto;

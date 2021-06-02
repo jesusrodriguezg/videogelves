@@ -23,7 +23,10 @@ export class SecureComponent implements OnInit {
     });
     console.log(localStorage.getItem('token'));
     this.http.get('http://localhost:8000/api/user', {headers}).subscribe(
-      result => this.user = result,
+      result => {
+        this.user = result,
+        localStorage.setItem('usuario', JSON.stringify(this.user))
+      },
       error => {
         this.userService.logout();
         this.router.navigate(['/login']);

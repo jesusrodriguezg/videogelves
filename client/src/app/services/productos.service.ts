@@ -31,7 +31,17 @@ export class ProductoService {
     return this.http.get(this.apiCategorias+"/all/"+nombreCategoria);
   }
 
+  // Método que sirve para "convertir" el ID en el NOMBRE_CATEGORIA
+  // Manda un ID_CATEGORIA y recibe el NOMBRE_CATEGORIA correspondiente
   getNombreCategoria(idCategoria:any):Observable<any>{
     return this.http.get(this.apiCategorias+"/nombre/"+idCategoria);
   }
+
+  //
+  deleteStockProducto(idProducto:any):Observable<any>{
+    const headers = {'content-type': 'application/json'};
+    const body = { stock: 0 };
+    return this.http.put(this.apiProductos+'/delete/'+idProducto,body,{'headers':headers});
+  }
+
 }

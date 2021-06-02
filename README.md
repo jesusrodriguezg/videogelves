@@ -69,7 +69,7 @@ Client ID: 2
 Client secret: LYmFJusiC5doqlM5dHGN3Efb0eSGmcPWJZw0Fkqk
 ```
 
-Copia las dos claves y pégalas en los respectivos campos asignados al final del archivo ```.env``` ubicado en el directorio ```server```.
+Copia las dos claves y pégalas en los respectivos campos asignados al final del archivo ```.env``` ubicado en el directorio ```server```. Asigna también el valor de la clave del ID 2 a la variable ```client_secret``` en client > src > login > ```login.component.ts```.
 
 ### Ejecución
 

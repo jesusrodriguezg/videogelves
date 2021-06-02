@@ -86,9 +86,23 @@ a:hover, .enlace-titulo:hover{
 }
 
 /* Botón basado en las clases de Bootstrap .btn-primary, modificado para que muestre el color corporativo */
+/* Se usa en todos los botones de la aplicación, y en el botón de confirmación en cuadros de diálogo SÍ / NO */
 .btn-vg{color:#fff;background-color:#006294;border-color:#fff}
 .btn-vg:hover{color:#fff;background-color:#0088CE;border-color:#0083C6}
 .btn-check:focus+.btn-vg,.btn-vg:focus{color:#fff;background-color:#0088CE;border-color:#0083C6;box-shadow:0 0 0 .25rem rgba(49,132,253,.5)}
 .btn-check:active+.btn-vg,.btn-check:checked+.btn-vg,.btn-vg.active,.btn-vg:active,.show>.btn-vg.dropdown-toggle{color:#fff;background-color:#0083C6;border-color:#0A7ABE}
 .btn-check:active+.btn-vg:focus,.btn-check:checked+.btn-vg:focus,.btn-vg.active:focus,.btn-vg:active:focus,.show>.btn-vg.dropdown-toggle:focus{box-shadow:0 0 0 .25rem rgba(49,132,253,.5)}
 .btn-vg.disabled,.btn-vg:disabled{color:#fff;background-color:#006294;border-color:#006294}
+
+/* Botón basado en las clases de Bootstrap .btn-primary, modificado para que muestre un color de alerta */
+/*  */
+.btn-vg-alert{color:#fff;background-color:#ac0000;border-color:#fff}
+.btn-vg-alert:hover{color:#fff;background-color:#E70000;border-color:#0083C6}
+.btn-check:focus+.btn-vg-alert,.btn-vg-alert:focus{color:#fff;background-color:#E70000;border-color:#FF2424;box-shadow:0 0 0 .25rem rgba(253, 49, 49, 0.5)}
+.btn-check:active+.btn-vg-alert,.btn-check:checked+.btn-vg-alert,.btn-vg-alert.active,.btn-vg-alert:active,.show>.btn-vg-alert.dropdown-toggle{color:#fff;background-color:#E70000;border-color:#B90202}
+.btn-check:active+.btn-vg-alert:focus,.btn-check:checked+.btn-vg-alert:focus,.btn-vg-alert.active:focus,.btn-vg-alert:active:focus,.show>.btn-vg-alert.dropdown-toggle:focus{box-shadow:0 0 0 .25rem rgba(253, 49, 49, 0.5)}
+.btn-vg-alert.disabled,.btn-vg-alert:disabled{color:#fff;background-color:#FF2424;border-color:#FF2424}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
