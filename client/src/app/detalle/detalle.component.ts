@@ -42,4 +42,10 @@ export class DetalleComponent implements OnInit {
   sinStock(){
     return this.producto.stock == 0;
   }
+
+  addCarrito(idProducto){
+
+  }
+
+
 }

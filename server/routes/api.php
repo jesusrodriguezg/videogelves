@@ -25,3 +25,8 @@ Route::get('/categorias/all/{nombreCategoria}', 'App\Http\Controllers\ProductoCo
 Route::get('/user', 'App\Http\Controllers\UserController@user')->middleware('auth:api');
 // Permite el registro de los usuarios
 Route::post('/register', 'App\Http\Controllers\UserController@registerUser');
+
+/*-------- PEDIDOS --------*/
+
+// Crea un pedido nuevo en la tabla PEDIDO
+Route::post('/compra/{idUsuario}', 'App\Http\Controllers\PedidoController@createPedido');

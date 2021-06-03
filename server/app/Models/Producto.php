@@ -29,7 +29,7 @@ class Producto extends Model
     protected $casts = ['precio' => 'float'];
 
     // Definimos la relación con la entidad Categoria
-    public function categoria(){
+    public function id_categoria(){
         return $this->belongsTo(Categoria::class);
     }
 

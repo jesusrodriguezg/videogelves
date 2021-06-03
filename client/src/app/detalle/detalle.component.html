@@ -42,9 +42,44 @@
       <div class="col-5">{{producto.descripcion}}</div>
       <div class="col-4 text-end">
         <h1 class="precio-detalle">{{producto.precio}} €</h1>
-        <div *ngIf="sinStock()" class="sin-stock">Sin stock</div>
-        <div *ngIf="!sinStock()">Stock: {{producto.stock}} unidades</div>
+        <div *ngIf="sinStock()" class="sin-stock"><span>Sin stock</span></div>
+        <span><div *ngIf="!sinStock()">Stock: {{producto.stock}} unidades</div></span>
         <div><b>Valoración: 5 / 5 (37)</b></div>
+        <div>
+          <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(producto.id_producto)">
+          <i class="fas fa-shopping-cart"></i>  Añadir al carrito
+        </button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-vg" title="Añadir a lista de deseos" (click)="addCarrito(producto.id_producto)">
+          <i class="fas fa-heart"></i>  Añadir a lista de deseos
+        </button>
+        </div>
+      </div>
+    </div>
+    <!-- VALORACIONES -->
+    <div class="row">
+      <h3>Valoraciones</h3>
+    </div>
+    <!-- Debe ir partido en dos -->
+    <div class="row justify-content-between">
+      <div class="col-3"><img src="{{producto.imagen}}" alt="{{producto.nombre_producto}}"></div>
+      <div class="col-5">{{producto.descripcion}}</div>
+      <div class="col-4 text-end">
+        <h1 class="precio-detalle">{{producto.precio}} €</h1>
+        <div *ngIf="sinStock()" class="sin-stock"><span>Sin stock</span></div>
+        <span><div *ngIf="!sinStock()">Stock: {{producto.stock}} unidades</div></span>
+        <div><b>Valoración: 5 / 5 (37)</b></div>
+        <div>
+          <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(producto.id_producto)">
+          <i class="fas fa-shopping-cart"></i>  Añadir al carrito
+        </button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-vg" title="Añadir a lista de deseos" (click)="addCarrito(producto.id_producto)">
+          <i class="fas fa-heart"></i>  Añadir a lista de deseos
+        </button>
+        </div>
       </div>
     </div>
   </div>

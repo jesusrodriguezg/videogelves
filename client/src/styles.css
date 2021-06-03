@@ -79,10 +79,11 @@ a:hover, .enlace-titulo:hover{
   font-weight: 800;
 }
 
-.sin-stock{
+.sin-stock span{
   background-color: #ac0000;
   color: #fff;
   font-weight: bold;
+  padding: 0 5px 0 5px;
 }
 
 /* Botón basado en las clases de Bootstrap .btn-primary, modificado para que muestre el color corporativo */

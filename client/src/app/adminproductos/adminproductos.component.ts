@@ -4,6 +4,8 @@ import { ProductoService } from '../services/productos.service';
 import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-adminproductos',
@@ -20,9 +22,17 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
   //El trigger se usa para que los datos se carguen antes de renderizar
   public dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private _productoService: ProductoService,
+  constructor(
+    private _productoService: ProductoService,
     private _confirmationDialogService: ConfirmationDialogService,
-    private _router:Router) {}
+    private _router:Router,
+    private _userService: UserService
+  )
+    {
+      if (!_userService.isUserLogged()) {
+        _router.navigate(['/login']);
+      }
+    }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -57,9 +67,10 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
     });
   }
 
+  // Función que redirige a la pantalla para editar el producto
+  // Recibe por parámetros el ID_PRODUCTO que se le pasa a la api para el UPDATE
   editProducto(idProducto){
-    // Función que redirige a la pantalla para editar el producto
-    // Recibe por parámetros el ID_PRODUCTO que se le pasa a la api para el UPDATE
+
   }
 
   // Función que permite dejar un producto sin stock
@@ -82,10 +93,21 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
     );
   }
 
+  updateDialog(idProducto){
+    this._productoService.updateProducto(idProducto)
+      .subscribe(data => {
+
+      })
+  }
+
   refresh() {
     let currentUrl = this._router.url;
     this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this._router.navigate([currentUrl]);
     });
+  }
+
+  isUserLogged(){
+    return localStorage.getItem('usuario');
   }
 }

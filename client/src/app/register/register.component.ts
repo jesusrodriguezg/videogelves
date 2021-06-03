@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 export class RegisterComponent implements OnInit {
   form:FormGroup;
 
-  constructor(private fb: FormBuilder, private http:HttpClient) { }
+  constructor(private fb: FormBuilder, private _userService:UserService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -25,9 +26,10 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     const formData = this.form.getRawValue();
-    this.http.post('http://localhost:8000/api/register',formData).subscribe(
-      response => console.log(response),
-      error => console.log(error)
-    );
+    this._userService.register(formData);
+    // this.http.post(environment.apiUrl+'register',formData).subscribe(
+    //   response => console.log(response),
+    //   error => console.log(error)
+    // );
   }
 }

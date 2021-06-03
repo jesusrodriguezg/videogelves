@@ -40,7 +40,6 @@ class User extends Authenticatable
     // a la BD y serializar el resultado como array u objeto JSON
     protected $hidden = [
         'password',
-        'admin',
         'remember_token',
     ];
 

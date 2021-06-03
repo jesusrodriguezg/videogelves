@@ -1,44 +1,57 @@
-<app-confirmation-dialog></app-confirmation-dialog>
-<div class="container-fluid">
-  <div class="card">
-    <div class="card-header">
-      <div class="float-left">
-        <h3>Administrador de productos</h3>
+  <app-confirmation-dialog></app-confirmation-dialog>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="float-left">
+          <h3>Administrador de productos</h3>
+        </div>
+        <div class="float-right">
+          <button class="btn btn-vg w-20" type="submit">
+            <span><i class="fas fa-plus"></i> Nuevo</span>
+          </button>
+        </div>
       </div>
-      <div class="float-right">
-        <button class="btn btn-vg w-20" type="submit">
-          <span><i class="fas fa-plus"></i> Nuevo</span>
-        </button>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive-sm">
-        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Stock</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let producto of productos">
-              <th scope="row">{{producto.id_producto}}</th>
-              <td>{{producto.nombre_producto}}</td>
-              <td>{{producto.precio}} €</td>
-              <td>{{producto.stock}}</td>
-              <td><button type="button" class="btn btn-vg" (click)="editProducto(producto.id_producto)" title="Editar producto"><i class="fas fa-edit"></i></button></td>
-              <td><button type="button" class="btn btn-vg" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i></button></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="card-body">
+        <div class="table-responsive-sm">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Stock</th>
+                <th colspan="2">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producto of productos">
+                <th scope="row">{{producto.id_producto}}</th>
+                <td>{{producto.nombre_producto}}</td>
+                <td>{{producto.precio}} €</td>
+                <td>{{producto.stock}}</td>
+                <td>
+                  <button type="button" class="btn btn-vg accordion-toggle" data-toggle="collapse" [attr.data-target]="'#formCollapse'+producto.id_producto" aria-expanded="false" aria-controls="formCollapse" title="Editar producto"><i class="fas fa-edit"></i></button>
+                </td>
+                <td>
+                  <button *ngIf="producto.stock == 0" type="button" class="btn btn-vg disabled" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i></button>
+                  <button *ngIf="producto.stock != 0" type="button" class="btn btn-vg" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i></button>
+                </td>
+              </tr>
+              <!-- <tr>
+                <td colspan="12" class="hiddenRow">
+                  <div class="accordion-body collapse" id='formCollapse{{producto.id_producto}}'>
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 <!--
   <div class="row py-3 justify-content-center">

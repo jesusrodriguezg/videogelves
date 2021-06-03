@@ -10,6 +10,7 @@ export class ProductoService {
 
   public apiProductos: string = environment.apiUrl + "productos";
   public apiCategorias: string = environment.apiUrl + "categorias";
+  private headers = {'content-type': 'application/json'};
 
   constructor(private http: HttpClient) {
   }
@@ -39,9 +40,20 @@ export class ProductoService {
 
   //
   deleteStockProducto(idProducto:any):Observable<any>{
-    const headers = {'content-type': 'application/json'};
     const body = { stock: 0 };
-    return this.http.put(this.apiProductos+'/delete/'+idProducto,body,{'headers':headers});
+    return this.http.put(this.apiProductos+'/delete/'+idProducto,body,{'headers':this.headers});
   }
 
+  updateProducto(idProducto:any):Observable<any>{
+    const body = { };
+    return this.http.put(this.apiProductos+'/update/'+idProducto,body,{'headers':this.headers});
+  }
+
+  addCarrito(idUsuario,idProducto){
+    // Crear fila en la tabla PEDIDO
+      // Comprobar si hay una fila en PEDIDO con ese usuario y el campo COMPRADO a 'N'
+      // Si no la hay, crear una nueva
+    // Crear fila en la tabla DETALLE_PEDIDO
+      //Seleccionar
+  }
 }

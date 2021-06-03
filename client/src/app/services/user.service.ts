@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +10,19 @@ export class UserService {
 
   // private loggedChanged = new Subject<boolean>();
   private loggedChanged: boolean = false;
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+    private http:HttpClient) { }
 
   login(token: any): void {
     localStorage.setItem('token', token);
     //  this.loggedChanged = true;
+  }
+
+  // Método que permite el registro de usuarios
+  register(formData:any){
+    this.http.post(environment.apiUrl+'register',formData)
+    .subscribe(error => console.log(error));
+
   }
 
   logout(): void {
@@ -25,5 +35,9 @@ export class UserService {
   // PARA CARGÁRSELO
   isUserLoggedIn(): boolean {
     return this.loggedChanged;
+  }
+
+  isUserLogged(){
+    return localStorage.getItem('usuario');
   }
 }
