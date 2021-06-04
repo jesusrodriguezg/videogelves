@@ -48,12 +48,4 @@ export class ProductoService {
     const body = { };
     return this.http.put(this.apiProductos+'/update/'+idProducto,body,{'headers':this.headers});
   }
-
-  addCarrito(idUsuario,idProducto){
-    // Crear fila en la tabla PEDIDO
-      // Comprobar si hay una fila en PEDIDO con ese usuario y el campo COMPRADO a 'N'
-      // Si no la hay, crear una nueva
-    // Crear fila en la tabla DETALLE_PEDIDO
-      //Seleccionar
-  }
 }

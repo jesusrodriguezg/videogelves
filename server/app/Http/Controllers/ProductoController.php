@@ -34,6 +34,6 @@ class ProductoController extends Controller
 
     public function deleteStockProducto($id_producto)
     {
-        return Producto::find($id_producto)->update(['stock' => 0]);;
+        return Producto::find($id_producto)->update(['stock' => 0]);
     }
 }

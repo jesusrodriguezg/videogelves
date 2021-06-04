@@ -1,87 +1,88 @@
 -- Creamos la base de datos con la codificación de caracteres
-CREATE DATABASE VIDEOGELVES DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+create database videogelves default character set utf8mb4 collate utf8mb4_spanish_ci;
 
 -- Seleccionamos la base de datos
-USE VIDEOGELVES;
+use videogelves;
 
 -- Creamos las tablas
-CREATE TABLE USUARIO (
-    ID_USUARIO  INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
-    EMAIL       VARCHAR(50) NOT NULL,
-    PASSWORD    VARCHAR(25) NOT NULL,
-    NOMBRE      VARCHAR(25) NOT NULL,
-    APELLIDOS   VARCHAR(50) NOT NULL,
-    DIRECCION   VARCHAR(200) NOT NULL,
-    ADMIN       CHAR NOT NULL,
-    PRIMARY KEY (ID_USUARIO)
+create table user (
+    id_user  integer not null unique auto_increment,
+    email       varchar(50) not null,
+    password    varchar(25) not null,
+    nombre      varchar(25) not null,
+    apellidos   varchar(50) not null,
+    direccion   varchar(200) not null,
+    admin       char not null,
+    remember_token  varchar null,
+    primary key (id_user)
 );
 
-CREATE TABLE CATEGORIA (
-    ID_CATEGORIA           INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
-    NOMBRE_CATEGORIA       VARCHAR(20) NOT NULL,
-    DESCRIPCION_CATEGORIA  VARCHAR(150) NOT NULL,
-    PRIMARY KEY (ID_CATEGORIA)
+create table categoria (
+    id_categoria           integer not null unique auto_increment,
+    nombre_categoria       varchar(20) not null,
+    descripcion_categoria  varchar(150) not null,
+    primary key (id_categoria)
 );
 
-CREATE TABLE PRODUCTO (
-    ID_PRODUCTO             INTEGER NOT NULL UNIQUE,
-    NOMBRE_PRODUCTO         VARCHAR(50) NOT NULL,
-    DESCRIPCION             VARCHAR(250) NOT NULL,
-    PRECIO                  DECIMAL(4,2) NOT NULL,
-    STOCK                   INTEGER NOT NULL,
-    IMAGEN                  VARCHAR(100) NOT NULL,
-    CATEGORIA_ID_CATEGORIA  INTEGER NOT NULL,
-    PRIMARY KEY (ID_PRODUCTO)
+create table producto (
+    id_producto             integer not null unique,
+    nombre_producto         varchar(50) not null,
+    descripcion             varchar(250) not null,
+    precio                  decimal(4,2) not null,
+    stock                   integer not null,
+    imagen                  varchar(100) not null,
+    categoria_id_categoria  integer not null,
+    primary key (id_producto)
 );
 
-CREATE TABLE PEDIDO (
-    ID_PEDIDO           INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
-    COMPRADO            CHAR(1) NOT NULL,
-    FECHA               VARCHAR(10) NOT NULL,
-    USUARIO_ID_USUARIO  INTEGER NOT NULL,
-    PRIMARY KEY (ID_PEDIDO)
+create table pedido (
+    id_pedido           integer not null unique auto_increment,
+    comprado            char(1) not null,
+    fecha               varchar(10) not null,
+    user_id_user  integer not null,
+    primary key (id_pedido)
 );
 
-CREATE TABLE DETALLE_PEDIDO (
-    PEDIDO_ID_PEDIDO      INTEGER NOT NULL,
-    PRODUCTO_ID_PRODUCTO  INTEGER NOT NULL,
-    CANTIDAD              INTEGER NOT NULL,
-    DEVUELTO              CHAR(1) NOT NULL,
-    CONSTRAINT PK_DETALLE_PEDIDO PRIMARY KEY (PEDIDO_ID_PEDIDO,PRODUCTO_ID_PRODUCTO)
+create table detalle_pedido (
+    pedido_id_pedido      integer not null,
+    producto_id_producto  integer not null,
+    cantidad              integer not null,
+    devuelto              char(1) not null,
+    constraint pk_detalle_pedido primary key (pedido_id_pedido,producto_id_producto)
 );
 
-CREATE TABLE LISTA_DESEOS (
-    USUARIO_ID_USUARIO    INTEGER NOT NULL,
-    PRODUCTO_ID_PRODUCTO  INTEGER NOT NULL
-    CONSTRAINT PK_LISTA_DESEOS PRIMARY KEY (USUARIO_ID_USUARIO,PRODUCTO_ID_PRODUCTO);
+create table lista_deseos (
+    user_id_user    integer not null,
+    producto_id_producto  integer not null
+    constraint pk_lista_deseos primary key (user_id_user,producto_id_producto);
 
 );
 
-CREATE TABLE VALORACION (
-    COMENTARIO            VARCHAR(300) NOT NULL,
-    PUNTUACION            INTEGER NOT NULL,
-    USUARIO_ID_USUARIO    INTEGER NOT NULL,
-    PRODUCTO_ID_PRODUCTO  INTEGER NOT NULL,
-    CONSTRAINT PK_VALORACION PRIMARY KEY (USUARIO_ID_USUARIO,PRODUCTO_ID_PRODUCTO)
+create table valoracion (
+    comentario            varchar(300) not null,
+    puntuacion            integer not null,
+    user_id_user    integer not null,
+    producto_id_producto  integer not null,
+    constraint pk_valoracion primary key (user_id_user,producto_id_producto)
 );
 
 -- Añadimos las claves foráneas
-ALTER TABLE PRODUCTO ADD CONSTRAINT FK_PRODUCTO_CATEGORIA FOREIGN KEY (CATEGORIA_ID_CATEGORIA) REFERENCES CATEGORIA (ID_CATEGORIA);
+alter table producto add constraint fk_producto_categoria foreign key (categoria_id_categoria) references categoria (id_categoria);
 
-ALTER TABLE PEDIDO ADD CONSTRAINT FK_PEDIDO_USUARIO FOREIGN KEY (USUARIO_ID_USUARIO) REFERENCES USUARIO (ID_USUARIO);
+alter table pedido add constraint fk_pedido_user foreign key (user_id_user) references user (id_user);
 
-ALTER TABLE DETALLE_PEDIDO ADD CONSTRAINT FK_DETALLE_PEDIDO_PEDIDO FOREIGN KEY (PEDIDO_ID_PEDIDO) REFERENCES PEDIDO (ID_PEDIDO);
+alter table detalle_pedido add constraint fk_detalle_pedido_pedido foreign key (pedido_id_pedido) references pedido (id_pedido);
 
-ALTER TABLE DETALLE_PEDIDO ADD CONSTRAINT FK_DETALLE_PEDIDO_PRODUCTO FOREIGN KEY (PRODUCTO_ID_PRODUCTO) REFERENCES PRODUCTO (ID_PRODUCTO);
+alter table detalle_pedido add constraint fk_detalle_pedido_producto foreign key (producto_id_producto) references producto (id_producto);
 
-ALTER TABLE LISTA_DESEOS ADD CONSTRAINT FK_LISTA_DESEOS_PRODUCTO FOREIGN KEY (PRODUCTO_ID_PRODUCTO) REFERENCES PRODUCTO (ID_PRODUCTO);
+alter table lista_deseos add constraint fk_lista_deseos_producto foreign key (producto_id_producto) references producto (id_producto);
 
-ALTER TABLE LISTA_DESEOS ADD CONSTRAINT FK_LISTA_DESEOS_USUARIO FOREIGN KEY (USUARIO_ID_USUARIO) REFERENCES USUARIO (ID_USUARIO);
+alter table lista_deseos add constraint fk_lista_deseos_user foreign key (user_id_user) references user (id_user);
 
-ALTER TABLE VALORACION ADD CONSTRAINT FK_VALORACION_PRODUCTO FOREIGN KEY (PRODUCTO_ID_PRODUCTO) REFERENCES PRODUCTO (ID_PRODUCTO);
+alter table valoracion add constraint fk_valoracion_producto foreign key (producto_id_producto) references producto (id_producto);
 
-ALTER TABLE VALORACION ADD CONSTRAINT FK_VALORACION_USUARIO FOREIGN KEY (USUARIO_ID_USUARIO) REFERENCES USUARIO (ID_USUARIO);
+alter table valoracion add constraint fk_valoracion_user foreign key (user_id_user) references user (id_user);
 
--- Creamos el usuario con su contraseña y le otorgamos todos los permisos sobre la BD
-CREATE USER 'VIDEOGELVES'@'localhost' IDENTIFIED BY 'Aabc123.';
-GRANT ALL PRIVILEGES ON VIDEOGELVES.* TO 'VIDEOGELVES'@'localhost' WITH GRANT OPTION;;
+-- Creamos el usuario con su contraseña y le otorgamos todos los permisos sobre la bd
+create user 'videogelves'@'localhost' identified by 'Aabc123.';
+grant all privileges on videogelves.* to 'videogelves'@'localhost' with grant option;;

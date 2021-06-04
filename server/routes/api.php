@@ -29,4 +29,4 @@ Route::post('/register', 'App\Http\Controllers\UserController@registerUser');
 /*-------- PEDIDOS --------*/
 
 // Crea un pedido nuevo en la tabla PEDIDO
-Route::post('/compra/{idUsuario}', 'App\Http\Controllers\PedidoController@createPedido');
+Route::post('/pedidos/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@createDetallePedido');

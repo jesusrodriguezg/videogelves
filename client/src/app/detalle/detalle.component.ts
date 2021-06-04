@@ -43,6 +43,9 @@ export class DetalleComponent implements OnInit {
     return this.producto.stock == 0;
   }
 
+  // Función que añade un producto al carrito de la compra
+  // Por cada vez que se la llama, hace una llamada a la API, que
+  // comprueba / crea una fila en PEDIDO a la vez que crea la fila en DETALLE_PEDIDO
   addCarrito(idProducto){
 
   }
