@@ -29,8 +29,14 @@ class Producto extends Model
     protected $casts = ['precio' => 'float'];
 
     // Definimos la relación con la entidad Categoria
-    public function id_categoria(){
-        return $this->belongsTo(Categoria::class);
+    /**
+     * Devuelve la CATEGORIA asociada al PRODUCTO
+     *
+     * @return void
+     */
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id_categoria', 'id_categoria');
     }
 
     // Variable con la que indicamos al ORM que no intente registrar las marcas

@@ -5,30 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DetallePedido extends Model
+class Valoracion extends Model
 {
     use HasFactory;
 
-    protected $table = "detalle_pedido";
+    protected $table = 'valoracion';
 
-    protected $primaryKey = ["pedido_id_pedido","producto_id_producto"];
-
-    protected $fillable = [
-        'pedido_id_pedido',
-        'producto_id_producto',
-        'cantidad',
-        'devuelto'
+    protected $primaryKey = [
+        'user_id_user',
+        'producto_id_producto'
     ];
 
-    // Definimos la relación con las entidades PEDIDO y PRODUCTO
+    protected $fillable = [
+        'comentario',
+        'puntuacion',
+        'user_id_user',
+        'producto_id_producto'
+    ];
+
+    // Definimos la relación con las entidades USER y PRODUCTO
 
     /**
-     * Devuelve el PEDIDO asociado al DETALLE_PEDIDO
+     * Devuelve el USER asociado al DETALLE_PEDIDO
      *
      * @return void
      */
-    public function pedido(){
-        return $this->belongsTo(Pedido::class, 'pedido_id_pedido','id_pedido');
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id_user','id_user');
     }
 
     /**

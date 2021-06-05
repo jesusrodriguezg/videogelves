@@ -62,5 +62,4 @@ class User extends Authenticatable
     // Variable con la que indicamos al ORM que no intente registrar las marcas
     // de tiempo (created_at y updated_at) al hacer un insert en la tabla de usuarios
     public $timestamps = false;
-
 }

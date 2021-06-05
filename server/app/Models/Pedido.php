@@ -23,8 +23,13 @@ class Pedido extends Model
         'id_pedido'
     ];
 
+    /**
+     * Devuelve el USER asociado al PEDIDO
+     *
+     * @return void
+     */
     public function user(){
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class, 'user_id_user','id_user');
     }
 
     public $timestamps = false;
