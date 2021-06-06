@@ -30,3 +30,12 @@ Route::post('/register', 'App\Http\Controllers\UserController@registerUser');
 
 // Crea un pedido nuevo en la tabla PEDIDO
 Route::post('/pedidos/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@createDetallePedido');
+
+/*-------- LISTA DE DESEOS --------*/
+
+// Recibe un ID_USUARIO y devuelve todos los productos de su lista de deseos
+Route::get('/listaDeseos/{idUsuario}', 'App\Http\Controllers\ListaDeseosController@getListaDeseos');
+// Recibe un ID_USUARIO y un ID_PRODUCTO y lo inserta en la lista de deseos
+Route::post('/listaDeseos/add/{idUsuario}/{idProducto}', 'App\Http\Controllers\ListaDeseosController@addListaDeseos');
+// Recibe un ID_USUARIO y un ID_PRODUCTO y lo elimina de la lista de deseos
+Route::put('/listaDeseos/delete/{idUsuario}/{idProducto}', 'App\Http\Controllers\ListaDeseosController@deleteListaDeseos');

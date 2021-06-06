@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\HasCompositePrimaryKey;
 
 class ListaDeseos extends Model
 {
     use HasFactory;
+    use HasCompositePrimaryKey;
 
     protected $table = 'lista_deseos';
 
@@ -42,4 +44,7 @@ class ListaDeseos extends Model
     }
 
     public $timestamps = false;
+
+    // Deshabilitamos el autoincremento por defecto de Laravel para la PK
+    public $incrementing = false;
 }
