@@ -9,12 +9,8 @@ use App\Models\DetallePedido;
 
 class DetallePedidoController extends Controller
 {
-    public function createDetallePedido(Request $request)
+    public function createDetallePedido($id_usuario,$id_producto)
     {
-        // Extraemos el ID_USUARIO y el ID_PRODUCTO de la request
-        $id_usuario = $request->id_usuario;
-        $id_producto = $request->id_producto;
-
         // Obtenemos el ID_PEDIDO llamando al método
         // getPedido() de Pedido y pasándole el ID_USUARIO
         $id_pedido = Pedido::getPedido($id_usuario);
@@ -29,7 +25,7 @@ class DetallePedidoController extends Controller
         }else{
             DetallePedido::create([
                 'pedido_id_pedido' => $id_pedido,
-                'producto_id_producto' => $request->id_producto),
+                'producto_id_producto' => $id_producto),
                 'cantidad' => ,
                 'devuelto' => 'N'
             ]);

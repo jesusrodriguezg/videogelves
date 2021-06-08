@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 // Devuelve todos los productos
 Route::get('/productos', 'App\Http\Controllers\ProductoController@getAllProductos');
-// Devuelve un producto recibiendo como parámetro el ID del producto
+// Devuelve un producto recibiendo como parámetro el nombre del producto
 Route::get('/productos/{nombreProducto}', 'App\Http\Controllers\ProductoController@getDetalleProducto');
 // Deja el stock de un producto a cero (0)
 Route::put('productos/delete/{idProducto}', 'App\Http\Controllers\ProductoController@deleteStockProducto');
@@ -38,4 +38,10 @@ Route::get('/listaDeseos/{idUsuario}', 'App\Http\Controllers\ListaDeseosControll
 // Recibe un ID_USUARIO y un ID_PRODUCTO y lo inserta en la lista de deseos
 Route::post('/listaDeseos/add/{idUsuario}/{idProducto}', 'App\Http\Controllers\ListaDeseosController@addListaDeseos');
 // Recibe un ID_USUARIO y un ID_PRODUCTO y lo elimina de la lista de deseos
-Route::put('/listaDeseos/delete/{idUsuario}/{idProducto}', 'App\Http\Controllers\ListaDeseosController@deleteListaDeseos');
+Route::delete('/listaDeseos/delete/{idUsuario}/{idProducto}', 'App\Http\Controllers\ListaDeseosController@deleteListaDeseos');
+// Recibe un ID_USUARIO y un ID_PRODUCTO y comprueba si hay una fila en la tabla
+Route::get('/listaDeseos/search/{idUsuario}/{idProducto}', 'App\Http\Controllers\ListaDeseosController@searchListaDeseos');
+
+/*-------- VALORACIONES --------*/
+// Recibe un ID_PRODUCTO y devuelve todas las valoraciones de dicho producto
+Route::get('/valoraciones/{idProducto}', 'App\Http\Controllers\ValoracionesController@getValoraciones');

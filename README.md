@@ -1,13 +1,27 @@
 # Proyecto Integrado DAW
 ### Proyecto integrado del ciclo de Desarrollo de Aplicaciones Web del IES Polígono Sur de Sevilla
 
-Este repositorio contiene el código y la información de desarrollo y despliegue del proyecto integrado desarrollado como trabajo final del ciclo de Formación Profesional de grado superior en Desarrollo de Aplicaciones Web en el IES Polígono Sur de Sevilla, España. El proyecto consiste en una tienda de videojuegos en la que el usuario puede realizar compras, entre otras funciones.
+Este repositorio contiene el código y la información de desarrollo y despliegue del proyecto integrado desarrollado como trabajo final del ciclo de Formación Profesional de grado superior en Desarrollo de Aplicaciones Web en el IES Polígono Sur de Sevilla, España.
 
 La aplicación se encuentra en construcción y esta documentación se irá ampliando conforme se vayan realizando commits en el repositorio.
 
+### Propósito del proyecto
+
+El proyecto consiste en una tienda online de videojuegos, en la que hay un catálogo de juegos que puede ser consultado sin necesidad de registro, pero para la compra es preciso registarse. Entre las acciones que puede realizar un usuario se encuentran:
+
+- Registro / login del usuario
+- Compra de juegos (añadir al carrito / tramitar compra)
+- Añadir juegos a una lista de deseos
+- Consultar su historial de compra
+- Devolver productos (hasta 15 después de la compra)
+- Búsqueda de juegos en el catálogo (barra de búsqueda)
+- Administración de productos y usuarios (sólo ADMIN)
+
+Algunas de estas funciones se han completado, mientras que otras se encuentran aún en desarrollo. Cualquier mejora o sugerencia es bienvenida.
+
 ### Estructura de la aplicación
 
-La aplicación se divide en dos partes: el backend, desarrollado en PHP con el framerwork Laravel y contenido en el directorio ```server```, y la parte frontend, desarrollada en Angular y contenida en la carpeta ```client```. Las instrucciones de este repositorio son para la construcción y el despliegue en local.
+La aplicación se divide en dos partes: el backend, desarrollado en PHP con el framerwork **Laravel**  y contenido en el directorio ```server```, y la parte frontend, desarrollada en **Angular** y contenida en la carpeta ```client```. Las instrucciones de este repositorio son para la construcción y el despliegue en local.
 
 ### Construcción de los proyectos de Angular y Laravel
 

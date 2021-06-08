@@ -23,10 +23,6 @@ class ListaDeseosController extends Controller
             'user_id_user' => $id_usuario,
             'producto_id_producto' => $id_producto
         ]);
-
-        return response()->json([
-            'message' => 'success'
-        ]);
     }
 
     // Función que elimina una fila de la lista de deseos
@@ -34,8 +30,17 @@ class ListaDeseosController extends Controller
     // y elimina la fila de la tabla de LISTA_DESEOS
     public function deleteListaDeseos($id_usuario,$id_producto)
     {
-
+        return ListaDeseos::where('user_id_user',$id_usuario)
+            ->where('producto_id_producto',$id_producto)
+            ->delete();
     }
 
+    // Función que busca si un usuario tiene un producto en su lista de deseos
+    // El modificador es public porque se llama directamente desde el cliente
+    public function searchListaDeseos($id_usuario,$id_producto){
+        return ListaDeseos::where('user_id_user',$id_usuario)
+            ->where('producto_id_producto',$id_producto)
+            ->get()->count();
+    }
 
 }

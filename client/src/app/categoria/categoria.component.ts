@@ -11,7 +11,7 @@ import { ProductoService } from '../services/productos.service';
 
 export class CategoriaComponent implements OnInit {
 
-  public nombreCategoria;
+  public nombreCategoria: any;
   public productos: Array<any> = [];
   public producto = new Producto();
 

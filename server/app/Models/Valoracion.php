@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\HasCompositePrimaryKey;
 
 class Valoracion extends Model
 {
     use HasFactory;
+    use HasCompositePrimaryKey;
 
     protected $table = 'valoracion';
 
@@ -44,4 +46,6 @@ class Valoracion extends Model
     }
 
     public $timestamps = false;
+
+    public $incrementing = false;
 }
