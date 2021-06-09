@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -19,10 +20,8 @@ export class UserService {
   }
 
   // Método que permite el registro de usuarios
-  register(formData:any){
-    this.http.post(environment.apiUrl+'register',formData)
-    .subscribe(error => console.log(error));
-
+  register(formData:any):Observable<any>{
+    return this.http.post(environment.apiUrl+'register',formData);
   }
 
   logout(): void {

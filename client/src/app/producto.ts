@@ -7,7 +7,9 @@ export class Producto{
   public imagen: any = "";
   public categoria_id_categoria: any = "";
 
-  constructor(
-    ){
-    }
+  constructor(){}
+
+  public getIdProducto(){
+    return this.id_producto;
+  }
 }

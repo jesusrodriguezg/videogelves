@@ -86,6 +86,10 @@ a:hover, .enlace-titulo:hover{
   padding: 0 5px 0 5px;
 }
 
+.name-valoracion{
+  color: #006294;
+}
+
 /* Botón basado en las clases de Bootstrap .btn-primary, modificado para que muestre el color corporativo */
 /* Se usa en todos los botones de la aplicación, y en el botón de confirmación en cuadros de diálogo SÍ / NO */
 .btn-vg{color:#fff;background-color:#006294;border-color:#fff}

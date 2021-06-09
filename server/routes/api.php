@@ -44,4 +44,10 @@ Route::get('/listaDeseos/search/{idUsuario}/{idProducto}', 'App\Http\Controllers
 
 /*-------- VALORACIONES --------*/
 // Recibe un ID_PRODUCTO y devuelve todas las valoraciones de dicho producto
-Route::get('/valoraciones/{idProducto}', 'App\Http\Controllers\ValoracionesController@getValoraciones');
+Route::get('/valoraciones/{idProducto}', 'App\Http\Controllers\ValoracionController@getValoraciones');
+// Recibe un ID_PRODUCTO y devuelve el número total de valoraciones para dicho producto
+Route::get('/valoraciones/count/{idProducto}', 'App\Http\Controllers\ValoracionController@getValoracionesCount');
+// Recibe un ID_PRODUCTO y devuelve la puntuación media de dicho producto
+Route::get('/valoraciones/puntuacion/{idProducto}', 'App\Http\Controllers\ValoracionController@getPuntuacion');
+// Recibe un ID_PRODUCTO y devuelve la puntuación media de dicho producto
+Route::post('/valoraciones/add/{idUsuario}/{idProducto}', 'App\Http\Controllers\ValoracionController@addValoracion');

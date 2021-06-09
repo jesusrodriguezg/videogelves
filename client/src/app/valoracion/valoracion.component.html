@@ -1,0 +1,60 @@
+<br>
+<div class="row">
+  <h3>Valoraciones</h3>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-7">
+      <div *ngFor="let valoracion of valoraciones">
+        <div class="row justify-content-between">
+          <div class="col-md-9">
+            <h6 class="name-valoracion">▶ {{valoracion.nombre}}</h6>
+          </div>
+          <div class="col-md-3">
+            <ngb-rating [rate]="valoracion.puntuacion" [readonly]="true">
+              <ng-template let-fill="fill" >
+                <span *ngIf="fill === 100" class="filled">★</span>
+                <span *ngIf="fill === 0" class="notfilled">☆</span>
+              </ng-template>
+            </ngb-rating>
+          </div>
+        </div>
+        <div class="row">
+          <p>
+            {{valoracion.comentario}}
+          </p>
+        </div>
+      </div>
+		</div>
+		<div class="col-md-5">
+      <div class="row">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="comentario">Escribe tu opinión</label>
+            <textarea rows="4" class="form-control" formControlName="comentario" placeholder="Escribe algo..."></textarea>
+            <div *ngIf="form.get('comentario').invalid && form.get('comentario').errors && (form.get('comentario').dirty || form.get('comentario').touched)">
+              <small class="text-danger" *ngIf="form.get('comentario').hasError('required')">¡No olvides escribir tu opinión!</small>
+              <small class="text-danger" *ngIf="form.get('comentario').hasError('maxlength')">Tu opinión no puede tener más de 300 caracteres</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="puntuacion"></label>
+            <ngb-rating class="rating" [formGroup]="form" formControlName="puntuacion">
+              <ng-template let-fill="fill" >
+                <span *ngIf="fill === 100" class="filled">★</span>
+                <span *ngIf="fill === 0" class="notfilled">☆</span>
+              </ng-template>
+            </ngb-rating>
+            <div *ngIf="form.get('puntuacion').invalid && form.get('puntuacion').errors && (form.get('puntuacion').dirty || form.get('puntuacion').touched)">
+              <small class="text-danger" *ngIf="form.get('puntuacion').hasError('required')">¡No olvides dar tu puntuación!</small>
+            </div>
+          </div>
+          <br>
+          <div class="text-right">
+            <button type="submit" [disabled]="form.invalid" class="btn btn-vg">Danos tu opinión</button>
+          </div>
+        </form>
+      </div>
+    </div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+.filled{
+  color: #006294;
+}
+
+.notfilled{
+  color:#006294;
+}
+
+.rating{
+  font-weight: 800;
+  font-size: 2rem;
+}

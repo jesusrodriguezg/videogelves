@@ -31,6 +31,7 @@ import { ProductoService } from './services/productos.service';
 import { UserService } from './services/user.service';
 import { PathResolveService } from './services/path-resolve.service';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { ValoracionComponent } from './valoracion/valoracion.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
     AdminproductosComponent,
     ConfirmationDialogComponent,
     UpdateDialogComponent,
+    ValoracionComponent,
   ],
   imports: [
     BrowserModule,

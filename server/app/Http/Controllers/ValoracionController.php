@@ -4,28 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Valoracion;
+use Illuminate\Support\Facades\DB;
 
 class ValoracionController extends Controller
 {
     // Función que recibe un ID_PRODUCTO y devuelve todas las valoraciones de ese producto
     public function getValoraciones($id_producto)
     {
-        return $this->jsonResponse(Valoracion::where('producto_id_producto', $id_producto)->get());
+        return $this->jsonResponse(
+            // Realizamos una select con join para extrare el nombre de la tabla USER
+            DB::table('valoracion')
+                ->where('producto_id_producto',$id_producto)
+                ->join('user', 'valoracion.user_id_user', '=', 'user.id_user')
+                ->get()
+        );
     }
 
     // Función que crea una nueva fila en la tabla VALORACIONES
     // Recibe un ID_USUARIO y un ID_PRODUCTO y los asigna a la fila
-    public function addValoracion(Request $request)
+    public function addValoracion(Request $request, $id_usuario, $id_producto)
     {
         // Extraemos los datos de la request
-        $id_usuario = $request->id_usuario;
-        $id_producto = $request->id_producto;
         $comentario = $request->comentario;
         $puntuacion = $request->puntuacion;
 
         // Comprobamos si en la tabla ya existe alguna fila que contenga
         // una valoración del ID_USUARIO para el ID_PRODUCTO dado
-        $fila = searchValoracion($id_usuario,$id_producto);
+        $fila = ValoracionController::searchValoracion($id_usuario,$id_producto);
 
         // Si ya existe alguna fila devolvemos un mensaje de error como response
         if ($fila > 0) {
@@ -46,6 +51,25 @@ class ValoracionController extends Controller
         return response()->json([
             'message' => 'success'
         ]);
+    }
+
+    // Función que devuelve el número de valoraciones de un producto
+    // Recibe un ID_PRODUCTO por parámetros y realiza un count de las filas
+    public function getValoracionesCount($id_producto)
+    {
+        return $this->jsonResponse(
+            Valoracion::where('producto_id_producto',$id_producto)
+                ->get()->count()
+        );
+    }
+
+    // Función que devuelve la media de las puntuaciones de un producto
+    // Recibe un ID_PRODUCTO y aplica el método avg() para hacer la media
+    public function getPuntuacion($id_producto)
+    {
+        $puntuacion = Valoracion::where('producto_id_producto',$id_producto)
+        ->avg('puntuacion');
+        return round($puntuacion);
     }
 
     // Función privada para buscar si existe una valoración en la tabla

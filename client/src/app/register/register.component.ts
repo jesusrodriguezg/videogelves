@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -24,9 +23,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  onSubmit() {
     const formData = this.form.getRawValue();
-    this._userService.register(formData);
+    this._userService.register(formData)
+      .subscribe(error => console.log(error));
     // this.http.post(environment.apiUrl+'register',formData).subscribe(
     //   response => console.log(response),
     //   error => console.log(error)
