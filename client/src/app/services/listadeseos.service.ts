@@ -16,7 +16,7 @@ export class ListadeseosService {
 
   // Método que recupera los productos que un usuario tiene en su lista de deseos
   getListaDeseos(idUsuario:any):Observable<any>{
-    return this.http.get(this.apiListaDeseos+"idUsuario");
+    return this.http.get(this.apiListaDeseos+idUsuario);
   }
 
   // Método que inserta un producto en la lista de deseos de un usuario

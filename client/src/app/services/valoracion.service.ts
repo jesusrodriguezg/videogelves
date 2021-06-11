@@ -27,4 +27,9 @@ export class ValoracionService {
   addValoracion(idUsuario:any,idProducto:any,formData:any):Observable<any>{
     return this.http.post(this.apiValoraciones+"add/"+idUsuario+"/"+idProducto,formData);
   }
+
+  searchValoracion(idUsuario:any,idProducto:any):Observable<any>{
+    return this.http.get(this.apiValoraciones+"search/"+idUsuario+"/"+idProducto);
+  }
+
 }

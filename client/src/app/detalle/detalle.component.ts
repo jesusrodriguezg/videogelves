@@ -39,26 +39,17 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductoDetalle();
-    console.log(this.producto.id_producto.trucutru())
+    //console.log(this.producto.id_producto.trucutru())
   }
 
   getProductoDetalle() {
     // Pasamos por argumentos al método del servicio el nombre de producto codificado
     this._productoService.getProductoDetalle(this.nombreProducto).subscribe(data => {
-      for (let i in data) {
-        this.producto.id_producto = data[i].id_producto;
-        this.producto.nombre_producto = data[i].nombre_producto;
-        this.producto.descripcion = data[i].descripcion;
-        this.producto.precio = data[i].precio;
-        this.producto.stock = data[i].stock;
-        this.producto.imagen = data[i].imagen;
-        this.producto.categoria_id_categoria = data[i].categoria_id_categoria;
-
-      }
+      this.producto = data;
       this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
       this.getValoracionesCount(this.producto.id_producto);
       this.getPuntuacion(this.producto.id_producto);
-      });
+    });
   }
 
   /* ----- MÉTODOS DE COMPRA ----- */
@@ -72,6 +63,7 @@ export class DetalleComponent implements OnInit {
 
   /* ----- MÉTODOS DE LISTA DE DESEOS ----- */
 
+  // Función que añade el producto a la lista de deseos del usuario
   addListaDeseos(idUsuario:any,idProducto: any){
     return this._listaDeseosService.addListaDeseos(idUsuario,idProducto)
       .subscribe(data => {
@@ -79,7 +71,7 @@ export class DetalleComponent implements OnInit {
       });
   }
 
-  //
+  // Función que elimina el producto de la lista de deseos del usuario
   deleteListaDeseos(idUsuario: any,idProducto: any){
     return this._listaDeseosService.deleteListaDeseos(idUsuario,idProducto)
       .subscribe(data => {
@@ -123,9 +115,6 @@ export class DetalleComponent implements OnInit {
 
   // Método que se usa para refrescar la página tras pulsar un botón que genera cambios
   refresh() {
-    let currentUrl = decodeURI(this._router.url);
-    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this._router.navigate([currentUrl]);
-    });
+    window.location.reload();
   }
 }

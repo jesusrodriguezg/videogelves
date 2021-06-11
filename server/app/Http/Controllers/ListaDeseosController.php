@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ListaDeseos;
+use App\Models\Producto;
 
 class ListaDeseosController extends Controller
 {
@@ -11,7 +12,14 @@ class ListaDeseosController extends Controller
     // del ID_USUARIO que recibe por parámetros
     public function getListaDeseos($id_usuario)
     {
-        return $this->jsonResponse(ListaDeseos::where('user_id_user',$id_usuario)->get());
+        $id_prod = ListaDeseos::where('user_id_user',$id_usuario)->get()->pluck('producto_id_producto');
+        $productos = Producto::all()->whereIn('id_producto',$id_prod);
+        $return = [];
+        foreach ($productos as $key => $value) {
+            array_push($return, $value);
+        }
+
+        return $this->jsonResponse($return);
     }
 
     // Función que crea una fila en la lista de deseos

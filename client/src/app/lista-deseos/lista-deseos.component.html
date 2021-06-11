@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <div class="float-left">
+        <h3>Mi lista de deseos</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive-sm">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productos">
+              <td>{{producto.nombre_producto}}</td>
+              <td>{{producto.precio}} €</td>
+              <td>{{producto.stock}}</td>
+              <td>
+                <button type="button" class="btn btn-vg" (click)="deleteListaDeseos(user.id_user,producto.id_producto)" title="Quitar de la lista de deseos"><i class="far fa-trash-alt"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

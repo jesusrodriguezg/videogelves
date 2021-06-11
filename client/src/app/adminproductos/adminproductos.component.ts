@@ -5,7 +5,9 @@ import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-d
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { UserService } from '../services/user.service';
-
+import { UpdateProductModalComponent } from '../update-product-modal/update-product-modal.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { NewProductModalComponent } from '../new-product-modal/new-product-modal.component';
 
 @Component({
   selector: 'app-adminproductos',
@@ -26,7 +28,8 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
     private _productoService: ProductoService,
     private _confirmationDialogService: ConfirmationDialogService,
     private _router:Router,
-    private _userService: UserService
+    private _userService: UserService,
+    public matDialog: MatDialog
   )
     {
       if (!_userService.isUserLogged()) {
@@ -67,37 +70,33 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
     });
   }
 
-  // Función que redirige a la pantalla para editar el producto
+  // Función que actualiza la información del producto llamando al servicio
   // Recibe por parámetros el ID_PRODUCTO que se le pasa a la api para el UPDATE
-  editProducto(idProducto){
+  editProducto(idProducto:any){
+    this._productoService.updateProducto(idProducto)
+      .subscribe(data => {
 
+      })
   }
 
   // Función que permite dejar un producto sin stock
   // El producto no se borra para que los datos no pierdan consistencia
   // Recibe el ID_PRODUCTO que se le pasa a la api para el UPDATE
-  deleteStockProducto(idProducto){
+  deleteStockProducto(idProducto:any){
     this._productoService.deleteStockProducto(idProducto)
-      .subscribe(data => {
-        this.refresh();
-      });
+    .subscribe(data => {
+      this.refresh();
+    });
   }
 
-  deleteDialog(idProducto){
+  deleteDialog(idProducto:any){
     this._confirmationDialogService
     .confirmThis("¿Desea eliminar el stock de este producto?",
-      () => {
-        this.deleteStockProducto(idProducto);
-      },
-      () => {}
+    () => {
+      this.deleteStockProducto(idProducto);
+    },
+    () => {}
     );
-  }
-
-  updateDialog(idProducto){
-    this._productoService.updateProducto(idProducto)
-      .subscribe(data => {
-
-      })
   }
 
   refresh() {
@@ -109,5 +108,34 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
 
   isUserLogged(){
     return localStorage.getItem('usuario');
+  }
+
+  newProductModal(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.width = "600px";
+    dialogConfig.data = {
+      name: "newProducto",
+      title: "Añadir producto",
+      actionButtonText: "Guardar",
+      cancelButtonText: "Cancelar"
+    }
+    const modalDialog = this.matDialog.open(NewProductModalComponent, dialogConfig);
+  }
+
+  editProductModal() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.width = "600px";
+    dialogConfig.data = {
+      name: "editProducto",
+      title: "Editor de productos",
+      description: "Rellena los campos que quieras modificar; deja vacíos los que no.",
+      actionButtonText: "Guardar",
+      cancelButtonText: "Cancelar"
+    }
+    const modalDialog = this.matDialog.open(UpdateProductModalComponent, dialogConfig);
   }
 }

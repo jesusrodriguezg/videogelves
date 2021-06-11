@@ -15,7 +15,7 @@ class ProductoController extends Controller
 
     // Función que recibe un NOMBRE_PRODUCTO y devuelve los datos de ese producto
     public function getDetalleProducto($nombre_producto){
-        return $this->jsonResponse(Producto::all()->where('nombre_producto',$nombre_producto));
+        return $this->jsonResponse(Producto::where('nombre_producto',$nombre_producto)->first());
     }
 
     // Función que recibe un NOMBRE_CATEGORIA y devuelve los productos de esa categoría

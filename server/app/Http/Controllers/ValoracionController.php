@@ -48,9 +48,9 @@ class ValoracionController extends Controller
             'puntuacion' => $puntuacion
         ]);
 
-        return response()->json([
-            'message' => 'success'
-        ]);
+        // return response()->json([
+        //     'message' => 'success'
+        // ]);
     }
 
     // Función que devuelve el número de valoraciones de un producto
@@ -74,7 +74,7 @@ class ValoracionController extends Controller
 
     // Función privada para buscar si existe una valoración en la tabla
     // Recibe un ID_USUARIO y un ID_PRODUCTO y filtra con esos parámetros
-    private function searchValoracion($id_usuario,$id_producto)
+    public function searchValoracion($id_usuario,$id_producto)
     {
         return Valoracion::where('user_id_user',$id_usuario)
             ->where('producto_id_producto',$id_producto)

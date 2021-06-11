@@ -3,6 +3,7 @@
   <h3>Valoraciones</h3>
 </div>
 <div class="container-fluid">
+  <!-- Lista de comentarios existentes -->
 	<div class="row">
 		<div class="col-md-7">
       <div *ngFor="let valoracion of valoraciones">
@@ -26,8 +27,18 @@
         </div>
       </div>
 		</div>
+    <!-- Formulario de comentarios -->
 		<div class="col-md-5">
-      <div class="row">
+      <div *ngIf="!user">
+
+      </div>
+      <div *ngIf="user">
+
+      </div>
+      <div *ngIf="user && hasCommented == 1" class="row">
+        <h3>Ya has escrito tu opinión.<br>¡Gracias por participar!</h3>
+      </div>
+      <div *ngIf="!user || (user && hasCommented == 0)" class="row">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="comentario">Escribe tu opinión</label>

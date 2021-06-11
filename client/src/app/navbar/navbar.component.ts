@@ -7,15 +7,12 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  loggedIn:boolean;
+
+  public user:any = localStorage.getItem('usuario');
 
   constructor(private _userService: UserService) {
   }
   ngOnInit(): void {
-  }
-
-  isUserLogged(){
-    return localStorage.getItem('usuario');
   }
 
   logout(): void {

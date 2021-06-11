@@ -17,6 +17,7 @@ export class ValoracionComponent implements OnInit {
   public valoracion = new Valoracion();
   public form:FormGroup;
   public user: any = JSON.parse(localStorage.getItem("usuario"));
+  public hasCommented:any;
 
   constructor(
     private _valoracionService: ValoracionService,
@@ -33,7 +34,6 @@ export class ValoracionComponent implements OnInit {
       comentario: ['', [Validators.required, Validators.maxLength(300)]],
       puntuacion: ['', [Validators.required]],
     });
-
   }
 
   getValoraciones(idProducto:any){
@@ -48,17 +48,24 @@ export class ValoracionComponent implements OnInit {
           this.valoracion.nombre = d.nombre;
           this.valoraciones.push(this.valoracion);
         }
+        this.getHasCommented(this.user.id_user,this.id_prod);
       });
     }
 
     onSubmit(){
       const formData = this.form.getRawValue();
-      console.log(formData)
       console.log(this.user.id_user)
       this._valoracionService.addValoracion(this.user.id_user,this.id_prod,formData)
         .subscribe(data => {
           console.log(data)
           window.location.reload();
+        });
+    }
+
+    getHasCommented(idUsuario:any,idProducto:any){
+      return this._valoracionService.searchValoracion(idUsuario,idProducto)
+        .subscribe(data => {
+          this.hasCommented = data;
         });
     }
 }

@@ -53,10 +53,15 @@
               </ng-template>
             </ngb-rating>
           </h3>
-        <div>
+        <div *ngIf="!sinStock()">
           <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(producto.id_producto)">
-          <i class="fas fa-shopping-cart"></i>  Añadir al carrito
-        </button>
+            <i class="fas fa-shopping-cart"></i>  Añadir al carrito
+          </button>
+        </div>
+        <div *ngIf="sinStock()">
+          <button type="button" class="btn btn-vg disabled" title="No hay stock">
+            <i class="fas fa-shopping-cart"></i>  No existe stock
+          </button>
         </div>
         <div *ngIf="this.isInLista == 0">
           <button type="button" class="btn btn-vg" title="Añadir a lista de deseos" (click)="addListaDeseos(user.id_user,producto.id_producto)">
@@ -71,6 +76,6 @@
       </div>
     </div>
     <!-- VALORACIONES -->
-    <app-valoracion [id_prod]=producto.id_producto></app-valoracion>
+    <app-valoracion *ngIf="producto.id_producto" [id_prod]=producto.id_producto></app-valoracion>
   </div>
 </div>

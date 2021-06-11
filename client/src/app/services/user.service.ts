@@ -16,7 +16,7 @@ export class UserService {
 
   login(token: any): void {
     localStorage.setItem('token', token);
-    //  this.loggedChanged = true;
+    this.loggedChanged = true;
   }
 
   // Método que permite el registro de usuarios

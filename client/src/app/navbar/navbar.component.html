@@ -13,19 +13,22 @@
         <button class="btn btn-vg my-2 my-sm-0" type="submit">Buscar</button>
       </form>
     </div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="row">
-        <div class="col-sm offset-md-2 header-icon">
-          <i class="fas fa-shopping-cart"></i>
+        <div *ngIf="user" class="col-sm offset-md-2">
+          <a class="header-icon" routerLink="/lista-deseos" title="Mi lista de deseos"><i class="fas fa-heart"></i></a>
+        </div>
+        <div class="col-sm ">
+          <a class="header-icon" routerLink="/carrito" title="Mi carrito"><i class="fas fa-shopping-cart"></i></a>
         </div>
         <div class="col-sm mr-auto">
           <div class="dropdown">
             <a class="header-icon" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a routerLink="/login" *ngIf="!isUserLogged()" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
-              <li><a routerLink="/register" *ngIf="!isUserLogged()" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
-              <li><a routerLink="/secure" *ngIf="isUserLogged()" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
-              <li><a (click)="logout()" *ngIf="isUserLogged()" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
+              <li><a routerLink="/login" *ngIf="!user" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
+              <li><a routerLink="/register" *ngIf="!user" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
+              <li><a routerLink="/secure" *ngIf="user" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
+              <li><a (click)="logout()" *ngIf="user" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
             </ul>
           </div>
         </div>

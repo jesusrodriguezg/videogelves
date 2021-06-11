@@ -28,6 +28,26 @@ a:hover, .enlace-titulo:hover{
   color: #0088CE;
 }
 
+mat-form-field.full-width {
+  width: 100%;
+}
+
+.mat-form-field--inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-form-field--inline .mat-form-field {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.mat-form-field--inline .mat-form-field:nth-child(1) {
+  margin-right: 10px;
+}
+
 .product-cards{
   float: left;
 }
