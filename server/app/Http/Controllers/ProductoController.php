@@ -36,4 +36,12 @@ class ProductoController extends Controller
     {
         return Producto::find($id_producto)->update(['stock' => 0]);
     }
+
+    // Función que actualiza un producto con los datos de un formulario
+    public function updateProducto($id_producto, Request $request){
+        // Filtra los campos del formulario que vienen vacíos y deja los rellenos
+        $validated = array_filter($request->all());
+        // Al pasarle el mapa filtrado sólo actualiza las columnas que tienen valor
+        return Producto::find($id_producto)->update($validated);
+    }
 }

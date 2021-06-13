@@ -16,9 +16,7 @@ export class NewProductModalComponent implements OnInit {
     public dialogRef: MatDialogRef<NewProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
     private fb:FormBuilder
-  ) {
-    console.log(this.modalData)
-  }
+  ) { }
 
   ngOnInit() {
     this.categorias = [
@@ -30,12 +28,12 @@ export class NewProductModalComponent implements OnInit {
       'Retro'
     ];
     this.form = this.fb.group({
-      nombre_producto: '',
-      descripcion: '',
-      precio: ['', [Validators.min(1),Validators.max(100)]],
-      stock: ['', [Validators.min(1),Validators.max(100)]],
-      imagen: '',
-      categoria_id_categoria: '',
+      nombre_producto: ['', [Validators.required, Validators.maxLength(50)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(500)]],
+      precio: ['', [Validators.required, Validators.min(1),Validators.max(1000)]],
+      stock: ['', [Validators.required, Validators.min(1),Validators.max(100)]],
+      imagen: ['', Validators.required],
+      categoria_id_categoria: ['', Validators.required],
     });
   }
 

@@ -6,8 +6,8 @@
         <h3>Administrador de productos</h3>
       </div>
       <div class="float-right">
-        <button class="btn btn-vg w-20" type="submit">
-          <span><i class="fas fa-plus"></i> Nuevo</span>
+        <button class="btn btn-vg w-20" type="button" title="Nuevo producto" (click)="newProductModal()">
+          <i class="fas fa-plus"></i> Nuevo
         </button>
       </div>
     </div>
@@ -20,7 +20,8 @@
               <th scope="col">Nombre</th>
               <th scope="col">Precio</th>
               <th scope="col">Stock</th>
-              <th colspan="2">Acciones</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -30,7 +31,7 @@
               <td>{{producto.precio}} €</td>
               <td>{{producto.stock}}</td>
               <td>
-                <button type="button" class="btn btn-vg accordion-toggle" (click)="editProductModal()" aria-expanded="false" aria-controls="formCollapse" title="Editar producto"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-vg" (click)="editProductModal(producto.id_producto)" title="Editar producto"><i class="fas fa-edit"></i></button>
               </td>
               <td>
                 <button *ngIf="producto.stock == 0" type="button" class="btn btn-vg disabled" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i></button>

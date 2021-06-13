@@ -43,7 +43,9 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
       pageLength: 10,
       language: {
         "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
-      }
+      },
+      responsive: true,
+      destroy: true
     };
     this.getProductos();
   }
@@ -73,10 +75,9 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
   // Función que actualiza la información del producto llamando al servicio
   // Recibe por parámetros el ID_PRODUCTO que se le pasa a la api para el UPDATE
   editProducto(idProducto:any){
-    this._productoService.updateProducto(idProducto)
-      .subscribe(data => {
-
-      })
+    // this._productoService.updateProducto(idProducto)
+      // .subscribe(data => {
+      // })
   }
 
   // Función que permite dejar un producto sin stock
@@ -117,14 +118,15 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
     dialogConfig.width = "600px";
     dialogConfig.data = {
       name: "newProducto",
-      title: "Añadir producto",
+      title: "Nuevo producto",
+      description: "Rellena todos los campos para crear un producto nuevo.",
       actionButtonText: "Guardar",
       cancelButtonText: "Cancelar"
     }
     const modalDialog = this.matDialog.open(NewProductModalComponent, dialogConfig);
   }
 
-  editProductModal() {
+  editProductModal(idProducto:any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
@@ -134,7 +136,8 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
       title: "Editor de productos",
       description: "Rellena los campos que quieras modificar; deja vacíos los que no.",
       actionButtonText: "Guardar",
-      cancelButtonText: "Cancelar"
+      cancelButtonText: "Cancelar",
+      idProducto: idProducto
     }
     const modalDialog = this.matDialog.open(UpdateProductModalComponent, dialogConfig);
   }

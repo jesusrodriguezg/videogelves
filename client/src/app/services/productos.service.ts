@@ -44,8 +44,8 @@ export class ProductoService {
     return this.http.put(this.apiProductos+'/delete/'+idProducto,body,{'headers':this.headers});
   }
 
-  updateProducto(idProducto:any):Observable<any>{
-    const body = { };
+  updateProducto(idProducto:any,formData:any):Observable<any>{
+    const body = formData;
     return this.http.put(this.apiProductos+'/update/'+idProducto,body,{'headers':this.headers});
   }
 }

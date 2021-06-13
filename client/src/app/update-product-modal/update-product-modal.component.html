@@ -1,46 +1,46 @@
 <div id="modal-content-wrapper">
   <header id="modal-header">
-      <h1 id="modal-title">{{ modalData.title }}</h1>
+      <h3 id="modal-title">{{ modalData.title }}</h3>
   </header>
   <section id="modal-body">
       <p>{{ modalData.description }}</p>
   </section>
   <form [formGroup]="form">
-      <mat-form-field class="full-width">
-        <input matInput formControlName="nombre_producto" placeholder="Nombre del producto">
+    <mat-form-field class="full-width">
+      <input matInput formControlName="nombre_producto" placeholder="Nombre del producto">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="descripcion" placeholder="Descripción del producto">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="imagen" placeholder="Imagen del producto">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Elige una categoría" formControlName="categoria_id_categoria">
+        <mat-option *ngFor="let cat of categorias; let i = index;" value="{{i + 1}}">{{cat}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <li class="mat-form-field--inline">
+      <mat-form-field>
+        <input type="number" matInput formControlName="precio" placeholder="Precio">
+        <mat-error class="error-message" *ngIf="(form.get('precio').dirty || form.get('precio').touched) && form.get('precio').hasError('min')">El precio mínimo debe ser 1€.</mat-error>
+        <mat-error class="error-message" *ngIf="(form.get('precio').dirty || form.get('precio').touched) && form.get('precio').hasError('max')">El precio máximo debe ser 100€.</mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput formControlName="descripcion" placeholder="Descripción del producto">
+      <mat-form-field>
+        <input type="number" matInput formControlName="stock" placeholder="Stock">
+        <mat-error class="error-message" *ngIf="(form.get('stock').dirty || form.get('stock').touched) && form.get('stock').hasError('min')">El stock mínimo debe ser 1 unidad.</mat-error>
+        <mat-error class="error-message" *ngIf="(form.get('stock').dirty || form.get('stock').touched) && form.get('stock').hasError('max')">El stock máximo debe ser 100 unidades.</mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput formControlName="imagen" placeholder="Imagen del producto">
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-select placeholder="Elige una categoría" formControlName="categoria_id_categoria">
-          <mat-option *ngFor="let cat of categorias; let i = index;" value="{{i + 1}}">{{cat}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <li class="mat-form-field--inline">
-        <mat-form-field>
-          <input type="number" matInput formControlName="precio" placeholder="Precio">
-          <mat-error class="error-message" *ngIf="(form.get('precio').dirty || form.get('precio').touched) && form.get('precio').hasError('min')">El precio mínimo debe ser 1€.</mat-error>
-          <mat-error class="error-message" *ngIf="(form.get('precio').dirty || form.get('precio').touched) && form.get('precio').hasError('max')">El precio máximo debe ser 100€.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input type="number" matInput formControlName="stock" placeholder="Stock">
-          <mat-error class="error-message" *ngIf="(form.get('stock').dirty || form.get('stock').touched) && form.get('stock').hasError('min')">El stock mínimo debe ser 1 unidad.</mat-error>
-          <mat-error class="error-message" *ngIf="(form.get('stock').dirty || form.get('stock').touched) && form.get('stock').hasError('max')">El stock máximo debe ser 100 unidades.</mat-error>
-        </mat-form-field>
-      </li>
-    </form>
+    </li>
+  </form>
   <footer id="modal-footer">
     <mat-dialog-actions>
-      <button mat-raised-button class="btn btn-vg" [disabled]="form.invalid" (click)="saveButton()">
-      {{ modalData.actionButtonText }}
-    </button>
-    <button mat-raised-button class="btn btn-vg-alert" (click)="closeButton()">
-      {{ modalData.cancelButtonText}}
-    </button>
-  </mat-dialog-actions>
-</footer>
+      <button mat-raised-button class="btn btn-vg" [disabled]="form.invalid" (click)="saveButton(modalData.idProducto)">
+        {{ modalData.actionButtonText }}
+      </button>
+      <button mat-raised-button class="btn btn-vg-alert" (click)="closeButton()">
+        {{ modalData.cancelButtonText}}
+      </button>
+    </mat-dialog-actions>
+  </footer>
 </div>
