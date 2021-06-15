@@ -37,7 +37,7 @@ class PedidoController extends Controller
         return Pedido::create([
             'comprado' => 'N',
             'fecha' => $fecha,
-            'user_id_user' => $id_usuario)
+            'user_id_user' => $id_usuario
         ])->pluck('id_pedido')->last();
     }
 

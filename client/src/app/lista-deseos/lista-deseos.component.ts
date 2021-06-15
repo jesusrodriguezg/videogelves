@@ -67,9 +67,12 @@ export class ListaDeseosComponent implements OnDestroy, OnInit {
       });
   }
 
+  verDetalleProducto(nombre_producto:any):void{
+    this._router.navigate(['/',encodeURI(nombre_producto)],);
+  }
+
   // Método que se usa para refrescar la página tras pulsar un botón que genera cambios
   refresh() {
     window.location.reload();
   }
-
 }

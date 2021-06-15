@@ -26,7 +26,11 @@ Route::get('/categorias/all/{nombreCategoria}', 'App\Http\Controllers\ProductoCo
 // Devuelve los datos de los usuarios que están logueados
 Route::get('/user', 'App\Http\Controllers\UserController@user')->middleware('auth:api');
 // Permite el registro de los usuarios
-Route::post('/register', 'App\Http\Controllers\UserController@registerUser');
+Route::post('/user/register', 'App\Http\Controllers\UserController@registerUser');
+// Permite editar los datos de un usuario
+Route::put('/user/edit/{idUser}', 'App\Http\Controllers\UserController@updateUser');
+// Permite editar la contraseña de un usuario
+Route::put('/user/password/{idUser}', 'App\Http\Controllers\UserController@updatePassword');
 
 /*-------- PEDIDOS --------*/
 

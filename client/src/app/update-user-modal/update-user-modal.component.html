@@ -1,0 +1,45 @@
+<div id="modal-content-wrapper">
+  <div class="alert alert-success" style="display: none;" role="alert">
+    Mensaje de éxito.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div class="alert alert-danger" style="display: none;" role="alert">
+    Mensaje de error.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <header id="modal-header">
+      <h3 id="modal-title">{{ modalData.title }}</h3>
+  </header>
+  <section id="modal-body">
+      <p>{{ modalData.description }}</p>
+  </section>
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <input matInput formControlName="nombre" placeholder="Nombre">
+      <mat-error class="error-message" *ngIf="(form.get('nombre').dirty || form.get('nombre').touched) && form.get('nombre').hasError('maxLength')">El nombre es demasiado largo.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="apellidos" placeholder="Apellidos">
+      <mat-error class="error-message" *ngIf="(form.get('apellidos').dirty || form.get('apellidos').touched) && form.get('apellidos').hasError('maxLength')">Los apellidos son demasiado largos.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="email" placeholder="Email">
+      <mat-error class="error-message" *ngIf="(form.get('email').dirty || form.get('email').touched) && form.get('email').hasError('email')">Introduce un email válido</mat-error>
+      <mat-error class="error-message" *ngIf="(form.get('email').dirty || form.get('email').touched) && form.get('email').hasError('maxLength')">El email es demasiado largo.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="direccion" placeholder="Direccion">
+      <mat-error class="error-message" *ngIf="(form.get('direccion').dirty || form.get('direccion').touched) && form.get('direccion').hasError('maxLength')">La dirección es demasiado larga.</mat-error>
+    </mat-form-field>
+  </form>
+  <footer id="modal-footer">
+    <mat-dialog-actions>
+      <button mat-raised-button class="btn btn-vg" [disabled]="form.invalid" (click)="saveButton(usuario.id_user)">
+        {{ modalData.actionButtonText }}
+      </button>
+      <button mat-raised-button class="btn btn-vg-alert" (click)="closeButton()">
+        {{ modalData.cancelButtonText}}
+      </button>
+    </mat-dialog-actions>
+  </footer>
+</div>

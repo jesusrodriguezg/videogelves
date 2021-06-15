@@ -11,6 +11,8 @@ export class UserService {
 
   // private loggedChanged = new Subject<boolean>();
   private loggedChanged: boolean = false;
+  public apiUser = environment.apiUrl+"user/";
+
   constructor(private router:Router,
     private http:HttpClient) { }
 
@@ -21,7 +23,7 @@ export class UserService {
 
   // Método que permite el registro de usuarios
   register(formData:any):Observable<any>{
-    return this.http.post(environment.apiUrl+'register',formData);
+    return this.http.post(this.apiUser+'register',formData);
   }
 
   logout(): void {
@@ -29,6 +31,14 @@ export class UserService {
     localStorage.removeItem('usuario');
     this.router.navigate(['/']);
     this.loggedChanged = false;
+  }
+
+  updateUser(idUser:any,formData:any):Observable<any>{
+    return this.http.put(this.apiUser+'edit/'+idUser,formData);
+  }
+
+  updatePassword(idUser:any,formData:any):Observable<any>{
+    return this.http.put(this.apiUser+'password/'+idUser,formData);
   }
 
   // PARA CARGÁRSELO

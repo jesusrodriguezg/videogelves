@@ -65,7 +65,6 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminproductosComponent } from './adminproductos/adminproductos.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 import { ValoracionComponent } from './valoracion/valoracion.component';
 import { ListaDeseosComponent } from './lista-deseos/lista-deseos.component';
 import { UpdateProductModalComponent } from './update-product-modal/update-product-modal.component';
@@ -76,6 +75,8 @@ import { UserService } from './services/user.service';
 import { PathResolveService } from './services/path-resolve.service';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { NewProductModalComponent } from './new-product-modal/new-product-modal.component';
+import { UpdateUserModalComponent } from './update-user-modal/update-user-modal.component';
+import { UpdatePasswordModalComponent } from './update-password-modal/update-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -92,11 +93,12 @@ import { NewProductModalComponent } from './new-product-modal/new-product-modal.
     FooterComponent,
     AdminproductosComponent,
     ConfirmationDialogComponent,
-    UpdateDialogComponent,
     ValoracionComponent,
     ListaDeseosComponent,
     UpdateProductModalComponent,
-    NewProductModalComponent
+    NewProductModalComponent,
+    UpdateUserModalComponent,
+    UpdatePasswordModalComponent
   ],
   imports: [
     BrowserModule,

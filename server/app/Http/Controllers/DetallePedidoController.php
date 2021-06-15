@@ -25,8 +25,8 @@ class DetallePedidoController extends Controller
         }else{
             DetallePedido::create([
                 'pedido_id_pedido' => $id_pedido,
-                'producto_id_producto' => $id_producto),
-                'cantidad' => ,
+                'producto_id_producto' => $id_producto,
+                'cantidad' => 1,
                 'devuelto' => 'N'
             ]);
             return response()->json([

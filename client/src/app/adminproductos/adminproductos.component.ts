@@ -72,14 +72,6 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
     });
   }
 
-  // Función que actualiza la información del producto llamando al servicio
-  // Recibe por parámetros el ID_PRODUCTO que se le pasa a la api para el UPDATE
-  editProducto(idProducto:any){
-    // this._productoService.updateProducto(idProducto)
-      // .subscribe(data => {
-      // })
-  }
-
   // Función que permite dejar un producto sin stock
   // El producto no se borra para que los datos no pierdan consistencia
   // Recibe el ID_PRODUCTO que se le pasa a la api para el UPDATE
