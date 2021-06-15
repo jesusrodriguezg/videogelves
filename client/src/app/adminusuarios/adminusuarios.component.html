@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <div class="float-left">
+        <h3>Administrador de usuarios</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive-sm">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Email</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Admin</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <th scope="row">{{user.id_user}}</th>
+              <td>{{user.email}}</td>
+              <td>{{user.nombre}}</td>
+              <td>{{user.apellidos}}</td>
+              <td>{{user.direccion}}</td>
+              <td *ngIf="user.admin === 'Y'"><i class="fas fa-check" style="color: green"></i></td>
+              <td *ngIf="user.admin === 'N'"><i class="fas fa-times" style="color: red"></i></td>
+              <td>
+                <button type="button" class="btn btn-vg" (click)="editUserModal(user.id_user)" title="Editar producto"><i class="fas fa-edit"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

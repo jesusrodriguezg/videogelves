@@ -27,6 +27,8 @@ Route::get('/categorias/all/{nombreCategoria}', 'App\Http\Controllers\ProductoCo
 Route::get('/user', 'App\Http\Controllers\UserController@user')->middleware('auth:api');
 // Permite el registro de los usuarios
 Route::post('/user/register', 'App\Http\Controllers\UserController@registerUser');
+// Devuelve los datos de todos los usuarios
+Route::get('/user/all', 'App\Http\Controllers\UserController@getAllUsers');
 // Permite editar los datos de un usuario
 Route::put('/user/edit/{idUser}', 'App\Http\Controllers\UserController@updateUser');
 // Permite editar la contraseña de un usuario

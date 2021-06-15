@@ -77,6 +77,7 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
 import { NewProductModalComponent } from './new-product-modal/new-product-modal.component';
 import { UpdateUserModalComponent } from './update-user-modal/update-user-modal.component';
 import { UpdatePasswordModalComponent } from './update-password-modal/update-password-modal.component';
+import { AdminusuariosComponent } from './adminusuarios/adminusuarios.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { UpdatePasswordModalComponent } from './update-password-modal/update-pas
     UpdateProductModalComponent,
     NewProductModalComponent,
     UpdateUserModalComponent,
-    UpdatePasswordModalComponent
+    UpdatePasswordModalComponent,
+    AdminusuariosComponent
   ],
   imports: [
     BrowserModule,

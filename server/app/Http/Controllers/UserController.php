@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Función que devuelve todos los usuarios de la tabla USUARIO
-    public function getAllUsuarios()
+    // Función que devuelve todas las filas de la tabla USER
+    public function getAllUsers()
     {
         return $this->jsonResponse(User::all());
     }

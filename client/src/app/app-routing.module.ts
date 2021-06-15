@@ -11,6 +11,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { AdminproductosComponent } from './adminproductos/adminproductos.component';
 import { ListaDeseosComponent } from './lista-deseos/lista-deseos.component';
 import { PathResolveService } from './services/path-resolve.service';
+import { AdminusuariosComponent } from './adminusuarios/adminusuarios.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'categoria/:nombreCategoria', component: CategoriaComponent },
   { path: 'admin/productos', component: AdminproductosComponent},
+  { path: 'admin/usuarios', component: AdminusuariosComponent},
   { path: 'lista-deseos', component: ListaDeseosComponent},
   { path: ':nombreProducto', component: DetalleComponent },
   { path: '', component: HomeComponent },

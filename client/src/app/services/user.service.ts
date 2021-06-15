@@ -33,6 +33,10 @@ export class UserService {
     this.loggedChanged = false;
   }
 
+  getAllUsers():Observable<any>{
+    return this.http.get(this.apiUser+"all");
+  }
+
   updateUser(idUser:any,formData:any):Observable<any>{
     return this.http.put(this.apiUser+'edit/'+idUser,formData);
   }

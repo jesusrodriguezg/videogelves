@@ -1,8 +1,8 @@
 // src/app/secure/secure.component.ts
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {UserService} from '../services/user.service';
-import {Router} from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateUserModalComponent } from '../update-user-modal/update-user-modal.component';
