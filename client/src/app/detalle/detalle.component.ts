@@ -5,6 +5,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Producto } from '../producto';
 import { ListadeseosService } from '../services/listadeseos.service';
 import { ValoracionService } from '../services/valoracion.service';
+import { PedidoService } from '../services/pedido.service';
 
 @Component({
   selector: 'app-detalle',
@@ -21,10 +22,12 @@ export class DetalleComponent implements OnInit {
   public isInLista:any;
   public count:any;
   public puntuacion:any;
+  public hasDetallePedido:any;
 
   constructor(private _productoService:ProductoService,
     private _listaDeseosService: ListadeseosService,
     private _valoracionService: ValoracionService,
+    private _pedidoService: PedidoService,
     private activatedRoute:ActivatedRoute,
     private _router: Router,
     private config: NgbRatingConfig) {
@@ -49,6 +52,7 @@ export class DetalleComponent implements OnInit {
       this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
       this.getValoracionesCount(this.producto.id_producto);
       this.getPuntuacion(this.producto.id_producto);
+      this.checkDetallePedido(this.user.id_user, this.producto.id_producto);
     });
   }
 
@@ -57,8 +61,18 @@ export class DetalleComponent implements OnInit {
   // Función que añade un producto al carrito de la compra
   // Por cada vez que se la llama, hace una llamada a la API, que
   // comprueba / crea una fila en PEDIDO a la vez que crea la fila en DETALLE_PEDIDO
-  addCarrito(idProducto: any){
+  addCarrito(element:any, idUser:any,idProducto: any){
+    this._pedidoService.createDetallePedido(idUser,idProducto)
+      .subscribe(data => {
+        this.checkDetallePedido(this.user.id_user,this.producto.id_producto);
+      });
+  }
 
+  checkDetallePedido(idUsuario:any,idProducto:any){
+    this._pedidoService.checkDetallePedido(idUsuario,idProducto)
+      .subscribe(data => {
+        this.hasDetallePedido = data;
+      });
   }
 
   /* ----- MÉTODOS DE LISTA DE DESEOS ----- */
@@ -67,7 +81,7 @@ export class DetalleComponent implements OnInit {
   addListaDeseos(idUsuario:any,idProducto: any){
     return this._listaDeseosService.addListaDeseos(idUsuario,idProducto)
       .subscribe(data => {
-        this.refresh();
+        this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
       });
   }
 
@@ -75,7 +89,7 @@ export class DetalleComponent implements OnInit {
   deleteListaDeseos(idUsuario: any,idProducto: any){
     return this._listaDeseosService.deleteListaDeseos(idUsuario,idProducto)
       .subscribe(data => {
-        this.refresh();
+        this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
       });
   }
 

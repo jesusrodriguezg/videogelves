@@ -36,8 +36,10 @@ Route::put('/user/password/{idUser}', 'App\Http\Controllers\UserController@updat
 
 /*-------- PEDIDOS --------*/
 
-// Crea un pedido nuevo en la tabla PEDIDO
-Route::post('/pedidos/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@createDetallePedido');
+// Crea un pedido nuevo en la tabla DETALLE_PEDIDO
+Route::post('/pedidos/add/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@createDetallePedido');
+// Comprueba si un ID_USER tiene ya una fila con un ID_PRODUCTO dado en DETALLE_PEDIDO
+Route::get('/pedidos/check/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@checkDetallePedido');
 
 /*-------- LISTA DE DESEOS --------*/
 

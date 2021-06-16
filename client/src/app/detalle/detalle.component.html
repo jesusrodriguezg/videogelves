@@ -54,9 +54,16 @@
             </ngb-rating>
           </h3>
         <div *ngIf="!sinStock()">
-          <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(producto.id_producto)">
-            <i class="fas fa-shopping-cart"></i>  Añadir al carrito
-          </button>
+          <div *ngIf="this.hasDetallePedido == 0">
+            <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito($event.target, user.id_user,producto.id_producto)">
+              <i class="fas fa-shopping-cart"></i>  Añadir al carrito
+            </button>
+          </div>
+          <div *ngIf="this.hasDetallePedido != 0">
+            <button type="button" class="btn btn-vg" title="Añadir otra copia al carrito" (click)="addCarrito($event.target, user.id_user,producto.id_producto)">
+              <i class="fas fa-shopping-cart"></i>  Añadir otra copia al carrito
+            </button>
+          </div>
         </div>
         <div *ngIf="sinStock()">
           <button type="button" class="btn btn-vg disabled" title="No hay stock">
