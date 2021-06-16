@@ -19,9 +19,12 @@ class DetallePedidoController extends Controller
         // Si la hay, actualizamos la CANTIDAD de dicho producto
         // Si no la hay, creamos una nueva fila en DETALLE_PEDIDO
         if (self::searchDetallePedido($id_pedido,$id_producto) > 0) {
-            return DetallePedido::where('pedido_id_pedido',$id_pedido)
+            DetallePedido::where('pedido_id_pedido',$id_pedido)
                 ->where('producto_id_producto',$id_producto)
                 ->update(['cantidad' => DB::raw('cantidad+1')]);
+            return response()->json([
+                'message' => 'updated'
+            ]);
         }else{
             DetallePedido::create([
                 'pedido_id_pedido' => $id_pedido,
@@ -30,7 +33,7 @@ class DetallePedidoController extends Controller
                 'devuelto' => 'N'
             ]);
             return response()->json([
-                'message' => 'success'
+                'message' => 'created'
             ]);
         }
     }
@@ -50,8 +53,7 @@ class DetallePedidoController extends Controller
     {
         // Comprobamos si existe un ID_PEDIDO sin cerrar en PEDIDO
         // Guardamos el resultado de la query (ID_PEDIDO) en una variable
-        $id_pedido = PedidoController::searchPedido($id_usuario)
-            ->pluck('id_pedido')->first();
+        $id_pedido = PedidoController::searchPedido($id_usuario);
 
         // Si la búsqueda no devuelve resultados, devolvemos false
         if($id_pedido == null){

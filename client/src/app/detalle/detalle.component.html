@@ -43,7 +43,7 @@
       <div class="col-4 text-end">
         <h1 class="precio-detalle">{{producto.precio}} €</h1>
         <div *ngIf="sinStock()" class="sin-stock"><span>Sin stock</span></div>
-        <span><div *ngIf="!sinStock()">Stock: {{producto.stock}} unidades</div></span>
+        <div><h6>{{this.count}} valoraciones</h6></div>
         <div>
           <h3>
             <ngb-rating [rate]="puntuacion">
@@ -53,6 +53,7 @@
               </ng-template>
             </ngb-rating>
           </h3>
+        </div>
         <div *ngIf="!sinStock()">
           <div *ngIf="this.hasDetallePedido == 0">
             <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito($event.target, user.id_user,producto.id_producto)">

@@ -13,32 +13,16 @@ class PedidoController extends Controller
     // Devuelve el ID_PEDIDO de la compra
     public static function getPedido($id_usuario)
     {
-        // $id_usuario = $request->id_usuario;
-
-        // Comprueba si ya hay una fila abierta
-        $fila = self::searchPedido($id_usuario);
-        if ($fila->count() > 0) {
-            // Si la hay, devolvemos el ID_PEDIDO
-            return $fila->pluck('id_pedido')->first();
-        }
-
-        // Si no encuentra ninguna fila, la creamos
-        // llamando a createPedido() y cogemos el ID_PEDIDO
-        return self::createPedido($id_usuario);
-    }
-
-    // Función que crea una fila nueva en la tabla PEDIDO
-    // Recibe un ID_USUARIO y devuelve el ID_PEDIDO
-    private static function createPedido($id_usuario)
-    {
-        // Se crea una fecha y le damos el formato DD/MM/YYYY
+        // Creamos la fecha de hoy para el update o el create
         $fecha = Carbon::now()->format('d/m/Y');
-        // Crea la fila y devuelve el ID_PEDIDO de la última fila
-        return Pedido::create([
-            'comprado' => 'N',
-            'fecha' => $fecha,
-            'user_id_user' => $id_usuario
-        ])->pluck('id_pedido')->last();
+        // Si hay un pedido sin cerrar para ese usuario, actualiza la fecha;
+        // Si no existe ningún pedido sin cerrar, crea uno con la fecha actual
+        Pedido::updateOrCreate(
+            ['comprado' => 'N','user_id_user' => $id_usuario],
+            ['fecha' => $fecha]
+        );
+        // Devolvemos el ID_PEDIDO de la fila creada o actualizada
+        return self::searchPedido($id_usuario);
     }
 
     // Función que busca en la tabla PEDIDO si hay una fila
@@ -47,14 +31,7 @@ class PedidoController extends Controller
     {
         // Devolvemos la colección con la consulta
         return Pedido::where('user_id_user', $id_usuario)
-                ->where('comprado','=','N')->get();
-    }
-
-    public static function getIdPedido($id_usuario)
-    {
-        // Devolvemos el id_pedido con el ID_USER seleccionado
-        return Pedido::where('user_id_user', $id_usuario)
-                ->where('comprado','=','N')
-                ->get()->pluck('id_pedido');
+                ->where('comprado','=','N')->get()
+                ->pluck('id_pedido')->first();
     }
 }
