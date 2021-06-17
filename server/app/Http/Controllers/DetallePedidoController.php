@@ -62,4 +62,40 @@ class DetallePedidoController extends Controller
         // Si existe un ID_PEDIDO, hacemos una búsqueda en DETALLE_PEDIDO
         return self::searchDetallePedido($id_pedido,$id_producto);
     }
+
+    public function getCarrito($id_usuario)
+    {
+        $id_pedido = PedidoController::searchPedido($id_usuario);
+        // return DetallePedido::where('pedido_id_pedido', $id_pedido)->get();
+        return DB::table('detalle_pedido')->where('pedido_id_pedido',$id_pedido)
+            ->join('producto', 'detalle_pedido.producto_id_producto', '=', 'producto.id_producto')
+            ->get();
+    }
+
+    public function deleteCarrito($id_usuario)
+    {
+        $id_pedido = PedidoController::searchPedido($id_usuario);
+        return DetallePedido::where('pedido_id_pedido', $id_pedido)->delete();
+    }
+
+    public function deleteProductoCarrito($id_usuario,$id_producto)
+    {
+        $id_pedido = PedidoController::searchPedido($id_usuario);
+        return DetallePedido::where('pedido_id_pedido', $id_pedido)
+            ->where('producto_id_producto',$id_producto)->delete();
+    }
+
+    public function addCopia($id_pedido,$id_producto)
+    {
+        return DetallePedido::where('pedido_id_pedido', $id_pedido)
+        ->where('producto_id_producto',$id_producto)
+        ->update(['cantidad' => DB::raw('cantidad+1')]);
+    }
+
+    public function deleteCopia($id_pedido,$id_producto)
+    {
+        return DetallePedido::where('pedido_id_pedido', $id_pedido)
+        ->where('producto_id_producto',$id_producto)
+        ->update(['cantidad' => DB::raw('cantidad-1')]);
+    }
 }

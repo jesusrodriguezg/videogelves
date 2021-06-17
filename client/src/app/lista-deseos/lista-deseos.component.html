@@ -19,7 +19,6 @@
           <tbody>
             <tr *ngFor="let producto of productos">
               <td class="enlace-titulo" (click)="verDetalleProducto(producto.nombre_producto)">{{producto.nombre_producto}}</td>
-              <!-- <td><a [href]="'/'+verDetalleProducto(producto.nombre_producto)">{{producto.nombre_producto}}</a></td> -->
               <td>{{producto.precio}} €</td>
               <td>{{producto.stock}}</td>
               <td>

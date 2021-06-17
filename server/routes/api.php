@@ -40,6 +40,16 @@ Route::put('/user/password/{idUser}', 'App\Http\Controllers\UserController@updat
 Route::post('/pedidos/add/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@createDetallePedido');
 // Comprueba si un ID_USER tiene ya una fila con un ID_PRODUCTO dado en DETALLE_PEDIDO
 Route::get('/pedidos/check/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@checkDetallePedido');
+// Devuelve todos los productos del carrito (en DETALLE_PEDIDO y con un ID_PEDIDO que no está cerrado)
+Route::get('/pedidos/carrito/{idUsuario}', 'App\Http\Controllers\DetallePedidoController@getCarrito');
+// Quita todos los productos del carrito (borra todas las filas de DETALLE_PEDIDO con ID_PEDIDO no cerrado)
+Route::delete('/pedidos/carrito/delete/{idUsuario}', 'App\Http\Controllers\DetallePedidoController@deleteCarrito');
+// Quita un productos del carrito (borra la fila completa de DETALLE_PEDIDO)
+Route::delete('/pedidos/carrito/deleteprod/{idUsuario}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@deleteProductoCarrito');
+// Suma una copia de un producto que ya está en el carrito
+Route::put('/pedidos/carrito/addcopia/{idPedido}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@addCopia');
+// Quita una copia de un producto que ya está en el carrito
+Route::put('/pedidos/carrito/deletecopia/{idPedido}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@deleteCopia');
 
 /*-------- LISTA DE DESEOS --------*/
 

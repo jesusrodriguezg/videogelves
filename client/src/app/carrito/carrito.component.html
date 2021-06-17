@@ -1,1 +1,48 @@
-<p>carrito works!</p>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <div class="float-left">
+        <h3>Carrito de la compra</h3>
+      </div>
+      <div class="float-right">
+        <button class="btn btn-vg w-20" type="button" title="Vaciar carrito" (click)="deleteCarrito(this.user.id_user)">
+          <i class="far fa-trash-alt"></i> Vaciar
+        </button>
+      </div>
+      <div class="float-right">
+        <button class="btn btn-vg w-20" type="button" title="Confirmar compra" (click)="deleteCarrito(this.user.id_user)">
+          <i class="fas fa-cart-arrow-down"></i> Comprar
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive-sm">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio ud.</th>
+              <th scope="col">Precio total</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detallepedido of carrito">
+              <th scope="row" class="enlace-titulo" (click)="verDetalleProducto(detallepedido.nombre_producto)">{{detallepedido.nombre_producto}}</th>
+              <td>{{detallepedido.cantidad}}</td>
+              <td>{{detallepedido.precio}} €</td>
+              <td>{{detallepedido.precioTotal}} €</td>
+              <td>
+                <button type="button" class="btn btn-vg" (click)="addCopia(detallepedido.pedido_id_pedido,detallepedido.producto_id_producto)" title="Sumar una copia"><i class="fas fa-plus"></i></button>
+                <button *ngIf="detallepedido.cantidad == 1" type="button" class="btn btn-vg disabled" title="Quitar una copia"><i class="fas fa-minus"></i></button>
+                <button *ngIf="detallepedido.cantidad > 1" type="button" class="btn btn-vg" [disabled] (click)="deleteCopia(detallepedido.pedido_id_pedido,detallepedido.producto_id_producto)" title="Quitar una copia"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-vg" (click)="deleteProductoCarrito(this.user.id_user,detallepedido.producto_id_producto)" title="Quitar producto"><i class="fas fa-trash-alt"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

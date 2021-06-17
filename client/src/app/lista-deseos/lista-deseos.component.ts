@@ -44,7 +44,6 @@ export class ListaDeseosComponent implements OnDestroy, OnInit {
 
   getListaDeseos(idUsuario:any){
     return this._listaDeseosService.getListaDeseos(idUsuario).subscribe(data => {
-//      this.productos = data;
       for (let d of data) {
         this.producto = new Producto();
         this.producto.id_producto = d.id_producto;

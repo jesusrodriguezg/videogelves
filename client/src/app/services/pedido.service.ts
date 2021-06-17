@@ -25,4 +25,28 @@ export class PedidoService {
   checkDetallePedido(idUsuario:any,idProducto:any):Observable<any>{
     return this.http.get(this.apiPedidos+"check/"+idUsuario+"/"+idProducto);
   }
+
+  // Método que devuelve los productos del carrito (en DETALLE_PEDIDO y no comprados)
+  getCarrito(idUsuario:any):Observable<any>{
+    return this.http.get(this.apiPedidos+"carrito/"+idUsuario);
+  }
+
+  deleteCarrito(idUsuario:any):Observable<any>{
+    return this.http.delete(this.apiPedidos+"carrito/delete/"+idUsuario);
+  }
+
+  deleteProductoCarrito(idUsuario:any,idProducto:any){
+    return this.http.delete(this.apiPedidos+"carrito/deleteprod/"+idUsuario+"/"+idProducto);
+  }
+
+  addCopia(idPedido:any,idProducto:any):Observable<any>{
+    const body = {};
+    return this.http.put(this.apiPedidos+"carrito/addcopia/"+idPedido+"/"+idProducto, body);
+  }
+
+  deleteCopia(idPedido:any,idProducto:any):Observable<any>{
+    const body = {};
+    return this.http.put(this.apiPedidos+"carrito/deletecopia/"+idPedido+"/"+idProducto, body);
+
+  }
 }
