@@ -79,6 +79,8 @@ import { UpdateUserModalComponent } from './update-user-modal/update-user-modal.
 import { UpdatePasswordModalComponent } from './update-password-modal/update-password-modal.component';
 import { AdminusuariosComponent } from './adminusuarios/adminusuarios.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { ComprasComponent } from './compras/compras.component';
+import { DetallepedidoComponent } from './detallepedido/detallepedido.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +104,9 @@ import { CarritoComponent } from './carrito/carrito.component';
     UpdateUserModalComponent,
     UpdatePasswordModalComponent,
     AdminusuariosComponent,
-    CarritoComponent
+    CarritoComponent,
+    ComprasComponent,
+    DetallepedidoComponent
   ],
   imports: [
     BrowserModule,

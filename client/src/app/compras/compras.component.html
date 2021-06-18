@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <div class="float-left">
+        <h3>Historial de compras</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive-sm">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Importe</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of compras">
+              <th scope="row">{{pedido.id_pedido}}</th>
+              <td>{{pedido.fecha}}</td>
+              <td>{{pedido.importetotal}} €</td>
+              <td>
+                <button type="button" class="btn btn-vg" (click)="verDetalleCompra(pedido.id_pedido)" title="Consultar detalle"><i class="fas fa-list"></i> Ver detalle</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

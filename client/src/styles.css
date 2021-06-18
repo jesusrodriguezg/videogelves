@@ -110,6 +110,18 @@ mat-form-field.full-width {
   color: #006294;
 }
 
+.importe-total{
+  color: #006294;
+}
+
+.nota-destacada > span{
+  color: #006294;
+  font-weight:500;
+  font-style: italic;
+  background-color:wheat;
+  padding: 7px 15px;
+}
+
 /* Botón basado en las clases de Bootstrap .btn-primary, modificado para que muestre el color corporativo */
 /* Se usa en todos los botones de la aplicación, y en el botón de confirmación en cuadros de diálogo SÍ / NO */
 .btn-vg{color:#fff;background-color:#006294;border-color:#fff}

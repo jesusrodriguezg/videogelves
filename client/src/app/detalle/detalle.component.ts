@@ -49,10 +49,10 @@ export class DetalleComponent implements OnInit {
     // Pasamos por argumentos al método del servicio el nombre de producto codificado
     this._productoService.getProductoDetalle(this.nombreProducto).subscribe(data => {
       this.producto = data;
+      this.checkDetallePedido(this.user.id_user, this.producto.id_producto);
       this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
       this.getValoracionesCount(this.producto.id_producto);
       this.getPuntuacion(this.producto.id_producto);
-      this.checkDetallePedido(this.user.id_user, this.producto.id_producto);
     });
   }
 
@@ -61,17 +61,20 @@ export class DetalleComponent implements OnInit {
   // Función que añade un producto al carrito de la compra
   // Por cada vez que se la llama, hace una llamada a la API, que
   // comprueba / crea una fila en PEDIDO a la vez que crea la fila en DETALLE_PEDIDO
-  addCarrito(element:any, idUser:any,idProducto: any){
+  addCarrito(idUser:any,idProducto: any){
     this._pedidoService.createDetallePedido(idUser,idProducto)
       .subscribe(data => {
         this.checkDetallePedido(this.user.id_user,this.producto.id_producto);
       });
   }
 
+  // Función que comprueba al cargar la página si el producto está en el carrito
+  // Hace una búsqueda en PEDIDO y DETALLE_PEDIDO y asigna 0 / 1 a la variable hasDetallePedido
   checkDetallePedido(idUsuario:any,idProducto:any){
     this._pedidoService.checkDetallePedido(idUsuario,idProducto)
       .subscribe(data => {
         this.hasDetallePedido = data;
+        console.log(this.hasDetallePedido)
       });
   }
 

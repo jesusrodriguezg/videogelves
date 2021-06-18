@@ -6,40 +6,39 @@
   <!-- Lista de comentarios existentes -->
 	<div class="row">
 		<div class="col-md-7">
-      <div *ngFor="let valoracion of valoraciones">
-        <div class="row justify-content-between">
-          <div class="col-md-9">
-            <h6 class="name-valoracion">▶ {{valoracion.nombre}}</h6>
+      <div *ngIf="valoraciones.length == 0" >
+        <h4>No hay valoraciones de este producto. ¡Sé el primero en dar su opinión!</h4>
+      </div>
+      <div *ngIf="valoraciones.length > 0">
+        <div *ngFor="let valoracion of valoraciones">
+          <div class="row justify-content-between">
+            <div class="col-md-9">
+              <h6 class="name-valoracion">▶ {{valoracion.nombre}}</h6>
+            </div>
+            <div class="col-md-3">
+              <ngb-rating [rate]="valoracion.puntuacion" [readonly]="true">
+                <ng-template let-fill="fill" >
+                  <span *ngIf="fill === 100" class="filled">★</span>
+                  <span *ngIf="fill === 0" class="notfilled">☆</span>
+                </ng-template>
+              </ngb-rating>
+            </div>
           </div>
-          <div class="col-md-3">
-            <ngb-rating [rate]="valoracion.puntuacion" [readonly]="true">
-              <ng-template let-fill="fill" >
-                <span *ngIf="fill === 100" class="filled">★</span>
-                <span *ngIf="fill === 0" class="notfilled">☆</span>
-              </ng-template>
-            </ngb-rating>
+          <div class="row">
+            <p>
+              {{valoracion.comentario}}
+            </p>
           </div>
-        </div>
-        <div class="row">
-          <p>
-            {{valoracion.comentario}}
-          </p>
         </div>
       </div>
 		</div>
     <!-- Formulario de comentarios -->
 		<div class="col-md-5">
-      <div *ngIf="!user">
-
-      </div>
-      <div *ngIf="user">
-
-      </div>
       <div *ngIf="user && hasCommented == 1" class="row">
         <h3>Ya has escrito tu opinión.<br>¡Gracias por participar!</h3>
       </div>
       <div *ngIf="!user || (user && hasCommented == 0)" class="row">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form">
           <div class="form-group">
             <label for="comentario">Escribe tu opinión</label>
             <textarea rows="4" class="form-control" formControlName="comentario" placeholder="Escribe algo..."></textarea>
@@ -62,7 +61,8 @@
           </div>
           <br>
           <div class="text-right">
-            <button type="submit" [disabled]="form.invalid" class="btn btn-vg">Danos tu opinión</button>
+            <button *ngIf="user" type="submit" [disabled]="form.invalid" class="btn btn-vg" (click)="onSubmit()">Danos tu opinión</button>
+            <button *ngIf="!user" type="submit" [disabled]="form.invalid" class="btn btn-vg" (click)="toLogin()">Inicia sesión para comentar</button>
           </div>
         </form>
       </div>

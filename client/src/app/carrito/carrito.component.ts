@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { PedidoService } from '../services/pedido.service';
@@ -9,13 +9,14 @@ import { DetallePedido } from './detallepedido';
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit, OnDestroy {
 
   public user:any = JSON.parse(localStorage.getItem('usuario'));
   public detallepedido = new DetallePedido();
   public carrito: Array<DetallePedido> = [];
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<any> = new Subject<any>();
+  public importe:number = 0;
 
   constructor(
     private _pedidoService: PedidoService,
@@ -41,25 +42,21 @@ export class CarritoComponent implements OnInit {
 
   getCarrito(idUsuario:any){
     this._pedidoService.getCarrito(idUsuario).subscribe(data =>{
-        for (const d of data) {
-          this.detallepedido = new DetallePedido();
-          this.detallepedido.pedido_id_pedido = d.pedido_id_pedido;
-          this.detallepedido.producto_id_producto = d.producto_id_producto;
-          this.detallepedido.cantidad = d.cantidad;
-          this.detallepedido.devuelto = d.devuelto;
-          this.detallepedido.id_producto = d.id_producto;
-          this.detallepedido.nombre_producto = d.nombre_producto;
-          this.detallepedido.descripcion = d.descripcion;
-          this.detallepedido.precio = d.precio;
-          this.detallepedido.stock = d.stock;
-          this.detallepedido.imagen = d.imagen;
-          this.detallepedido.categoria_id_categoria = d.categoria_id_categoria;
-          this.detallepedido.precioTotal = Math.round((this.detallepedido.precio * this.detallepedido.cantidad) * 100) / 100;
-          this.carrito.push(this.detallepedido);
-        }
-        this.dtTrigger.next();
+      for (const d of data) {
+        this.detallepedido = new DetallePedido();
+        this.detallepedido.pedido_id_pedido = d.pedido_id_pedido;
+        this.detallepedido.cantidad = d.cantidad;
+        this.detallepedido.devuelto = d.devuelto;
+        this.detallepedido.id_producto = d.id_producto;
+        this.detallepedido.nombre_producto = d.nombre_producto;
+        this.detallepedido.precio = d.precio;
+        this.detallepedido.stock = d.stock;
+        this.detallepedido.preciototal = Math.round(d.preciototal  * 100) / 100;
+        this.carrito.push(this.detallepedido);
       }
-    )
+      this.calcularImporteCarrito(this.user.id_user);
+      this.dtTrigger.next();
+    });
   }
 
   deleteCarrito(idUsuario:any){
@@ -91,12 +88,22 @@ export class CarritoComponent implements OnInit {
       })
   }
 
-  confirmarCompra(){
-
+  compra(idUsuario:any){
+    this._pedidoService.compra(idUsuario).subscribe(
+      data => {
+        this.refresh();
+      }
+    );
   }
 
   verDetalleProducto(nombre_producto:any):void{
     this._router.navigate(['/',encodeURI(nombre_producto)],);
+  }
+
+  calcularImporteCarrito(idUsuario:any){
+    this._pedidoService.getImporteCarrito(idUsuario).subscribe(data =>{
+        this.importe = data;
+      });
   }
 
   refresh(){

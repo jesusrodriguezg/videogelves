@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="float-right">
-        <button class="btn btn-vg w-20" type="button" title="Confirmar compra" (click)="deleteCarrito(this.user.id_user)">
+        <button class="btn btn-vg w-20" type="button" title="Confirmar compra" (click)="compra(this.user.id_user)">
           <i class="fas fa-cart-arrow-down"></i> Comprar
         </button>
       </div>
@@ -32,16 +32,19 @@
               <th scope="row" class="enlace-titulo" (click)="verDetalleProducto(detallepedido.nombre_producto)">{{detallepedido.nombre_producto}}</th>
               <td>{{detallepedido.cantidad}}</td>
               <td>{{detallepedido.precio}} €</td>
-              <td>{{detallepedido.precioTotal}} €</td>
+              <td>{{detallepedido.preciototal}} €</td>
               <td>
-                <button type="button" class="btn btn-vg" (click)="addCopia(detallepedido.pedido_id_pedido,detallepedido.producto_id_producto)" title="Sumar una copia"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-vg" (click)="addCopia(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Sumar una copia"><i class="fas fa-plus"></i></button>
                 <button *ngIf="detallepedido.cantidad == 1" type="button" class="btn btn-vg disabled" title="Quitar una copia"><i class="fas fa-minus"></i></button>
-                <button *ngIf="detallepedido.cantidad > 1" type="button" class="btn btn-vg" [disabled] (click)="deleteCopia(detallepedido.pedido_id_pedido,detallepedido.producto_id_producto)" title="Quitar una copia"><i class="fas fa-minus"></i></button>
-                <button type="button" class="btn btn-vg" (click)="deleteProductoCarrito(this.user.id_user,detallepedido.producto_id_producto)" title="Quitar producto"><i class="fas fa-trash-alt"></i></button>
+                <button *ngIf="detallepedido.cantidad > 1" type="button" class="btn btn-vg" [disabled] (click)="deleteCopia(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Quitar una copia"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-vg" (click)="deleteProductoCarrito(this.user.id_user,detallepedido.id_producto)" title="Quitar producto"><i class="fas fa-trash-alt"></i></button>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="row text-right py-3 px-4">
+        <h2><span class="importe-total">Importe total:</span> {{importe}} €</h2>
       </div>
     </div>
   </div>

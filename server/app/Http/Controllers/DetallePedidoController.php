@@ -66,10 +66,11 @@ class DetallePedidoController extends Controller
     public function getCarrito($id_usuario)
     {
         $id_pedido = PedidoController::searchPedido($id_usuario);
-        // return DetallePedido::where('pedido_id_pedido', $id_pedido)->get();
-        return DB::table('detalle_pedido')->where('pedido_id_pedido',$id_pedido)
-            ->join('producto', 'detalle_pedido.producto_id_producto', '=', 'producto.id_producto')
-            ->get();
+
+        return self::getDetalleCompra($id_pedido);
+        // return DB::table('detalle_pedido')->where('pedido_id_pedido',$id_pedido)
+        //     ->join('producto', 'detalle_pedido.producto_id_producto', '=', 'producto.id_producto')
+        //     ->get();
     }
 
     public function deleteCarrito($id_usuario)
@@ -97,5 +98,15 @@ class DetallePedidoController extends Controller
         return DetallePedido::where('pedido_id_pedido', $id_pedido)
         ->where('producto_id_producto',$id_producto)
         ->update(['cantidad' => DB::raw('cantidad-1')]);
+    }
+
+    // Función que devuelve los artículos (DETALLE_PEDIDO) de una compra (PEDIDO)
+    // Devuelve un campo extra, preciototal, que multiplica cantidad * precio de un producto
+    public static function getDetalleCompra($id_pedido)
+    {
+        return DB::table("detalle_pedido")->leftJoin("producto",function($join){
+            $join->on("detalle_pedido.producto_id_producto", "=", "producto.id_producto");
+          })->select('pedido_id_pedido','cantidad','devuelto','id_producto','nombre_producto','stock','precio',DB::raw("detalle_pedido.cantidad * producto.precio as 'preciototal'"))
+            ->where("detalle_pedido.pedido_id_pedido", "=", $id_pedido)->get();
     }
 }

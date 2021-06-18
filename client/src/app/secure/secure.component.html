@@ -46,7 +46,7 @@
           <div class="d-flex flex-row gap-2 m-auto justify-content-center">
             <button [routerLink]="['/admin/productos']" class="btn btn-vg" type="button"><i class="fas fa-gamepad"></i> Administrar productos</button>
             <button [routerLink]="['/admin/usuarios']" class="btn btn-vg" type="button"><i class="fas fa-user"></i> Administrar usuarios</button>
-            <button class="btn btn-vg" type="button"><i class="fas fa-shopping-cart"></i> Historial de compra</button>
+            <button [routerLink]="['/compras']" class="btn btn-vg" type="button"><i class="fas fa-shopping-cart"></i> Historial de compra</button>
           </div>
         </div>
         <div *ngIf="user.admin == 'N'">

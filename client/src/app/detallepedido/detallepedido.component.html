@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <div class="float-left">
+        <h3>Compra #{{idPedido}} - Productos detallados</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="nota-destacada text-center"><span><i class="fas fa-exclamation-circle"></i> Puedes devolver productos individualizados hasta 15 días después de la compra.</span></p>
+      <div class="table-responsive-sm">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio ud.</th>
+              <th scope="col">Precio total</th>
+              <th scope="col">Devuelto</th>
+              <th>Devolver</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detallepedido of compra">
+              <th scope="row" class="enlace-titulo" (click)="verDetalleProducto(detallepedido.nombre_producto)">{{detallepedido.nombre_producto}}</th>
+              <td>{{detallepedido.cantidad}}</td>
+              <td>{{detallepedido.precio}} €</td>
+              <td>{{detallepedido.preciototal}} €</td>
+              <td *ngIf="detallepedido.devuelto === 'Y'"><i class="fas fa-check" style="color: green"></i></td>
+              <td *ngIf="detallepedido.devuelto === 'N'"><i class="fas fa-times" style="color: red"></i></td>
+              <td *ngIf="esDescambiable !=1">
+                <button type="button" class="btn btn-vg disabled" title="El producto no puede devolverse"><i class="fas fa-undo"></i> Devolver</button>
+              </td>
+              <td *ngIf="esDescambiable == 1">
+                <button *ngIf="detallepedido.devuelto == 'Y'" type="button" class="btn btn-vg disabled" title="El producto está devuelto"><i class="fas fa-undo"></i> Devolver</button>
+                <button *ngIf="detallepedido.devuelto == 'N'" type="button" class="btn btn-vg" (click)="devolver(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Devolver producto"><i class="fas fa-undo"></i> Devolver</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

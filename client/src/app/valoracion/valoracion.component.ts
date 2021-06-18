@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ValoracionService } from '../services/valoracion.service';
 import { Valoracion } from './valoracion';
@@ -22,7 +23,8 @@ export class ValoracionComponent implements OnInit {
   constructor(
     private _valoracionService: ValoracionService,
     private config: NgbRatingConfig,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private _router:Router
   ) {
     config.max = 5;
     config.readonly = false;
@@ -60,6 +62,10 @@ export class ValoracionComponent implements OnInit {
           console.log(data)
           window.location.reload();
         });
+    }
+
+    toLogin(){
+      this._router.navigate(['/login']);
     }
 
     getHasCommented(idUsuario:any,idProducto:any){

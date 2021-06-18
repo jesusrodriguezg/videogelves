@@ -47,6 +47,26 @@ export class PedidoService {
   deleteCopia(idPedido:any,idProducto:any):Observable<any>{
     const body = {};
     return this.http.put(this.apiPedidos+"carrito/deletecopia/"+idPedido+"/"+idProducto, body);
+  }
 
+  getImporteCarrito(idUsuario:any):Observable<any>{
+    return this.http.get(this.apiPedidos+"carrito/importe/"+idUsuario);
+  }
+
+  compra(idPedido:any):Observable<any>{
+    const body = {};
+    return this.http.put(this.apiPedidos+"compra/"+idPedido,body);
+  }
+
+  getCompras(idUsuario:any):Observable<any>{
+    return this.http.get(this.apiPedidos+"compra/"+idUsuario);
+  }
+
+  getDetalleCompra(idPedido:any):Observable<any>{
+    return this.http.get(this.apiPedidos+"compra/detalle/"+idPedido);
+  }
+
+  checkFechaDevolucion(idPedido:any):Observable<any>{
+    return this.http.get(this.apiPedidos+"compra/fecha/"+idPedido);
   }
 }

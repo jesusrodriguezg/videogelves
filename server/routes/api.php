@@ -50,6 +50,16 @@ Route::delete('/pedidos/carrito/deleteprod/{idUsuario}/{idProducto}', 'App\Http\
 Route::put('/pedidos/carrito/addcopia/{idPedido}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@addCopia');
 // Quita una copia de un producto que ya está en el carrito
 Route::put('/pedidos/carrito/deletecopia/{idPedido}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@deleteCopia');
+// Devuelve el importe total de una compra cuando se encuentra en el carrito (sin cerrar)
+Route::get('/pedidos/carrito/importe/{idUsuario}', 'App\Http\Controllers\PedidoController@getImporteCarrito');
+// Confirma la compra de los productos del carrito (cierra el PEDIDO con el ID_PEDIDO)
+Route::put('/pedidos/compra/{idUsuario}', 'App\Http\Controllers\PedidoController@compra');
+// Devuelve todos los pedidos cerrados de un usuario
+Route::get('/pedidos/compra/{idUsuario}', 'App\Http\Controllers\PedidoController@getCompras');
+// Devuelve las filas de DETALLE_PEDIDO correspondientes a un PEDIDO cerrado concreto
+Route::get('/pedidos/compra/detalle/{idPedido}', 'App\Http\Controllers\DetallePedidoController@getDetalleCompra');
+// Comprueba si los artículos de un pedido se pueden devolver (si han pasado +15 días desde que se cerró)
+Route::get('/pedidos/compra/fecha/{idPedido}', 'App\Http\Controllers\PedidoController@checkFechaDevolucion');
 
 /*-------- LISTA DE DESEOS --------*/
 
