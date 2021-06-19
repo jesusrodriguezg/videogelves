@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { Producto } from '../producto';
 import { ListadeseosService } from '../services/listadeseos.service';
 import { PedidoService } from '../services/pedido.service';
+import { ProductoService } from '../services/productos.service';
 
 @Component({
   selector: 'app-lista-deseos',
@@ -18,10 +19,13 @@ export class ListaDeseosComponent implements OnDestroy, OnInit {
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<any> = new Subject<any>();
   public hasDetallePedido: any;
+  public hasStock:any;
+
 
   constructor(
     private _listaDeseosService:ListadeseosService,
     private _pedidoService: PedidoService,
+    private _productoService: ProductoService,
     private _router:Router
   )
   {
@@ -36,11 +40,11 @@ export class ListaDeseosComponent implements OnDestroy, OnInit {
       pageLength: 10,
       language: {
         "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
-      }
+      },
+      responsive: true,
+      destroy: true
     };
     this.getListaDeseos(this.user.id_user);
-    console.log(this.hasDetallePedido);
-
   }
 
   ngOnDestroy(): void {
@@ -59,7 +63,7 @@ export class ListaDeseosComponent implements OnDestroy, OnInit {
         this.producto.imagen = d.imagen;
         this.producto.categoria_id_categoria = d.categoria_id_categoria;
         this.productos.push(this.producto);
-        // this.checkDetallePedido(this.user.id_user, this.producto.id_producto);
+        this.checkStock(d.id_producto);
       }
       this.dtTrigger.next();
     });
@@ -79,16 +83,20 @@ export class ListaDeseosComponent implements OnDestroy, OnInit {
   addCarrito(idUser:any,idProducto: any){
     this._pedidoService.createDetallePedido(idUser,idProducto)
       .subscribe(data => {
-        console.log(data);
+        this.removeStock(idProducto);
+        this.refresh();
       });
   }
 
-  // checkDetallePedido(idUsuario:any,idProducto:any){
-  //   this._pedidoService.checkDetallePedido(idUsuario,idProducto)
-  //     .subscribe(data => {
-  //       this.hasDetallePedido = data;
-  //     });
-  // }
+  checkStock(idProducto:any){
+    this._productoService.checkStock(idProducto).subscribe(data => {
+      this.hasStock = data;
+    });
+  }
+
+  removeStock(idProducto:any){
+    this._productoService.removeStock(idProducto).subscribe();
+  }
 
   // Método que se usa para refrescar la página tras pulsar un botón que genera cambios
   refresh() {

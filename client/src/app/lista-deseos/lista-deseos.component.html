@@ -22,7 +22,10 @@
               <td>{{producto.precio}} €</td>
               <td>{{producto.stock}}</td>
               <td>
-                <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
+                <button *ngIf="producto.stock == 0" type="button" class="btn btn-vg disabled" title="No hay stock">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+                <button *ngIf="producto.stock > 0" type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
                   <i class="fas fa-shopping-cart"></i>
                 </button>
                 <button type="button" class="btn btn-vg" (click)="deleteListaDeseos(user.id_user,producto.id_producto)" title="Quitar de la lista de deseos"><i class="far fa-trash-alt"></i></button>

@@ -32,7 +32,7 @@
               </td>
               <td *ngIf="esDescambiable == 1">
                 <button *ngIf="detallepedido.devuelto == 'Y'" type="button" class="btn btn-vg disabled" title="El producto está devuelto"><i class="fas fa-undo"></i> Devolver</button>
-                <button *ngIf="detallepedido.devuelto == 'N'" type="button" class="btn btn-vg" (click)="devolver(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Devolver producto"><i class="fas fa-undo"></i> Devolver</button>
+                <button *ngIf="detallepedido.devuelto == 'N'" type="button" class="btn btn-vg" (click)="devolverProducto(detallepedido.pedido_id_pedido,detallepedido.id_producto,detallepedido.cantidad)" title="Devolver producto"><i class="fas fa-undo"></i> Devolver</button>
               </td>
             </tr>
           </tbody>

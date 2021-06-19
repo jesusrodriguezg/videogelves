@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -35,6 +36,24 @@ class ProductoController extends Controller
     public function deleteStockProducto($id_producto)
     {
         return Producto::find($id_producto)->update(['stock' => 0]);
+    }
+
+    public function checkStock($id_producto)
+    {
+        return Producto::where('id_producto',$id_producto)
+                ->pluck('stock')->first();
+    }
+
+    public function addStock($id_producto,$cantidad)
+    {
+        return Producto::where('id_producto',$id_producto)
+            ->increment('stock',$cantidad);
+    }
+
+    public function removeStock($id_producto)
+    {
+        return Producto::where('id_producto',$id_producto)
+            ->update(['stock' => DB::raw('stock-1')]);
     }
 
     // Función que actualiza un producto con los datos de un formulario

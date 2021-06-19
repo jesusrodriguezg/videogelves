@@ -42,7 +42,7 @@
       <div class="col-5">{{producto.descripcion}}</div>
       <div class="col-4 text-end">
         <h1 class="precio-detalle">{{producto.precio}} €</h1>
-        <div *ngIf="sinStock()" class="sin-stock"><span>Sin stock</span></div>
+        <div *ngIf="this.hasStock == 0" class="sin-stock"><span>Sin stock</span></div>
         <div><h6>{{this.count}} valoraciones</h6></div>
         <div>
           <h3>
@@ -54,7 +54,7 @@
             </ngb-rating>
           </h3>
         </div>
-        <div *ngIf="!sinStock()">
+        <div *ngIf="this.hasStock != 0">
           <div *ngIf="hasDetallePedido != 1">
             <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
               <i class="fas fa-shopping-cart"></i>  Añadir al carrito
@@ -66,7 +66,7 @@
             </button>
           </div>
         </div>
-        <div *ngIf="sinStock()">
+        <div *ngIf="this.hasStock == 0">
           <button type="button" class="btn btn-vg disabled" title="No hay stock">
             <i class="fas fa-shopping-cart"></i>  No existe stock
           </button>

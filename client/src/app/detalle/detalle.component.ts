@@ -23,6 +23,7 @@ export class DetalleComponent implements OnInit {
   public count:any;
   public puntuacion:any;
   public hasDetallePedido:any;
+  public hasStock:any;
 
   constructor(private _productoService:ProductoService,
     private _listaDeseosService: ListadeseosService,
@@ -42,7 +43,6 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductoDetalle();
-    //console.log(this.producto.id_producto.trucutru())
   }
 
   getProductoDetalle() {
@@ -53,7 +53,10 @@ export class DetalleComponent implements OnInit {
       this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
       this.getValoracionesCount(this.producto.id_producto);
       this.getPuntuacion(this.producto.id_producto);
+      this.checkStock(this.producto.id_producto);
     });
+    console.log(this.hasStock);
+
   }
 
   /* ----- MÉTODOS DE COMPRA ----- */
@@ -65,6 +68,8 @@ export class DetalleComponent implements OnInit {
     this._pedidoService.createDetallePedido(idUser,idProducto)
       .subscribe(data => {
         this.checkDetallePedido(this.user.id_user,this.producto.id_producto);
+        this.removeStock(this.producto.id_producto);
+        this.checkStock(this.producto.id_producto);
       });
   }
 
@@ -75,6 +80,25 @@ export class DetalleComponent implements OnInit {
       .subscribe(data => {
         this.hasDetallePedido = data;
       });
+  }
+
+  /* ----- MÉTODOS DE STOCK ----- */
+
+  // Método que comprueba si un producto tiene stock o no, para filtrar en la vista
+  checkStock(idProducto:any){
+    this._productoService.checkStock(idProducto).subscribe(data => {
+      this.hasStock = data;
+    });
+  }
+
+  // Método que añade una unidad al stock
+  addStock(idProducto:any,cantidad:any){
+    this._productoService.addStock(idProducto,cantidad).subscribe();
+  }
+
+  // Método que quita una unidad del stock cada vez que se añade el producto al carro
+  removeStock(idProducto:any){
+    this._productoService.removeStock(idProducto).subscribe();
   }
 
   /* ----- MÉTODOS DE LISTA DE DESEOS ----- */
@@ -123,11 +147,6 @@ export class DetalleComponent implements OnInit {
   }
 
   /* ----- MÉTODOS GENERALES / AUXILIARES ----- */
-
-  // Método que comprueba si un producto tiene stock o no, para filtrar en la vista
-  sinStock(){
-    return this.producto.stock == 0;
-  }
 
   // Método que se usa para refrescar la página tras pulsar un botón que genera cambios
   refresh() {

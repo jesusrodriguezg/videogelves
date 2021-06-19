@@ -109,4 +109,11 @@ class DetallePedidoController extends Controller
           })->select('pedido_id_pedido','cantidad','devuelto','id_producto','nombre_producto','stock','precio',DB::raw("detalle_pedido.cantidad * producto.precio as 'preciototal'"))
             ->where("detalle_pedido.pedido_id_pedido", "=", $id_pedido)->get();
     }
+
+    public function devolverProducto($id_pedido,$id_producto)
+    {
+        return DetallePedido::where('pedido_id_pedido',$id_pedido)
+            ->where('producto_id_producto',$id_producto)
+            ->update(['devuelto' => 'Y']);
+    }
 }

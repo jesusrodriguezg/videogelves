@@ -13,6 +13,12 @@ Route::get('/productos/{nombreProducto}', 'App\Http\Controllers\ProductoControll
 Route::put('/productos/delete/{idProducto}', 'App\Http\Controllers\ProductoController@deleteStockProducto');
 // Actualiza uno o varios campos del producto cuyo ID recibe con los datos de un formulario
 Route::put('/productos/update/{idProducto}', 'App\Http\Controllers\ProductoController@updateProducto');
+// Comprueba si un producto tiene stock
+Route::get('/productos/stock/check/{idProducto}', 'App\Http\Controllers\ProductoController@checkStock');
+// Comprueba si un producto tiene stock
+Route::put('/productos/stock/add/{idProducto}/{cantidad}', 'App\Http\Controllers\ProductoController@addStock');
+// Comprueba si un producto tiene stock
+Route::put('/productos/stock/remove/{idProducto}', 'App\Http\Controllers\ProductoController@removeStock');
 
 /*-------- CATEGORÍAS --------*/
 
@@ -60,6 +66,8 @@ Route::get('/pedidos/compra/{idUsuario}', 'App\Http\Controllers\PedidoController
 Route::get('/pedidos/compra/detalle/{idPedido}', 'App\Http\Controllers\DetallePedidoController@getDetalleCompra');
 // Comprueba si los artículos de un pedido se pueden devolver (si han pasado +15 días desde que se cerró)
 Route::get('/pedidos/compra/fecha/{idPedido}', 'App\Http\Controllers\PedidoController@checkFechaDevolucion');
+// Comprueba si los artículos de un pedido se pueden devolver (si han pasado +15 días desde que se cerró)
+Route::put('/pedidos/compra/devolver/{idPedido}/{idProducto}', 'App\Http\Controllers\DetallePedidoController@devolverProducto');
 
 /*-------- LISTA DE DESEOS --------*/
 

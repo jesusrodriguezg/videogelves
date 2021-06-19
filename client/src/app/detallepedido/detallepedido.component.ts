@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { DetallePedido } from '../carrito/detallepedido';
 import { PedidoService } from '../services/pedido.service';
+import { ProductoService } from '../services/productos.service';
 
 @Component({
   selector: 'app-detallepedido',
@@ -22,6 +23,7 @@ export class DetallepedidoComponent implements OnInit, OnDestroy {
 
   constructor(
     private _pedidoService: PedidoService,
+    private _productoService: ProductoService,
     private _router: Router,
     private activatedRoute:ActivatedRoute
   ) {
@@ -69,8 +71,11 @@ export class DetallepedidoComponent implements OnInit, OnDestroy {
     });
   }
 
-  devolver(idPedido:any,idProducto:any){
-
+  devolverProducto(idPedido:any,idProducto:any,cantidad:any){
+    this._pedidoService.devolverProducto(idPedido,idProducto).subscribe(data => {
+      this.addStock(idProducto,cantidad);
+      this.refresh();
+    });
   }
 
   checkFechaDevolucion(idPedido:any){
@@ -81,5 +86,14 @@ export class DetallepedidoComponent implements OnInit, OnDestroy {
 
   verDetalleProducto(nombre_producto:any):void{
     this._router.navigate(['/',encodeURI(nombre_producto)],);
+  }
+
+  // Método que añade una unidad al stock
+  addStock(idProducto:any,cantidad:any){
+    this._productoService.addStock(idProducto,cantidad).subscribe();
+  }
+
+  refresh(){
+    window.location.reload();
   }
 }

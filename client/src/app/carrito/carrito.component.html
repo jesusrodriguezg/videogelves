@@ -34,10 +34,11 @@
               <td>{{detallepedido.precio}} €</td>
               <td>{{detallepedido.preciototal}} €</td>
               <td>
-                <button type="button" class="btn btn-vg" (click)="addCopia(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Sumar una copia"><i class="fas fa-plus"></i></button>
+                <button *ngIf="detallepedido.stock == 0" type="button" class="btn btn-vg disabled" title="No existe stock"><i class="fas fa-plus"></i></button>
+                <button *ngIf="detallepedido.stock > 0" type="button" class="btn btn-vg" (click)="addCopia(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Sumar una copia"><i class="fas fa-plus"></i></button>
                 <button *ngIf="detallepedido.cantidad == 1" type="button" class="btn btn-vg disabled" title="Quitar una copia"><i class="fas fa-minus"></i></button>
-                <button *ngIf="detallepedido.cantidad > 1" type="button" class="btn btn-vg" [disabled] (click)="deleteCopia(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Quitar una copia"><i class="fas fa-minus"></i></button>
-                <button type="button" class="btn btn-vg" (click)="deleteProductoCarrito(this.user.id_user,detallepedido.id_producto)" title="Quitar producto"><i class="fas fa-trash-alt"></i></button>
+                <button *ngIf="detallepedido.cantidad > 1" type="button" class="btn btn-vg" (click)="deleteCopia(detallepedido.pedido_id_pedido,detallepedido.id_producto)" title="Quitar una copia"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-vg" (click)="deleteProductoCarrito(this.user.id_user,detallepedido.id_producto,detallepedido.cantidad)" title="Quitar producto"><i class="fas fa-trash-alt"></i></button>
               </td>
             </tr>
           </tbody>

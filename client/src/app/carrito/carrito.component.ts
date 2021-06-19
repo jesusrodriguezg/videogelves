@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { PedidoService } from '../services/pedido.service';
+import { ProductoService } from '../services/productos.service';
 import { DetallePedido } from './detallepedido';
 
 @Component({
@@ -20,6 +21,7 @@ export class CarritoComponent implements OnInit, OnDestroy {
 
   constructor(
     private _pedidoService: PedidoService,
+    private _productoService: ProductoService,
     private _router:Router
   ) { }
 
@@ -55,11 +57,16 @@ export class CarritoComponent implements OnInit, OnDestroy {
         this.carrito.push(this.detallepedido);
       }
       this.calcularImporteCarrito(this.user.id_user);
+      console.log(this.carrito);
+
       this.dtTrigger.next();
     });
   }
 
   deleteCarrito(idUsuario:any){
+    for (const c of this.carrito) {
+      this.addStock(c.id_producto,c.cantidad);
+    }
     this._pedidoService.deleteCarrito(idUsuario).subscribe(
       data => {
         this.refresh();
@@ -67,9 +74,10 @@ export class CarritoComponent implements OnInit, OnDestroy {
     );
   }
 
-  deleteProductoCarrito(idUsuario:any,idProducto:any){
+  deleteProductoCarrito(idUsuario:any,idProducto:any,cantidad:any){
     this._pedidoService.deleteProductoCarrito(idUsuario,idProducto)
       .subscribe(data => {
+        this.addStock(idProducto,cantidad);
         this.refresh();
       })
   }
@@ -77,6 +85,7 @@ export class CarritoComponent implements OnInit, OnDestroy {
   addCopia(idPedido:any,idProducto:any){
     this._pedidoService.addCopia(idPedido,idProducto)
       .subscribe(data => {
+        this.removeStock(idProducto);
         this.refresh();
       })
   }
@@ -84,6 +93,7 @@ export class CarritoComponent implements OnInit, OnDestroy {
   deleteCopia(idPedido:any,idProducto:any){
     this._pedidoService.deleteCopia(idPedido,idProducto)
       .subscribe(data => {
+        this.addStock(idProducto,1);
         this.refresh();
       })
   }
@@ -104,6 +114,16 @@ export class CarritoComponent implements OnInit, OnDestroy {
     this._pedidoService.getImporteCarrito(idUsuario).subscribe(data =>{
         this.importe = data;
       });
+  }
+
+  // Método que añade una unidad al stock
+  addStock(idProducto:any,cantidad:any){
+    this._productoService.addStock(idProducto,cantidad).subscribe();
+  }
+
+  // Método que quita una unidad del stock cada vez que se añade el producto al carro
+  removeStock(idProducto:any){
+    this._productoService.removeStock(idProducto).subscribe();
   }
 
   refresh(){

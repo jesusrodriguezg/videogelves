@@ -48,4 +48,18 @@ export class ProductoService {
     const body = formData;
     return this.http.put(this.apiProductos+'update/'+idProducto,body,{'headers':this.headers});
   }
+
+  checkStock(idProducto:any):Observable<any>{
+    return this.http.get(this.apiProductos+"stock/check/"+idProducto);
+  }
+
+  addStock(idProducto:any,cantidad:any):Observable<any>{
+    const body = {};
+    return this.http.put(this.apiProductos+"stock/add/"+idProducto+"/"+cantidad,body);
+  }
+
+  removeStock(idProducto:any):Observable<any>{
+    const body = {};
+    return this.http.put(this.apiProductos+"stock/remove/"+idProducto,body);
+  }
 }

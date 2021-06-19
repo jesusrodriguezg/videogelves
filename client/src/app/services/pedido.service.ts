@@ -69,4 +69,9 @@ export class PedidoService {
   checkFechaDevolucion(idPedido:any):Observable<any>{
     return this.http.get(this.apiPedidos+"compra/fecha/"+idPedido);
   }
+
+  devolverProducto(idPedido:any,idProducto:any){
+    const body = {};
+    return this.http.put(this.apiPedidos+"compra/devolver/"+idPedido+"/"+idProducto,body);
+  }
 }
