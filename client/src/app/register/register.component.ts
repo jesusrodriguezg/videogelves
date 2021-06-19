@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,7 +13,12 @@ import { UserService } from '../services/user.service';
 export class RegisterComponent implements OnInit {
   form:FormGroup;
 
-  constructor(private fb: FormBuilder, private _userService:UserService) { }
+  constructor(
+    private fb: FormBuilder,
+    private _userService:UserService,
+    private http:HttpClient,
+    private _router: Router
+    ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -25,11 +33,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     const formData = this.form.getRawValue();
-    this._userService.register(formData)
-      .subscribe(error => console.log(error));
-    // this.http.post(environment.apiUrl+'register',formData).subscribe(
-    //   response => console.log(response),
-    //   error => console.log(error)
-    // );
+    // this._userService.register(formData)
+    //   .subscribe(error => console.log(error));
+    this.http.post(environment.apiUrl+'user/register',formData).subscribe(
+      response => {
+        console.log(response),
+        this._router.navigate(['/login']);
+      },
+      error => console.log(error)
+    );
   }
 }

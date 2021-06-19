@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
-  // private loggedChanged = new Subject<boolean>();
-  private loggedChanged: boolean = false;
+  private loggedChanged = new Subject<boolean>();
+  //private loggedChanged: boolean = false;
   public apiUser = environment.apiUrl+"user/";
 
   constructor(private router:Router,
@@ -18,7 +18,7 @@ export class UserService {
 
   login(token: any): void {
     localStorage.setItem('token', token);
-    this.loggedChanged = true;
+    this.loggedChanged.next(true);
   }
 
   // Método que permite el registro de usuarios
@@ -30,7 +30,8 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
     this.router.navigate(['/']);
-    this.loggedChanged = false;
+    this.loggedChanged.next(false);
+    window.location.reload();
   }
 
   getAllUsers():Observable<any>{
@@ -46,7 +47,7 @@ export class UserService {
   }
 
   // PARA CARGÁRSELO
-  isUserLoggedIn(): boolean {
+  isUserLoggedIn() {
     return this.loggedChanged;
   }
 

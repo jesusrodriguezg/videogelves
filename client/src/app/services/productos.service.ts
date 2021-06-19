@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ProductoService {
 
   public apiProductos: string = environment.apiUrl + "productos/";
-  public apiCategorias: string = environment.apiUrl + "categorias";
+  public apiCategorias: string = environment.apiUrl + "categorias/";
   private headers = {'content-type': 'application/json'};
 
   constructor(private http: HttpClient) {

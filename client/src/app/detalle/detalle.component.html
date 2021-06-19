@@ -55,12 +55,12 @@
           </h3>
         </div>
         <div *ngIf="!sinStock()">
-          <div *ngIf="hasDetallePedido == 0">
+          <div *ngIf="hasDetallePedido != 1">
             <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
               <i class="fas fa-shopping-cart"></i>  Añadir al carrito
             </button>
           </div>
-          <div *ngIf="hasDetallePedido != 0">
+          <div *ngIf="hasDetallePedido == 1">
             <button type="button" class="btn btn-vg" title="Añadir otra copia al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
               <i class="fas fa-shopping-cart"></i>  Añadir otra copia al carrito
             </button>

@@ -8,7 +8,7 @@ import { UserService } from '../services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  public user:any = localStorage.getItem('usuario');
+  public user:any = JSON.parse(localStorage.getItem('usuario'));
 
   constructor(private _userService: UserService) {
   }

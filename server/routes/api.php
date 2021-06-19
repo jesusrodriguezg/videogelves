@@ -10,9 +10,9 @@ Route::get('/productos', 'App\Http\Controllers\ProductoController@getAllProducto
 // Devuelve un producto recibiendo como parámetro el nombre del producto
 Route::get('/productos/{nombreProducto}', 'App\Http\Controllers\ProductoController@getDetalleProducto');
 // Deja el stock de un producto a cero (0)
-Route::put('productos/delete/{idProducto}', 'App\Http\Controllers\ProductoController@deleteStockProducto');
+Route::put('/productos/delete/{idProducto}', 'App\Http\Controllers\ProductoController@deleteStockProducto');
 // Actualiza uno o varios campos del producto cuyo ID recibe con los datos de un formulario
-Route::put('productos/update/{idProducto}', 'App\Http\Controllers\ProductoController@updateProducto');
+Route::put('/productos/update/{idProducto}', 'App\Http\Controllers\ProductoController@updateProducto');
 
 /*-------- CATEGORÍAS --------*/
 

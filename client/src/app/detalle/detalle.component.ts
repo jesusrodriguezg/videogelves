@@ -74,7 +74,6 @@ export class DetalleComponent implements OnInit {
     this._pedidoService.checkDetallePedido(idUsuario,idProducto)
       .subscribe(data => {
         this.hasDetallePedido = data;
-        console.log(this.hasDetallePedido)
       });
   }
 

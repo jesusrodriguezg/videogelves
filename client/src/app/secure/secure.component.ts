@@ -22,9 +22,9 @@ export class SecureComponent implements OnInit {
       private _router: Router,
       private matDialog: MatDialog
     ) {
-      if (!_userService.isUserLogged()) {
-        _router.navigate(['/login']);
-      }
+      // if (!_userService.isUserLogged()) {
+      //   _router.navigate(['/login']);
+      // }
     }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class SecureComponent implements OnInit {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     });
     console.log(localStorage.getItem('token'));
-    this.http.get(environment.apiUrl+'user', {headers}).subscribe(
+    this.http.get('http://localhost:8000/api/user', {headers}).subscribe(
       result => {
         this.user = result,
         localStorage.setItem('usuario', JSON.stringify(this.user));

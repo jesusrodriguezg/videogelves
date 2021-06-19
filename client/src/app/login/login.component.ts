@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   title = "Login | VideoGelves";
   form:FormGroup;
   status:number;
+  user:any;
 
   constructor(
     private fb:FormBuilder,
@@ -42,7 +43,9 @@ export class LoginComponent implements OnInit {
 
     this.http.post('http://localhost:8000/oauth/token', data).subscribe(
       (result: any) => {
+        console.log(result);
         // localStorage.setItem('token', result.access_token);
+        console.log("éxito")
         this._userService.login(result.access_token);
         this.router.navigate(['/secure']);
       },

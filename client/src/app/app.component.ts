@@ -15,5 +15,13 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    this.userService.isUserLoggedIn().subscribe(
+      status => this.loggedIn = status
+    );
+    console.log('isLogged', this.loggedIn);
+  }
+
+  logout(): void {
+    this.userService.logout();
   }
 }
