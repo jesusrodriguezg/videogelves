@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -9,10 +10,19 @@ import { UserService } from '../services/user.service';
 export class NavbarComponent implements OnInit {
 
   public user:any = JSON.parse(localStorage.getItem('usuario'));
+  public busqueda = "";
 
-  constructor(private _userService: UserService) {
+  constructor(
+    private _userService: UserService,
+    private _router: Router
+  ) {
   }
   ngOnInit(): void {
+  }
+
+  search(search:any){
+    console.log("search: "+search)
+    this._router.navigate(['/search/',search]);
   }
 
   logout(): void {

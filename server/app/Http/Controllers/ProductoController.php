@@ -63,4 +63,9 @@ class ProductoController extends Controller
         // Al pasarle el mapa filtrado sólo actualiza las columnas que tienen valor
         return Producto::find($id_producto)->update($validated);
     }
+
+    public function search($nombre_producto)
+    {
+        return Producto::where('nombre_producto', 'like', '%'.$nombre_producto.'%')->get();
+    }
 }

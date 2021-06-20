@@ -81,6 +81,7 @@ import { AdminusuariosComponent } from './adminusuarios/adminusuarios.component'
 import { CarritoComponent } from './carrito/carrito.component';
 import { ComprasComponent } from './compras/compras.component';
 import { DetallepedidoComponent } from './detallepedido/detallepedido.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { DetallepedidoComponent } from './detallepedido/detallepedido.component'
     AdminusuariosComponent,
     CarritoComponent,
     ComprasComponent,
-    DetallepedidoComponent
+    DetallepedidoComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

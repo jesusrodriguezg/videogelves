@@ -20,7 +20,6 @@ export class CategoriaComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
       this.activatedRoute.params.subscribe(params => {
         this.nombreCategoria = decodeURI(params['nombreCategoria']);
-        console.log(this.nombreCategoria)
       })
   }
 

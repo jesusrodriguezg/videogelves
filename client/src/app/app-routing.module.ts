@@ -15,6 +15,7 @@ import { AdminusuariosComponent } from './adminusuarios/adminusuarios.component'
 import { CarritoComponent } from './carrito/carrito.component';
 import { ComprasComponent } from './compras/compras.component';
 import { DetallepedidoComponent } from './detallepedido/detallepedido.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,8 +29,9 @@ const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'compras', component: ComprasComponent },
   { path: 'compras/detalle/:idPedido', component:  DetallepedidoComponent},
-  { path: ':nombreProducto', component: DetalleComponent },
+  { path: 'search/:search', component: SearchComponent },
   { path: '', component: HomeComponent },
+  { path: ':nombreProducto', component: DetalleComponent },
   {
     path: '404',
     resolve: {

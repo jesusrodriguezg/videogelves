@@ -62,4 +62,8 @@ export class ProductoService {
     const body = {};
     return this.http.put(this.apiProductos+"stock/remove/"+idProducto,body);
   }
+
+  search(nombreProducto:any):Observable<any>{
+    return this.http.get(this.apiProductos+"search/"+nombreProducto);
+  }
 }

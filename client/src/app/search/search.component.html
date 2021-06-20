@@ -1,0 +1,54 @@
+<div class="row py-3 justify-content-center">
+  <div class="col-10">
+    <div class="container-fluid justify-content-center nav-category mb-3 rounded">
+      <div class="row text-center">
+        <a href="/categoria/Nintendo%2520Switch">
+          <div class="col-md py-3">
+            Nintendo Switch
+          </div>
+        </a>
+        <a href="/categoria/Playstation%25205">
+          <div class="col-md py-3">
+            Playstation 5
+          </div>
+        </a>
+        <a href="/categoria/Xbox%2520Series%2520X%257CS">
+          <div class="col-md py-3">
+            Xbox Series
+          </div>
+        </a>
+        <a href="categoria/Playstation%25204">
+          <div class="col-md py-3">
+            Playstation 4
+          </div>
+        </a>
+        <a href="categoria/Xbox%2520One">
+          <div class="col-md py-3">
+            Xbox One
+          </div>
+        </a>
+        <a href="categoria/Retro">
+          <div class="col-md py-3">
+            Retro
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row py-1 mb-2 justify-content-center">
+  <div class="col-md-5 product-cards" *ngFor='let producto of productos'>
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-3 d-flex flex-column position-static">
+        <h3 (click)="verDetalleProducto(producto.nombre_producto)" class="mb-0 pb-2 enlace-titulo">{{producto.nombre_producto}}</h3>
+        <p class="card-text mb-auto">{{producto.descripcion}}</p>
+        <h1 class="mb-0 px-0 py-0 text-right">{{producto.precio}}</h1>
+      </div>
+      <div class="col-auto d-none d-lg-block">
+         <a (click)="verDetalleProducto(producto.nombre_producto)"><img src="{{producto.imagen}}" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"/></a>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -9,8 +9,12 @@
     </div>
     <div class="col-sm-5">
       <form class="d-flex form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="buscar" placeholder="Escribe algo..." aria-label="Buscar">
-        <button class="btn btn-vg my-2 my-sm-0" type="submit">Buscar</button>
+        <div class="form-group">
+          <input class="form-control mr-sm-2" type="search" placeholder="Escribe algo..." [(ngModel)]="busqueda" name="busqueda" aria-label="Buscar">
+          <div class="form-group-btn">
+            <button class="btn btn-vg" type="submit" (click)="(search(busqueda))">Buscar</button>
+          </div>
+        </div>
       </form>
     </div>
     <div class="col-3">

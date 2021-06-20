@@ -19,6 +19,8 @@ Route::get('/productos/stock/check/{idProducto}', 'App\Http\Controllers\Producto
 Route::put('/productos/stock/add/{idProducto}/{cantidad}', 'App\Http\Controllers\ProductoController@addStock');
 // Comprueba si un producto tiene stock
 Route::put('/productos/stock/remove/{idProducto}', 'App\Http\Controllers\ProductoController@removeStock');
+// Devuelve los resultados de la barra de búsqueda de la web
+Route::get('/productos/search/{nombreProducto}', 'App\Http\Controllers\ProductoController@search');
 
 /*-------- CATEGORÍAS --------*/
 
