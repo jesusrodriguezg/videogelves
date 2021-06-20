@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { PedidoService } from '../services/pedido.service';
 import { ProductoService } from '../services/productos.service';
+import { UserService } from '../services/user.service';
 import { DetallePedido } from './detallepedido';
 
 @Component({
@@ -22,8 +23,14 @@ export class CarritoComponent implements OnInit, OnDestroy {
   constructor(
     private _pedidoService: PedidoService,
     private _productoService: ProductoService,
+    private _userService: UserService,
     private _router:Router
-  ) { }
+  )
+  {
+    if (!_userService.isUserLogged()) {
+      _router.navigate(['/login']);
+    }
+  }
 
   ngOnInit(): void {
     this.dtOptions = {

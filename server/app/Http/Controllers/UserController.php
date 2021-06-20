@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 
 class UserController extends Controller
 {
@@ -31,6 +32,16 @@ class UserController extends Controller
             'direccion' => $request->direccion,
             'admin' => 'N',
         ]);
+
+        $email = $request->email;
+        // Llamamos al método para enviar el correo de confirmación
+        \Mail::send('emails/register',['data' => $request], function($message) use($email){
+            $message->from('me@example.com','Videogelves');
+            $message->subject('¡Registro completado!');
+            $message->to('me@example.com');
+            $message->to($email);
+        });
+
         return response()->json([
             'message' => 'success'
         ]);

@@ -61,7 +61,7 @@ Route::get('/pedidos/carrito/importe/{idUsuario}', 'App\Http\Controllers\PedidoC
 // Confirma la compra de los productos del carrito (cierra el PEDIDO con el ID_PEDIDO)
 Route::put('/pedidos/compra/{idUsuario}', 'App\Http\Controllers\PedidoController@compra');
 // Devuelve todos los pedidos cerrados de un usuario
-Route::get('/pedidos/compra/{idUsuario}', 'App\Http\Controllers\PedidoController@getCompras');
+Route::get('/pedidos/compra/all/{idUsuario}', 'App\Http\Controllers\PedidoController@getCompras');
 // Devuelve las filas de DETALLE_PEDIDO correspondientes a un PEDIDO cerrado concreto
 Route::get('/pedidos/compra/detalle/{idPedido}', 'App\Http\Controllers\DetallePedidoController@getDetalleCompra');
 // Comprueba si los artículos de un pedido se pueden devolver (si han pasado +15 días desde que se cerró)

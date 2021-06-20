@@ -54,21 +54,28 @@
             </ngb-rating>
           </h3>
         </div>
-        <div *ngIf="this.hasStock != 0">
-          <div *ngIf="hasDetallePedido != 1">
-            <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
-              <i class="fas fa-shopping-cart"></i>  Añadir al carrito
-            </button>
+        <div *ngIf="user">
+          <div *ngIf="this.hasStock != 0">
+            <div *ngIf="hasDetallePedido != 1">
+              <button type="button" class="btn btn-vg" title="Añadir al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
+                <i class="fas fa-shopping-cart"></i>  Añadir al carrito
+              </button>
+            </div>
+            <div *ngIf="hasDetallePedido == 1">
+              <button type="button" class="btn btn-vg" title="Añadir otra copia al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
+                <i class="fas fa-shopping-cart"></i>  Añadir otra copia al carrito
+              </button>
+            </div>
           </div>
-          <div *ngIf="hasDetallePedido == 1">
-            <button type="button" class="btn btn-vg" title="Añadir otra copia al carrito" (click)="addCarrito(user.id_user,producto.id_producto)">
-              <i class="fas fa-shopping-cart"></i>  Añadir otra copia al carrito
+          <div *ngIf="this.hasStock == 0">
+            <button type="button" class="btn btn-vg disabled" title="No hay stock">
+              <i class="fas fa-shopping-cart"></i>  No existe stock
             </button>
           </div>
         </div>
-        <div *ngIf="this.hasStock == 0">
-          <button type="button" class="btn btn-vg disabled" title="No hay stock">
-            <i class="fas fa-shopping-cart"></i>  No existe stock
+        <div *ngIf="!user">
+          <button type="button" class="btn btn-vg" title="Inicia sesión para comprar" [routerLink]="['/login']">
+            <i class="fas fa-shopping-cart"></i>  Inicia sesión para comprar
           </button>
         </div>
         <div *ngIf="this.isInLista == 0">

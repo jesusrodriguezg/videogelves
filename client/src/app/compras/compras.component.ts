@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { PedidoService } from '../services/pedido.service';
+import { UserService } from '../services/user.service';
 import { Pedido } from './pedido';
 
 @Component({
@@ -20,8 +21,14 @@ export class ComprasComponent implements OnInit, OnDestroy {
 
   constructor(
     private _pedidoService: PedidoService,
+    private _userService: UserService,
     private _router:Router
-  ) { }
+  )
+  {
+    if (!_userService.isUserLogged()) {
+      _router.navigate(['/login']);
+    }
+  }
 
   ngOnInit(): void {
     this.dtOptions = {

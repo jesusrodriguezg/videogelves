@@ -93,6 +93,32 @@ Client secret: LYmFJusiC5doqlM5dHGN3Efb0eSGmcPWJZw0Fkqk
 
 Copia las dos claves y pégalas en los respectivos campos asignados al final del archivo ```.env``` ubicado en el directorio ```server```. Asigna también el valor de la clave del ID 2 a la variable ```client_secret``` en client > src > login > ```login.component.ts```.
 
+### Configuración del envío de correos electrónicos
+
+La aplicación envía correos electrónicos a los usuarios tanto al darse de alta como al completar una compra. Para ello es necesario editar algunos parámetros.
+
+En el archivo ```.env``` ubicado en el directorio ```server```, configura los siguientes parámetros:
+
+```sh
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USERNAME=EMAIL_DE_ENVÍO
+MAIL_PASSWORD=CONTRASEÑA_DE_EMAIL_DE_ENVÍO
+MAIL_ENCRYPTION=ssl
+```
+
+> NOTA: esta configuración es para envío de correo SMTP con Gmail. Puedes usar otros servidores SMTP o servicios con API como Mailgun o Postmark. Tienes [más información sobre configuración en la documentación de Laravel](https://laravel.com/docs/8.x/mail).
+
+Adicionalmente, para configurar correctamente las notificaciones, has de acceder a ```server > app > http > controllers``` el método ```register()``` en ```UserController.php``` y el método ```compra()``` en ```PedidoController.php``` de la siguiente forma:
+
+```php
+$message->from('Tu dirección de email','Remitente del correo (por defecto, Videogelves');
+$message->subject('Asunto del mensaje');
+$message->to('Dirección del remitente'); // opcional, sirve para recibir una copia de cada mensaje
+$message->to($email);
+```
+
 ### Ejecución
 
 En el directorio ```server``` ejecuta:

@@ -53,13 +53,13 @@ export class PedidoService {
     return this.http.get(this.apiPedidos+"carrito/importe/"+idUsuario);
   }
 
-  compra(idPedido:any):Observable<any>{
+  compra(idUsuario:any):Observable<any>{
     const body = {};
-    return this.http.put(this.apiPedidos+"compra/"+idPedido,body);
+    return this.http.put(this.apiPedidos+"compra/"+idUsuario,body);
   }
 
   getCompras(idUsuario:any):Observable<any>{
-    return this.http.get(this.apiPedidos+"compra/"+idUsuario);
+    return this.http.get(this.apiPedidos+"compra/all/"+idUsuario);
   }
 
   getDetalleCompra(idPedido:any):Observable<any>{

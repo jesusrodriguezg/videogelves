@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\DetallePedidoController;
 use App\Models\Pedido;
+use App\Models\User;
 use Carbon\Carbon;
 
 class PedidoController extends Controller
@@ -30,6 +32,23 @@ class PedidoController extends Controller
     {
         $fecha = Carbon::now()->format('d/m/Y');
         $id_pedido = self::searchPedido($id_usuario);
+
+        $email = User::where('id_user',$id_usuario)->pluck('email')->first();
+        $nombre = User::where('id_user',$id_usuario)->pluck('nombre')->first();
+        $fecha = Pedido::where('id_pedido',$id_pedido)->pluck('fecha')->first();
+        $importe_total = self::getImporteCarrito($id_usuario);
+        $detalle = DetallePedidoController::getDetalleCompra($id_pedido);
+        // Llamamos al método para enviar el correo de confirmación de compra
+        \Mail::send('emails/compra',
+                    ['id_pedido' => $id_pedido, 'fecha' => $fecha, 'importe_total' => $importe_total, 'detalle' => $detalle, 'nombre' => $nombre],
+                    function($message) use($email){
+                        $message->from('me@example.com','Videogelves');
+                        $message->subject('Tu compra en Videogelves');
+                        $message->to('me@example.com');
+                        $message->to($email);
+                    }
+        );
+
         return Pedido::where('id_pedido',$id_pedido)
             ->update(['comprado' => 'Y','fecha' => $fecha]);
     }
@@ -54,7 +73,7 @@ class PedidoController extends Controller
     // Función que calcula y devuelve el importe total de una compra
     // Recibe un ID_USUARIO y combina las tablas DETALLE_PEDIDO y PRODUCTO
     // para devolver la suma del precio total (cantidad * precio) de cada artículo
-    public function getImporteCarrito($id_usuario)
+    public static function getImporteCarrito($id_usuario)
     {
         $id_pedido = self::searchPedido($id_usuario);
         return DB::table("detalle_pedido")->leftJoin("producto", function($join){

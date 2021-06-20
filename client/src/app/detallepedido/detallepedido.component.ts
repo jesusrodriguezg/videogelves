@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { DetallePedido } from '../carrito/detallepedido';
 import { PedidoService } from '../services/pedido.service';
 import { ProductoService } from '../services/productos.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-detallepedido',
@@ -24,9 +25,13 @@ export class DetallepedidoComponent implements OnInit, OnDestroy {
   constructor(
     private _pedidoService: PedidoService,
     private _productoService: ProductoService,
+    private _userService: UserService,
     private _router: Router,
     private activatedRoute:ActivatedRoute
   ) {
+    if (!_userService.isUserLogged()) {
+      _router.navigate(['/login']);
+    }
     this.activatedRoute.params.subscribe(params => {
       this.idPedido = decodeURI(params['idPedido']);
     });
