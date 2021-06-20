@@ -18,7 +18,7 @@ class ProductoSeeder extends Seeder
 
         DB::table('producto')->insert([
             'nombre_producto' => 'Bravely Default II',
-            'descripcion' => 'Juego de RPG obra de Square Enix.',
+            'descripcion' => 'Square Enix llena de fantasía y magia tu Nintendo Switch con la tercera entrega de la saga Bravely Default. Una trama completamente nueva, personajes inolvidables, un mundo enorme y unos gráficos deslumbrantes te esperan en la mayor historia para tu Switch.',
             'precio' => 59.95,
             'stock' => 75,
             'imagen' => '../assets/images/bravely-default-portada.png',
@@ -94,7 +94,7 @@ class ProductoSeeder extends Seeder
 
         DB::table('producto')->insert([
             'nombre_producto' => 'Perfect Dark',
-            'descripcion' => 'Remasterización de la obra maestra que Rare creó hace más de 20 años para Nintendo 64.',
+            'descripcion' => 'Han pasado más de 20 años desde que Perfect Dark, la joya maestra de Rare, revolucionó a los jugadores de Nintendo 64. Ahora Joanna Dark vuelve más rompedora que nunca, en una magnífica edición remasterizada, rebosante de acción y exclusiva para Xbox.',
             'precio' => 64.95,
             'stock' => 30,
             'imagen' => '../assets/images/perfect-dark-portada.png',
