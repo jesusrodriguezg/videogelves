@@ -1,11 +1,6 @@
 /* Importación de fuentes Rubik Regular 400 y Poppins Extra-Light 200 / Light 300 */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Rubik&display=swap');
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 h1,h2,h3,h4,h5,h6{
   font-family: 'Rubik', 'Arial', sans-serif;
   font-weight: 700;
@@ -52,13 +47,6 @@ mat-form-field.full-width {
   float: left;
 }
 
-/*
-.product-cards:hover{
-  transition: .5s;
-  box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
-}
-*/
-
 .product-cards-console{
   color: #fff;
   font-weight: bold;
@@ -90,7 +78,7 @@ mat-form-field.full-width {
   font-weight: 600;
 }
 
-.footer{
+.footer > div{
   background-color: #006294;
 }
 
@@ -139,7 +127,3 @@ mat-form-field.full-width {
 .btn-check:active+.btn-vg-alert,.btn-check:checked+.btn-vg-alert,.btn-vg-alert.active,.btn-vg-alert:active,.show>.btn-vg-alert.dropdown-toggle{color:#fff;background-color:#E70000;border-color:#B90202}
 .btn-check:active+.btn-vg-alert:focus,.btn-check:checked+.btn-vg-alert:focus,.btn-vg-alert.active:focus,.btn-vg-alert:active:focus,.show>.btn-vg-alert.dropdown-toggle:focus{box-shadow:0 0 0 .25rem rgba(253, 49, 49, 0.5)}
 .btn-vg-alert.disabled,.btn-vg-alert:disabled{color:#fff;background-color:#FF2424;border-color:#FF2424}
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

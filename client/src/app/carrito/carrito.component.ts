@@ -108,7 +108,7 @@ export class CarritoComponent implements OnInit, OnDestroy {
   compra(idUsuario:any){
     this._pedidoService.compra(idUsuario).subscribe(
       data => {
-        this.refresh();
+        this._router.navigate(['/compras']);
       }
     );
   }

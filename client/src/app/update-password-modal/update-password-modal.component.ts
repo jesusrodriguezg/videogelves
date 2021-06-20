@@ -31,17 +31,11 @@ export class UpdatePasswordModalComponent implements OnInit {
     const formData = this.form.getRawValue();
     this._userService
       .updatePassword(idUser, formData)
-      .subscribe((data: any) => {
-        $('.alert-success').fadeIn();
-        setTimeout(
-          this.refresh,
-          5000
+        .subscribe(
+          data => {
+            this.refresh();
+          }
         );
-      },
-      (error: any) => {
-        $('.alert-danger').fadeIn();
-        console.log(error);
-      });
   }
 
   closeButton() {

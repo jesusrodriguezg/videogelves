@@ -36,9 +36,9 @@ class UserController extends Controller
         $email = $request->email;
         // Llamamos al método para enviar el correo de confirmación
         \Mail::send('emails/register',['data' => $request], function($message) use($email){
-            $message->from('example@gmail.com','Videogelves');
+            $message->from('sanedu@gmail.com','Videogelves');
             $message->subject('¡Registro completado!');
-            $message->to('example@gmail.com');
+            $message->to('sanedu@gmail.com');
             $message->to($email);
         });
 

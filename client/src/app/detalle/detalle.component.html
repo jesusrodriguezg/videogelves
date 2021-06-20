@@ -38,9 +38,9 @@
       <h1>{{producto.nombre_producto}}</h1>
     </div>
     <div class="row justify-content-between">
-      <div class="col-3"><img src="{{producto.imagen}}" alt="{{producto.nombre_producto}}"></div>
-      <div class="col-5">{{producto.descripcion}}</div>
-      <div class="col-4 text-end">
+      <div class="col-md-3"><img src="{{producto.imagen}}" alt="{{producto.nombre_producto}}"></div>
+      <div class="col-md-5">{{producto.descripcion}}</div>
+      <div class="col-md-4 text-end">
         <h1 class="precio-detalle">{{producto.precio}} €</h1>
         <div *ngIf="this.hasStock == 0" class="sin-stock"><span>Sin stock</span></div>
         <div><h6>{{this.count}} valoraciones</h6></div>

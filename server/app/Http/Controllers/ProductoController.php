@@ -68,4 +68,19 @@ class ProductoController extends Controller
     {
         return Producto::where('nombre_producto', 'like', '%'.$nombre_producto.'%')->get();
     }
+
+    public function createProducto(Request $request)
+    {
+        Producto::create([
+            'nombre_producto' => $request->nombre_producto,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'stock' => $request->stock,
+            'imagen' => $request->imagen,
+            'categoria_id_categoria' => $request->categoria_id_categoria
+        ]);
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }

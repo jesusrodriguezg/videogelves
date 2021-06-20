@@ -44,7 +44,7 @@
         <strong class="d-inline-block mb-2 product-cards-console"><span>{{this.nombreCategoria}}</span></strong>
         <h3 (click)="verDetalleProducto(producto.nombre_producto)" class="mb-0 pb-2 enlace-titulo">{{producto.nombre_producto}}</h3>
         <p class="card-text mb-auto">{{producto.descripcion}}</p>
-        <h1 class="mb-0 px-0 py-0 text-right">{{producto.precio}}</h1>
+        <h1 class="mb-0 px-0 py-0 text-right">{{producto.precio}}€</h1>
       </div>
       <div class="col-auto d-none d-lg-block">
          <a (click)="verDetalleProducto(producto.nombre_producto)"><img src="{{producto.imagen}}" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"/></a>

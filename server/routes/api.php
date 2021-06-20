@@ -3,32 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*-------- PRODUCTOS --------*/
-
-// Devuelve todos los productos
-Route::get('/productos', 'App\Http\Controllers\ProductoController@getAllProductos');
-// Devuelve un producto recibiendo como parámetro el nombre del producto
-Route::get('/productos/{nombreProducto}', 'App\Http\Controllers\ProductoController@getDetalleProducto');
-// Deja el stock de un producto a cero (0)
-Route::put('/productos/delete/{idProducto}', 'App\Http\Controllers\ProductoController@deleteStockProducto');
-// Actualiza uno o varios campos del producto cuyo ID recibe con los datos de un formulario
-Route::put('/productos/update/{idProducto}', 'App\Http\Controllers\ProductoController@updateProducto');
-// Comprueba si un producto tiene stock
-Route::get('/productos/stock/check/{idProducto}', 'App\Http\Controllers\ProductoController@checkStock');
-// Comprueba si un producto tiene stock
-Route::put('/productos/stock/add/{idProducto}/{cantidad}', 'App\Http\Controllers\ProductoController@addStock');
-// Comprueba si un producto tiene stock
-Route::put('/productos/stock/remove/{idProducto}', 'App\Http\Controllers\ProductoController@removeStock');
-// Devuelve los resultados de la barra de búsqueda de la web
-Route::get('/productos/search/{nombreProducto}', 'App\Http\Controllers\ProductoController@search');
-
-/*-------- CATEGORÍAS --------*/
-
-// Recibe el ID_CATEGORIA y devuelve el NOMBRE_CATEGORIA correspondiente
-Route::get('/categorias/nombre/{idCategoria}', 'App\Http\Controllers\ProductoController@getNombreCategoria');
-// Recibe el NOMBRE_CATEGORIA y devuelve todos los productos de dicha categoría
-Route::get('/categorias/all/{nombreCategoria}', 'App\Http\Controllers\ProductoController@getProductosCategoria');
-
 /*-------- USUARIOS --------*/
 
 // Devuelve los datos de los usuarios que están logueados
@@ -41,6 +15,34 @@ Route::get('/user/all', 'App\Http\Controllers\UserController@getAllUsers');
 Route::put('/user/edit/{idUser}', 'App\Http\Controllers\UserController@updateUser');
 // Permite editar la contraseña de un usuario
 Route::put('/user/password/{idUser}', 'App\Http\Controllers\UserController@updatePassword');
+
+/*-------- CATEGORÍAS --------*/
+
+// Recibe el ID_CATEGORIA y devuelve el NOMBRE_CATEGORIA correspondiente
+Route::get('/categorias/nombre/{idCategoria}', 'App\Http\Controllers\ProductoController@getNombreCategoria');
+// Recibe el NOMBRE_CATEGORIA y devuelve todos los productos de dicha categoría
+Route::get('/categorias/all/{nombreCategoria}', 'App\Http\Controllers\ProductoController@getProductosCategoria');
+
+/*-------- PRODUCTOS --------*/
+
+// Devuelve todos los productos
+Route::get('/productos', 'App\Http\Controllers\ProductoController@getAllProductos');
+// Devuelve un producto recibiendo como parámetro el nombre del producto
+Route::get('/productos/{nombreProducto}', 'App\Http\Controllers\ProductoController@getDetalleProducto');
+// Deja el stock de un producto a cero (0)
+Route::put('/productos/delete/{idProducto}', 'App\Http\Controllers\ProductoController@deleteStockProducto');
+// Actualiza uno o varios campos del producto cuyo ID recibe con los datos de un formulario
+Route::post('/productos/create/', 'App\Http\Controllers\ProductoController@createProducto');
+// Actualiza uno o varios campos del producto cuyo ID recibe con los datos de un formulario
+Route::put('/productos/update/{idProducto}', 'App\Http\Controllers\ProductoController@updateProducto');
+// Comprueba si un producto tiene stock
+Route::get('/productos/stock/check/{idProducto}', 'App\Http\Controllers\ProductoController@checkStock');
+// Comprueba si un producto tiene stock
+Route::put('/productos/stock/add/{idProducto}/{cantidad}', 'App\Http\Controllers\ProductoController@addStock');
+// Comprueba si un producto tiene stock
+Route::put('/productos/stock/remove/{idProducto}', 'App\Http\Controllers\ProductoController@removeStock');
+// Devuelve los resultados de la barra de búsqueda de la web
+Route::get('/productos/search/{nombreProducto}', 'App\Http\Controllers\ProductoController@search');
 
 /*-------- PEDIDOS --------*/
 

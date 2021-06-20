@@ -3,21 +3,18 @@
 
 Este repositorio contiene el código y la información de desarrollo y despliegue del proyecto integrado desarrollado como trabajo final del ciclo de Formación Profesional de grado superior en Desarrollo de Aplicaciones Web en el IES Polígono Sur de Sevilla, España.
 
-La aplicación se encuentra en construcción y esta documentación se irá ampliando conforme se vayan realizando commits en el repositorio.
-
 ### Propósito del proyecto
 
-El proyecto consiste en una tienda online de videojuegos, en la que hay un catálogo de juegos que puede ser consultado sin necesidad de registro, pero para la compra es preciso registarse. Entre las acciones que puede realizar un usuario se encuentran:
+El proyecto consiste en una tienda online de videojuegos, en la que hay un catálogo de juegos que puede ser consultado sin necesidad de registro, pero para la compra es preciso registarse. Entre las funcionalidades y características de la tienda se encuentran:
 
-- Registro / login del usuario
+- Registro / login de usuarios
 - Compra de juegos (añadir al carrito / tramitar compra)
 - Añadir juegos a una lista de deseos
 - Consultar su historial de compra
 - Devolver productos (hasta 15 después de la compra)
 - Búsqueda de juegos en el catálogo (barra de búsqueda)
 - Administración de productos y usuarios (sólo ADMIN)
-
-Algunas de estas funciones se han completado, mientras que otras se encuentran aún en desarrollo. Cualquier mejora o sugerencia es bienvenida.
+- Diseño responsive
 
 ### Estructura de la aplicación
 

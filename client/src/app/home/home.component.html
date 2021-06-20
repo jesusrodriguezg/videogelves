@@ -1,144 +1,59 @@
 <div class="row py-3 justify-content-center">
-    <div class="col-10">
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="container-fluid justify-content-center nav-category mb-3 rounded">
-              <div class="row text-center">
-                <a href="/categoria/Nintendo%2520Switch">
-                  <div class="col-md py-3">
-                    Nintendo Switch
-                  </div>
-                </a>
-                <a href="/categoria/Playstation%25205">
-                  <div class="col-md py-3">
-                    Playstation 5
-                  </div>
-                </a>
-                <a href="/categoria/Xbox%2520Series%2520X%257CS">
-                  <div class="col-md py-3">
-                    Xbox Series
-                  </div>
-                </a>
-                <a href="categoria/Playstation%25204">
-                  <div class="col-md py-3">
-                    Playstation 4
-                  </div>
-                </a>
-                <a href="categoria/Xbox%2520One">
-                  <div class="col-md py-3">
-                    Xbox One
-                  </div>
-                </a>
-                <a href="categoria/Retro">
-                  <div class="col-md py-3">
-                    Retro
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="carousel-inner rounded">
-                <div class="carousel-item active">
-                    <img src="../assets/images/resident-evil-village-home.jpg" class="d-block w-100" alt="Resident Evil Village">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>Resident Evil Village</h3>
-                        <p>Vuelve el terror más escalofriante a tu PS5</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/images/new-pokemon-snap-home.jpg" class="d-block w-100" alt="New Pokémon Snap">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>New Pokémon Snap</h3>
-                        <p>¡Vamos a cazar pokémon... con nuestra cámara de fotos!</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/images/nier-replicant-home.jpg" class="d-block w-100" alt="">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>NieR Replicant</h3>
-                        <p>Some representative placeholder content for the third slide</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/images/bravely-default-2-home.jpeg" class="d-block w-100" alt="Bravely Default 2">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>Bravely Default 2</h3>
-                        <p>La mayor aventura de Square Enix en tu Nintendo Switch</p>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+  <div class="col-10">
+    <div class="container-fluid justify-content-center nav-category mb-3 rounded">
+      <div class="row text-center">
+        <div class="d-none d-sm-block d-md-none">
+          <button class="navbar-toggler d-sm-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
+        <a href="/categoria/Nintendo%2520Switch">
+          <div class="col-md py-3">
+            Nintendo Switch
+          </div>
+        </a>
+        <a href="/categoria/Playstation%25205">
+          <div class="col-md py-3">
+            Playstation 5
+          </div>
+        </a>
+        <a href="/categoria/Xbox%2520Series%2520X%257CS">
+          <div class="col-md py-3">
+            Xbox Series
+          </div>
+        </a>
+        <a href="categoria/Playstation%25204">
+          <div class="col-md py-3">
+            Playstation 4
+          </div>
+        </a>
+        <a href="categoria/Xbox%2520One">
+          <div class="col-md py-3">
+            Xbox One
+          </div>
+        </a>
+        <a href="categoria/Retro">
+          <div class="col-md py-3">
+            Retro
+          </div>
+        </a>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- PRODUCTOS -->
 
 <div class="row py-1 mb-2 justify-content-center">
-  <div class="col-md-5 product-cards">
+  <div class="col-md-5 product-cards" *ngFor='let producto of productos'>
     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
       <div class="col p-3 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 product-cards-console"><span>Nintendo Switch</span></strong>
-        <a href="/The%2520Legend%2520of%2520Zelda%2520Skyward%2520Sword%2520HD"><h3 class="mb-0 pb-2">The Legend of Zelda Skyward Sword HD</h3></a>
-        <p class="card-text mb-auto">Vuelve una de las aventuras originales más queridas ambientada al principio de la cronología del universo Zelda. Llega a tu Nintendo Switch The Legend of Zelda: Skyward Sword HD.</p>
-        <h1 class="mb-0 px-0 py-0 text-right">60,95</h1>
+        <h3 (click)="verDetalleProducto(producto.nombre_producto)" class="mb-0 pb-2 enlace-titulo">{{producto.nombre_producto}}</h3>
+        <p class="card-text mb-auto">{{producto.descripcion}}</p>
+        <h1 class="mb-0 px-0 py-0 text-right">{{producto.precio}}€</h1>
       </div>
       <div class="col-auto d-none d-lg-block">
-        <a href="/"><img src="../assets/images/legend-zelda-skyward-sword-hd-portada.png" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"/></a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-5 product-cards">
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col p-3 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 product-cards-console"><span>Xbox Series X|S</span></strong>
-        <a href="/Perfect%2520Dark"><h3 class="mb-0 pb-2">Perfect Dark</h3></a>
-        <p class="card-text mb-auto">Revive la obra maestra que Rare creó hace más de 20 años para Nintendo 64 con esta magnífica remasterización en calidad 4K.</p>
-        <h1 class="mb-0 px-0 py-0 text-right">63,95</h1>
-      </div>
-      <div class="col-auto d-none d-lg-block">
-        <a href="/"><img src="../assets/images/perfect-dark-portada.png" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"/></a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-5 product-cards">
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col p-3 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 product-cards-console"><span>Playstation 5</span></strong>
-        <a href="/Gran%2520Turismo%25207"><h3 class="mb-0 pb-2">Gran Turismo 7</h3></a>
-        <p class="card-text mb-auto">Revive las mejores carreras de la historia de los videojuegos con el simulador de conducción real que lo cambió todo. Gran Turismo 7 aprovecha todo lo aprendido en sus 22 años de experiencia para ofrecerte las mejores prestaciones en un juego de conducción. Colecciona, modifica, conduce y personaliza cientos de coches, y... ¡lánzate a la pista!</p>
-        <h1 class="mb-0 px-0 py-0 text-right">67,45</h1>
-      </div>
-      <div class="col-auto d-none d-lg-block">
-        <a href="/"><img src="../assets/images/gran-turismo-7-portada.png" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"/></a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-5 product-cards">
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col p-3 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 product-cards-console"><span>Nintendo Switch</span></strong>
-        <a href="/Super%2520Mario%25203D%2520World%2520%2B%2520Bowser%25C2%25B4s%2520Fury"><h3 class="mb-0 pb-2">Super Mario 3D World + Bowser´s Fury</h3></a>
-        <p class="card-text mb-auto">¡Únete a Mario, Luigi, la princesa Peach y Toad en una aventura para salvar el Reino de las hadas en Super Mario 3D World + Bowser’s Fury para Nintendo Switch! Bowser ha secuestrado a la princesa hada… ¡y solo nuestros héroes podrán rescatarla!</p>
-        <h1 class="mb-0 px-0 py-0 text-right">49,95</h1>
-      </div>
-      <div class="col-auto d-none d-lg-block">
-        <a href="/"><img src="../assets/images/super-mario-3d-world-bowsers-fury-portada.png" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"/></a>
+         <a (click)="verDetalleProducto(producto.nombre_producto)"><img src="{{producto.imagen}}" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"/></a>
       </div>
     </div>
   </div>

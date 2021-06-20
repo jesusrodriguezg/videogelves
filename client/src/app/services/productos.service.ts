@@ -49,6 +49,11 @@ export class ProductoService {
     return this.http.put(this.apiProductos+'update/'+idProducto,body,{'headers':this.headers});
   }
 
+  // Método que permite el registro de usuarios
+  createProducto(formData:any):Observable<any>{
+    return this.http.post(this.apiProductos+"create/",formData);
+  }
+
   checkStock(idProducto:any):Observable<any>{
     return this.http.get(this.apiProductos+"stock/check/"+idProducto);
   }

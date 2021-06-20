@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ProductoService } from '../services/productos.service';
 
 @Component({
   selector: 'app-new-product-modal',
@@ -15,7 +16,8 @@ export class NewProductModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<NewProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private _productoService: ProductoService
   ) { }
 
   ngOnInit() {
@@ -38,7 +40,10 @@ export class NewProductModalComponent implements OnInit {
   }
 
   saveButton() {
-    console.log(this.form.value)
+    const formData = this.form.getRawValue();
+    this._productoService.createProducto(formData).subscribe(
+      data => { this.refresh(); }
+    );
     this.closeButton();
   }
 
@@ -46,4 +51,8 @@ export class NewProductModalComponent implements OnInit {
     this.dialogRef.close(this.form.value);
   }
 
+  refresh(){
+    this.closeButton();
+    window.location.reload();
+  }
 }

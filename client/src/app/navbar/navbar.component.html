@@ -1,42 +1,36 @@
-<!--Header con logo, barra de búsqueda y enlaces al carrito y al usuario-->
-<!--Fluid container con padding ajustado-->
-<div class="container-fluid py-3 px-5 header">
-  <div class="row align-items-center justify-content-between">
-    <div class="col-sm-4 col-12">
+<nav class="navbar navbar-expand-lg header">
+  <div class="container-fluid">
+    <div class="col-md-4">
       <a class="navbar-brand" href="/">
         <img src="../assets/images/videogelves-inline-300px.png" alt="VideoGelves | Videojuegos gelveños">
       </a>
     </div>
-    <div class="col-sm-5">
-      <form class="d-flex form-inline my-2 my-lg-0">
-        <div class="form-group">
-          <input class="form-control mr-sm-2" type="search" placeholder="Escribe algo..." [(ngModel)]="busqueda" name="busqueda" aria-label="Buscar">
-          <div class="form-group-btn">
-            <button class="btn btn-vg" type="submit" (click)="(search(busqueda))">Buscar</button>
+    <div class="col-md-8 container-fluid">
+      <div class="col-md-6 mt-1">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Escribe algo..." aria-label="Buscar" [(ngModel)]="busqueda" name="busqueda">
+          <button class="btn btn-vg" type="submit" (click)="(search(busqueda))">Buscar</button>
+        </form>
+      </div>
+      <div class="col-md-4 mt-1">
+        <div class="container-fluid">
+          <div *ngIf="user">
+            <a class="header-icon" routerLink="/lista-deseos" title="Mi lista de deseos"><i class="fas fa-heart"></i></a>
           </div>
-        </div>
-      </form>
-    </div>
-    <div class="col-3">
-      <div class="row">
-        <div *ngIf="user" class="col-sm offset-md-2">
-          <a class="header-icon" routerLink="/lista-deseos" title="Mi lista de deseos"><i class="fas fa-heart"></i></a>
-        </div>
-        <div class="col-sm ">
-          <a class="header-icon" routerLink="/carrito" title="Mi carrito"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-        <div class="col-sm mr-auto">
-          <div class="dropdown">
-            <a class="header-icon" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a routerLink="/login" *ngIf="!user" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
-              <li><a routerLink="/register" *ngIf="!user" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
-              <li><a routerLink="/secure" *ngIf="user" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
-              <li><a (click)="logout()" *ngIf="user" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
-            </ul>
+          <div>
+            <a class="header-icon" routerLink="/carrito" title="Mi carrito"><i class="fas fa-shopping-cart"></i></a>
           </div>
+            <div class="dropdown">
+              <a class="header-icon" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></a>
+              <ul class="dropdown-menu" style="margin-left: -5rem;" aria-labelledby="dropdownMenuLink">
+                <li><a routerLink="/login" *ngIf="!user" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
+                <li><a routerLink="/register" *ngIf="!user" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
+                <li><a routerLink="/secure" *ngIf="user" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
+                <li><a (click)="logout()" *ngIf="user" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
+              </ul>
+            </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</nav>

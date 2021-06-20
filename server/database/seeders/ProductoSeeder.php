@@ -14,6 +14,8 @@ class ProductoSeeder extends Seeder
      */
     public function run()
     {
+        //  NINTENDO SWITCH
+
         DB::table('producto')->insert([
             'nombre_producto' => 'Bravely Default II',
             'descripcion' => 'Juego de RPG obra de Square Enix.',
@@ -50,6 +52,8 @@ class ProductoSeeder extends Seeder
             'categoria_id_categoria' => 1
         ]);
 
+        // PLAYSTATION 5
+
         DB::table('producto')->insert([
             'nombre_producto' => 'Resident Evil Village',
             'descripcion' => 'Años después de la pesadilla, Ethan Winters ha conseguido estabilidad y una vida normal con su familia, que no tardará en ser destruida por un héroe de antaño, Chris Redfield. Ambientado tras los terroríficos eventos de Resident Evil 7 Biohazard, la historia comienza con Winters y su mujer Mia viviendo pacíficamente en una nueva localidad, libres de sus pasadas pesadillas. Justo cuando empiezan a construir su nueva vida juntos la tragedia se ceba con ellos de nuevo.',
@@ -78,6 +82,17 @@ class ProductoSeeder extends Seeder
         ]);
 
         DB::table('producto')->insert([
+            'nombre_producto' => 'Gran Turismo 7',
+            'descripcion' => 'Revive las mejores carreras de la historia de los videojuegos con el simulador de conducción real que lo cambió todo. Gran Turismo 7 aprovecha todo lo aprendido en sus 22 años de experiencia para ofrecerte las mejores prestaciones en un juego de conducción. Colecciona, modifica, conduce y personaliza cientos de coches, y... ¡lánzate a la pista!.',
+            'precio' => 67.45,
+            'stock' => 32,
+            'imagen' => '../assets/images/gran-turismo-7-portada.png',
+            'categoria_id_categoria' => 2
+        ]);
+
+        // XBOX SERIES
+
+        DB::table('producto')->insert([
             'nombre_producto' => 'Perfect Dark',
             'descripcion' => 'Remasterización de la obra maestra que Rare creó hace más de 20 años para Nintendo 64.',
             'precio' => 64.95,
@@ -100,7 +115,7 @@ class ProductoSeeder extends Seeder
             'descripcion' => 'Vive la experiencia definitiva con Devil May Cry 5 Special Edition, el juego que exprime todo el potencial de la nueva generación de consolas gracias a un abundante paquete de nuevas características y modos de juego, incluida la llegada de Vergil como personaje jugable. ¡Empieza a cazar demonios a lo grande!',
             'precio' => 69.95,
             'stock' => 35,
-            'imagen' => '../assets/images/mass-effect-legendary-edition-portada.png',
+            'imagen' => '../assets/images/devil-may-cry-5-portada.png',
             'categoria_id_categoria' => 3
         ]);
 
@@ -111,15 +126,6 @@ class ProductoSeeder extends Seeder
             'stock' => 15,
             'imagen' => '../assets/images/gta-v-premium-edition-portada.png',
             'categoria_id_categoria' => 3
-        ]);
-
-        DB::table('producto')->insert([
-            'nombre_producto' => 'Gran Turismo 7',
-            'descripcion' => 'Revive las mejores carreras de la historia de los videojuegos con el simulador de conducción real que lo cambió todo. Gran Turismo 7 aprovecha todo lo aprendido en sus 22 años de experiencia para ofrecerte las mejores prestaciones en un juego de conducción. Colecciona, modifica, conduce y personaliza cientos de coches, y... ¡lánzate a la pista!.',
-            'precio' => 67.45,
-            'stock' => 32,
-            'imagen' => '../assets/images/gran-turismo-7-portada.png',
-            'categoria_id_categoria' => 2
         ]);
     }
 }
