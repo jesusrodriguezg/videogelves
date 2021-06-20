@@ -10,7 +10,6 @@ import { Error404Component } from './error404/error404.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { AdminproductosComponent } from './adminproductos/adminproductos.component';
 import { ListaDeseosComponent } from './lista-deseos/lista-deseos.component';
-import { PathResolveService } from './services/path-resolve.service';
 import { AdminusuariosComponent } from './adminusuarios/adminusuarios.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ComprasComponent } from './compras/compras.component';
@@ -31,14 +30,8 @@ const routes: Routes = [
   { path: 'compras/detalle/:idPedido', component:  DetallepedidoComponent},
   { path: 'search/:search', component: SearchComponent },
   { path: '', component: HomeComponent },
-  { path: ':nombreProducto', component: DetalleComponent },
-  {
-    path: '404',
-    resolve: {
-      path: PathResolveService
-    },
-    component: Error404Component
-  },
+  { path: ':nombreProducto', component: DetalleComponent},
+  {path: '404', component: Error404Component},
   { path: '**', redirectTo: '/404' },
 ];
 

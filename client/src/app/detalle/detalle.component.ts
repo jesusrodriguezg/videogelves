@@ -47,16 +47,18 @@ export class DetalleComponent implements OnInit {
 
   getProductoDetalle() {
     // Pasamos por argumentos al método del servicio el nombre de producto codificado
-    this._productoService.getProductoDetalle(this.nombreProducto).subscribe(data => {
-      this.producto = data;
-      if (this.user) {
-        this.checkDetallePedido(this.user.id_user, this.producto.id_producto);
-        this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
-      }
-      this.getValoracionesCount(this.producto.id_producto);
-      this.getPuntuacion(this.producto.id_producto);
-      this.checkStock(this.producto.id_producto);
-    });
+    this._productoService.getProductoDetalle(this.nombreProducto).subscribe(
+      data => {
+          this.producto = data;
+          if (this.user) {
+            this.checkDetallePedido(this.user.id_user, this.producto.id_producto);
+            this.searchListaDeseos(this.user.id_user,this.producto.id_producto);
+          }
+          this.getValoracionesCount(this.producto.id_producto);
+          this.getPuntuacion(this.producto.id_producto);
+          this.checkStock(this.producto.id_producto);
+     }
+    );
   }
 
   /* ----- MÉTODOS DE COMPRA ----- */

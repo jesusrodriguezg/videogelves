@@ -72,7 +72,6 @@ import { UpdateProductModalComponent } from './update-product-modal/update-produ
 // Servicios
 import { ProductoService } from './services/productos.service';
 import { UserService } from './services/user.service';
-import { PathResolveService } from './services/path-resolve.service';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { NewProductModalComponent } from './new-product-modal/new-product-modal.component';
 import { UpdateUserModalComponent } from './update-user-modal/update-user-modal.component';
@@ -160,7 +159,6 @@ import { SearchComponent } from './search/search.component';
   providers: [
     ProductoService,
     UserService,
-    PathResolveService,
     ConfirmationDialogService
   ],
   bootstrap: [AppComponent],

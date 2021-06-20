@@ -37,10 +37,16 @@ export class RegisterComponent implements OnInit {
     //   .subscribe(error => console.log(error));
     this.http.post(environment.apiUrl+'user/register',formData).subscribe(
       response => {
-        console.log(response),
-        this._router.navigate(['/login']);
+        console.log(response)
+        $('.alert-success').fadeIn();
+        setTimeout(() => $('alert-success').fadeOut(),4000);
       },
-      error => console.log(error)
+      error => {
+        console.log('error');
+        console.log(error);
+        $('.alert-danger').fadeIn();
+        setTimeout(() => $('alert-danger').fadeOut(),4000);
+      }
     );
   }
 }
