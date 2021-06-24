@@ -44,21 +44,11 @@ export class UpdateProductModalComponent implements OnInit {
   // Al completar la llamada a la API actualiza la página para refrescar los datos
   saveButton(idProducto: any) {
     const formData = this.form.getRawValue();
-    this._productoService
-      .updateProducto(idProducto, formData)
-      .subscribe((data: any) => {
-        console.log(data);
-        $('.alert-success').fadeIn();
-        setTimeout(
-          this.refresh,
-          5000
-        );
-      },
-      (error: any) => {
-        $('.alert-danger').fadeIn();
-        console.log(error);
-      });
-
+    this._productoService.updateProducto(idProducto, formData).subscribe(
+      data => {
+        this.refresh();
+      }
+    );
   }
 
   // Función que cierra el modal de actualizar productos

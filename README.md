@@ -1,4 +1,4 @@
-# Proyecto Integrado DAW
+# VideoGelves | Proyecto Integrado DAW
 ### Proyecto integrado del ciclo de Desarrollo de Aplicaciones Web del IES Polígono Sur de Sevilla
 
 Este repositorio contiene el código y la información de desarrollo y despliegue del proyecto integrado desarrollado como trabajo final del ciclo de Formación Profesional de grado superior en Desarrollo de Aplicaciones Web en el IES Polígono Sur de Sevilla, España.
@@ -16,11 +16,80 @@ El proyecto consiste en una tienda online de videojuegos, en la que hay un catá
 - Administración de productos y usuarios (sólo ADMIN)
 - Diseño responsive
 
-### Estructura de la aplicación
+### Estructura y tecnologías
 
-La aplicación se divide en dos partes: el backend, desarrollado en PHP con el framerwork **Laravel**  y contenido en el directorio ```server```, y la parte frontend, desarrollada en **Angular** y contenida en la carpeta ```client```. Las instrucciones de este repositorio son para la construcción y el despliegue en local.
+La aplicación se divide en dos partes: backend (directorio ```server```) y frontend (directorio ```client```). Las tecnologías usadas en el desarrollo son las siguientes:
 
-### Construcción de los proyectos de Angular y Laravel
+* **Laravel 8** (PHP) para el desarrollo del backend
+* **Angular 11** para el desarrollo del backend
+* **MySQL** como gestor de bases de datos
+* **Eloquent** como ORM para la creación de modelos y consultas de BBDD
+* **Bootstrap 5**, **CSS3** y **JQuery** para el diseño
+* **Tinker** para el debug del backend
+* **DataTables** para el diseño de tablas de datos
+* **Material** para el diseño de formularios y algunos componentes adicionales en Angular
+
+### Requisitos previos
+
+Las instrucciones de este repositorio son para la construcción y el despliegue en local. Para ello primero debes instalar Laravel, Angular y MySQL. Aquí se aportan los pasos para instalar las tres tecnologías.
+
+##### Instalación de Laravel
+
+Primero instalamos **Composer** (gestor de paquetes de PHP) con los siguientes comandos:
+
+```sh
+~$ sudo apt update
+~$ sudo apt install curl
+~$ sudo apt install php-cli unzip
+~$ cd ~
+~$ curl -sS https://getcomposer.org/installer -o composer-setup.php
+~$ HASH=`curl -sS https://composer.github.io/installer.sig`
+~$ echo $HASH
+~$ php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+~$ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+```
+
+Puedes comprobar que Composer se ha instalado correctamente con el comando:
+
+```sh
+~$ composer
+```
+
+Luego instalamos PHP y todas las dependencias necesarias con los siguientes comandos:
+
+```sh
+~$ sudo apt-get install php7.4-intl php7.4-bcmath php7.4-common php7.4-json php7.4-mbstring openssl php7.4-xml
+~$ sudo apt-get install php7.4-soap php7.4-curl
+~$ sudo apt-get install php7.4-mysql
+```
+
+
+##### Instalación de Angular 11
+
+Instalamos **NodeJS** con el gestor de paquetes **npm**.
+
+```sh
+~$ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+~$ source ~/.bashrc
+~$ nvm install node
+```
+
+Luego instalamos la versión 11 de **Angular**:
+
+```sh
+~$ npm install -g @angular/cli@11
+```
+
+##### Instalación de MySQL
+
+Instalamos **MySQL** client y server con los siguientes comandos:
+
+```sh
+~$ sudo apt install mysql-client
+~$ sudo apt install mysql-server
+```
+
+### Construcción de la aplicación
 
 Descarga o clona el repositorio:
 
@@ -42,9 +111,17 @@ Cambia a la carpeta ```server``` y construye el proyecto de Laravel para servir 
 ~$ composer install
 ```
 
+> NOTA: para mayor facilidad, se ha includio en el repositorio el archivo ```.env``` del directorio ```server```. Los parámetros fijos (nombre del proyecto, base de datos) están ya establecidos, mientras que los variables (servidor de correo SMTP, claves de oauth) están vacíos pero señalizados. A lo largo de las instrucciones se indica qué datos hay que introducir y dónde.
+
 ### Configuración de la base de datos
 
-Antes de ejecutar el proyecto tenemos que crear la base de datos. Ejecuta ```mysql``` en tu consola o entra en el administrador de PhpMyAdmin para crear la base de datos y el usuario con las siguientes sentencias SQL:
+Antes de ejecutar el proyecto tenemos que crear la base de datos. Accede a PhpMyAdmin o ejecuta en tu consola:
+
+```sh
+~$ mysql -u root -p
+```
+
+Crea la base de datos y el usuario con las siguientes sentencias SQL:
 
 ```sql
 create database videogelves default character set utf8mb4 collate utf8mb4_spanish_ci;
@@ -54,7 +131,16 @@ grant all privileges on videogelves.* to 'videogelves'@'localhost' with grant op
 
 Como método alternativo, puedes ejecutar el código del archivo ```db-scripts.sql``` en la consola de ```mysql``` o en clientes gráficos como PhpMyAdmin. Con ello crearás la base de datos, el usuario ```videogelves```, las tablas y las claves foráneas. 
 
-> NOTA: debes incluir el nombre de la BD, el usuario y la contraseña en el archivo ```.env``` del proyecto de Laravel.
+> NOTA: los datos relativos a la BD están ya incluidos en el archivo ```.env``` del directorio ```.env```, aunque puedes editarlos si quieres asignar valores distintos, así:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=NOMBRE_DE_LA_BD
+DB_USERNAME=USUARIO_DE_LA_BD
+DB_PASSWORD=CONTRASEÑA
+```
 
 ### Creación de datos de prueba
 
@@ -110,10 +196,10 @@ MAIL_ENCRYPTION=ssl
 Adicionalmente, para configurar correctamente las notificaciones, has de acceder a ```server > app > http > controllers``` el método ```register()``` en ```UserController.php``` y el método ```compra()``` en ```PedidoController.php``` de la siguiente forma:
 
 ```php
-$message->from('Tu dirección de email','Remitente del correo (por defecto, Videogelves');
+$message->from('Tu dirección de email','Remitente del correo (por defecto, Videogelves)');
 $message->subject('Asunto del mensaje');
-$message->to('Dirección del remitente'); // opcional, sirve para recibir una copia de cada mensaje
 $message->to($email);
+$message->bcc('Dirección del remitente'); // opcional, sirve para recibir una copia oculta (CCO / BCC) de cada mensaje
 ```
 
 ### Ejecución
@@ -131,3 +217,7 @@ En el directorio ```client``` ejecuta:
 ```
 
 Abre el navegador en la url ```http://localhost:4200```.
+
+### Manual de usuario
+
+En este repositorio se incluye un documento PDF con el manual de uso de de la aplicación. En él se explican todas las funcionalidades con capturas de pantalla para una mayor facilidad de uso.

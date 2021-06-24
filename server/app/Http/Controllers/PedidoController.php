@@ -42,10 +42,10 @@ class PedidoController extends Controller
         \Mail::send('emails/compra',
                     ['id_pedido' => $id_pedido, 'fecha' => $fecha, 'importe_total' => $importe_total, 'detalle' => $detalle, 'nombre' => $nombre],
                     function($message) use($email){
-                        $message->from('sanedu@gmail.com','Videogelves');
+                        $message->from('EMAIL_DE_ORIGEN','Videogelves');
                         $message->subject('Tu compra en Videogelves');
-                        $message->to('sanedu@gmail.com');
                         $message->to($email);
+                        $message->bcc('EMAIL_DE_DESTINO_ADICIONAL'); // opcional
                     }
         );
 
