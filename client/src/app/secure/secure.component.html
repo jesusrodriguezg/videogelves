@@ -51,7 +51,7 @@
         </div>
         <div *ngIf="user.admin == 'N'">
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-vg" type="button">Historial de compra</button>
+            <button [routerLink]="['/compras']" class="btn btn-vg" type="button">Historial de compra</button>
           </div>
         </div>
       </div>

@@ -1,9 +1,21 @@
 # VideoGelves | Proyecto Integrado DAW
 ### Proyecto integrado del ciclo de Desarrollo de Aplicaciones Web del IES Polígono Sur de Sevilla
 
-Este repositorio contiene el código y la información de desarrollo y despliegue del proyecto integrado desarrollado como trabajo final del ciclo de Formación Profesional de grado superior en Desarrollo de Aplicaciones Web en el IES Polígono Sur de Sevilla, España.
+Este repositorio contiene el código de la aplicación web desarrollada como proyecto final del ciclo de Formación Profesional de Grado Superior en Desarrollo de Aplicaciones Web (DAW) en el I.E.S. Polígono Sur de Sevilla, España. En ella se aplican todas las materias estudiadas en el ciclo (desarrollo en entorno servidor y cliente, bases de datos, diseño web y despliegue de aplicaciones).
 
-### Propósito del proyecto
+1. [Propósito del proyecto](#1)
+2. [Estructura y tecnologías](#2)
+3. [Requisitos previos](#3)
+4. [Construcción de la aplicación](#4)
+5. [Configuración de la base de datos](#5)
+6. [Creación de datos de prueba](#6)
+7. [Configuración de la clave secreta de oauth](#7)
+8. [Configuración del envío de correos electrónicos](#8)
+9. [Ejecución](#9)
+10. [Manual de usuario](#10)
+
+
+### <a name="1"></a>Propósito del proyecto
 
 El proyecto consiste en una tienda online de videojuegos, en la que hay un catálogo de juegos que puede ser consultado sin necesidad de registro, pero para la compra es preciso registarse. Entre las funcionalidades y características de la tienda se encuentran:
 
@@ -16,7 +28,7 @@ El proyecto consiste en una tienda online de videojuegos, en la que hay un catá
 - Administración de productos y usuarios (sólo ADMIN)
 - Diseño responsive
 
-### Estructura y tecnologías
+### <a name="2"></a>Estructura y tecnologías
 
 La aplicación se divide en dos partes: backend (directorio ```server```) y frontend (directorio ```client```). Las tecnologías usadas en el desarrollo son las siguientes:
 
@@ -29,7 +41,7 @@ La aplicación se divide en dos partes: backend (directorio ```server```) y fron
 * **DataTables** para el diseño de tablas de datos
 * **Material** para el diseño de formularios y algunos componentes adicionales en Angular
 
-### Requisitos previos
+### <a name="3"></a>Requisitos previos
 
 Las instrucciones de este repositorio son para la construcción y el despliegue en local. Para ello primero debes instalar Laravel, Angular y MySQL. Aquí se aportan los pasos para instalar las tres tecnologías.
 
@@ -89,7 +101,7 @@ Instalamos **MySQL** client y server con los siguientes comandos:
 ~$ sudo apt install mysql-server
 ```
 
-### Construcción de la aplicación
+### <a name="4"></a>Construcción de la aplicación
 
 Descarga o clona el repositorio:
 
@@ -113,7 +125,7 @@ Cambia a la carpeta ```server``` y construye el proyecto de Laravel para servir 
 
 > NOTA: para mayor facilidad, se ha includio en el repositorio el archivo ```.env``` del directorio ```server```. Los parámetros fijos (nombre del proyecto, base de datos) están ya establecidos, mientras que los variables (servidor de correo SMTP, claves de oauth) están vacíos pero señalizados. A lo largo de las instrucciones se indica qué datos hay que introducir y dónde.
 
-### Configuración de la base de datos
+### <a name="5"></a>Configuración de la base de datos
 
 Antes de ejecutar el proyecto tenemos que crear la base de datos. Accede a PhpMyAdmin o ejecuta en tu consola:
 
@@ -131,7 +143,7 @@ grant all privileges on videogelves.* to 'videogelves'@'localhost' with grant op
 
 Como método alternativo, puedes ejecutar el código del archivo ```db-scripts.sql``` en la consola de ```mysql``` o en clientes gráficos como PhpMyAdmin. Con ello crearás la base de datos, el usuario ```videogelves```, las tablas y las claves foráneas. 
 
-> NOTA: los datos relativos a la BD están ya incluidos en el archivo ```.env``` del directorio ```.env```, aunque puedes editarlos si quieres asignar valores distintos, así:
+> NOTA: los datos relativos a la BD están ya incluidos en el archivo ```.env``` del directorio ```server```, aunque puedes editarlos si quieres asignar valores distintos, así:
 
 ```
 DB_CONNECTION=mysql
@@ -142,7 +154,7 @@ DB_USERNAME=USUARIO_DE_LA_BD
 DB_PASSWORD=CONTRASEÑA
 ```
 
-### Creación de datos de prueba
+### <a name="6"></a>Creación de datos de prueba
 
 Crea las tablas con los archivos de migraciones del proyecto de Laravel. En el directorio ```server``` ejecuta el siguiente comando:
 
@@ -156,7 +168,7 @@ Opcionalmente puedes incluir algunos datos de prueba con los seeders que se incl
 ~$ php artisan db:seed
 ```
 
-### Configuración de la clave secreta de oauth
+### <a name="7"></a>Configuración de la clave secreta de oauth
 
 En el directorio ```server``` ejecuta el siguiente comando:
 
@@ -174,9 +186,9 @@ Client ID: 2
 Client secret: LYmFJusiC5doqlM5dHGN3Efb0eSGmcPWJZw0Fkqk
 ```
 
-Copia las dos claves y pégalas en los respectivos campos asignados al final del archivo ```.env``` ubicado en el directorio ```server```. Asigna también el valor de la clave del ID 2 a la variable ```client_secret``` en client > src > login > ```login.component.ts```.
+Copia las dos claves y pégalas en los respectivos campos asignados al final del archivo ```.env``` ubicado en el directorio ```server```. Asigna también el valor de la clave del ID 2 a la variable ```client_secret``` en ```client > src > app > login > login.component.ts```.
 
-### Configuración del envío de correos electrónicos
+### <a name="8"></a>Configuración del envío de correos electrónicos
 
 La aplicación envía correos electrónicos a los usuarios tanto al darse de alta como al completar una compra. Para ello es necesario editar algunos parámetros.
 
@@ -202,7 +214,7 @@ $message->to($email);
 $message->bcc('Dirección del remitente'); // opcional, sirve para recibir una copia oculta (CCO / BCC) de cada mensaje
 ```
 
-### Ejecución
+### <a name="9"></a>Ejecución
 
 En el directorio ```server``` ejecuta:
 
@@ -218,6 +230,6 @@ En el directorio ```client``` ejecuta:
 
 Abre el navegador en la url ```http://localhost:4200```.
 
-### Manual de usuario
+### <a name="10"></a>Manual de usuario
 
 En este repositorio se incluye un documento PDF con el manual de uso de de la aplicación. En él se explican todas las funcionalidades con capturas de pantalla para una mayor facilidad de uso.
