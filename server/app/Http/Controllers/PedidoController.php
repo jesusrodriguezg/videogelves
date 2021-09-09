@@ -42,10 +42,10 @@ class PedidoController extends Controller
         \Mail::send('emails/compra',
                     ['id_pedido' => $id_pedido, 'fecha' => $fecha, 'importe_total' => $importe_total, 'detalle' => $detalle, 'nombre' => $nombre],
                     function($message) use($email){
-                        $message->from('EMAIL_DE_ORIGEN','Videogelves');
+                        $message->from('','Videogelves');
                         $message->subject('Tu compra en Videogelves');
                         $message->to($email);
-                        $message->bcc('EMAIL_DE_DESTINO_ADICIONAL'); // opcional
+                        $message->bcc(''); // opcional
                     }
         );
 
@@ -67,7 +67,7 @@ class PedidoController extends Controller
     // Devuelve una columna extra con el importe total de la compra
     public function getCompras($id_usuario)
     {
-        return DB::select("select pedido.*, sum(cantidad * (select precio from producto where id_producto = detalle_pedido.producto_id_producto)) as 'importetotal' from pedido inner join detalle_pedido on detalle_pedido.pedido_id_pedido = pedido.id_pedido where pedido.user_id_user = :id_usuario and pedido.comprado = 'Y' group by detalle_pedido.pedido_id_pedido;",["id_usuario" => $id_usuario]);
+        return DB::select("select pedido.*, sum(cantidad * (select precio from producto where id_producto = detalle_pedido.producto_id_producto)) as 'importetotal' from pedido inner join detalle_pedido on detalle_pedido.devuelto = 'N' and detalle_pedido.pedido_id_pedido = pedido.id_pedido where pedido.user_id_user = :id_usuario and pedido.comprado = 'Y' group by detalle_pedido.pedido_id_pedido;",["id_usuario" => $id_usuario]);
     }
 
     // Función que calcula y devuelve el importe total de una compra

@@ -69,4 +69,8 @@ export class ComprasComponent implements OnInit, OnDestroy {
     this._router.navigate(['/compras/detalle/',idPedido]);
   }
 
+  volverAdmin(){
+    this._router.navigate(['/secure/']);
+  }
+
 }

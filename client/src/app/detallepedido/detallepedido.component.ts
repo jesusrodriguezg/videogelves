@@ -93,7 +93,11 @@ export class DetallepedidoComponent implements OnInit, OnDestroy {
     this._router.navigate(['/',encodeURI(nombre_producto)],);
   }
 
-  // Método que añade una unidad al stock
+  volverHistorialCompras():void{
+    this._router.navigate(['/compras']);
+  }
+
+  // Método que añade una o varias unidades al stock
   addStock(idProducto:any,cantidad:any){
     this._productoService.addStock(idProducto,cantidad).subscribe();
   }

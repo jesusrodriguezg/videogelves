@@ -79,4 +79,8 @@ export class AdminusuariosComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
     });
   }
+
+  volverAdmin(){
+    this._router.navigate(['/secure/']);
+  }
 }

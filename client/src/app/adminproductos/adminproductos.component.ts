@@ -133,4 +133,12 @@ export class AdminproductosComponent implements OnDestroy, OnInit {
     }
     const modalDialog = this.matDialog.open(UpdateProductModalComponent, dialogConfig);
   }
+
+  verDetalleProducto(nombre_producto:any):void{
+    this._router.navigate(['/',encodeURI(nombre_producto)],);
+  }
+
+  volverAdmin(){
+    this._router.navigate(['/secure/']);
+  }
 }

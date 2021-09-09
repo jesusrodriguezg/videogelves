@@ -35,9 +35,9 @@
                     @foreach ($detalle as $det)
                         <tr>
                             <td>{{$det->nombre_producto}}</td>
-                            <td>{{$det->precio}}</td>
+                            <td>{{$det->precio}}€</td>
                             <td>{{$det->cantidad}}</td>
-                            <td>{{$det->preciototal}}</td>
+                            <td>{{$det->preciototal}}€</td>
                         </tr>
                     @endforeach
                     <tr>

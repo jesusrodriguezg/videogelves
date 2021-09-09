@@ -205,7 +205,7 @@ MAIL_ENCRYPTION=ssl
 
 > NOTA: esta configuración es para envío de correo SMTP con Gmail. Puedes usar otros servidores SMTP o servicios con API como Mailgun o Postmark. Tienes [más información sobre configuración en la documentación de Laravel](https://laravel.com/docs/8.x/mail).
 
-Adicionalmente, para configurar correctamente las notificaciones, has de acceder a ```server > app > http > controllers``` el método ```register()``` en ```UserController.php``` y el método ```compra()``` en ```PedidoController.php``` de la siguiente forma:
+Adicionalmente, para configurar correctamente las notificaciones, has de acceder a ```server > app > http > controllers``` y editar el método ```register()``` en ```UserController.php``` y el método ```compra()``` en ```PedidoController.php``` de la siguiente forma:
 
 ```php
 $message->from('Tu dirección de email','Remitente del correo (por defecto, Videogelves)');

@@ -29,12 +29,13 @@
               <td *ngIf="user.admin === 'Y'"><i class="fas fa-check" style="color: green"></i></td>
               <td *ngIf="user.admin === 'N'"><i class="fas fa-times" style="color: red"></i></td>
               <td>
-                <button type="button" class="btn btn-vg" (click)="editUserModal(user.id_user)" title="Editar producto"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-vg" (click)="editUserModal(user.id_user)" title="Editar usuario"><i class="fas fa-edit"></i> Editar</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <button type="button" class="btn btn-vg float-right mt-3" (click)="volverAdmin()" title="Volver al área de usuario"><i class="far fa-arrow-alt-circle-left"></i> Volver al área de usuario</button>
     </div>
   </div>
 </div>

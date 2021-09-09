@@ -24,10 +24,8 @@
             <div class="dropdown ml-auto">
               <a class="header-icon" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></a>
               <ul class="dropdown-menu" style="margin-left: -5rem;" aria-labelledby="dropdownMenuLink">
-                <li><a routerLink="/login" *ngIf="!user" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
-                <li><a routerLink="/register" *ngIf="!user" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
-                <li><a routerLink="/secure" *ngIf="user" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
-                <li><a (click)="logout()" *ngIf="user" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
+                <li><a routerLink="/login" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
+                <li><a routerLink="/register" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
               </ul>
             </div>
           </div>
@@ -35,10 +33,8 @@
             <div class="dropdown">
               <a class="header-icon" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></a>
               <ul class="dropdown-menu" style="margin-left: -5rem;" aria-labelledby="dropdownMenuLink">
-                <li><a routerLink="/login" *ngIf="!user" class="dropdown-login" title="Videogelves | Inicia sesión">Inicia sesión</a></li>
-                <li><a routerLink="/register" *ngIf="!user" class="dropdown-login" title="Videogelves | Regístrate">Regístrate</a></li>
-                <li><a routerLink="/secure" *ngIf="user" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
-                <li><a (click)="logout()" *ngIf="user" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
+                <li><a routerLink="/secure" class="dropdown-login" title="Videogelves | Área de usuario">Área de usuario</a></li>
+                <li><a (click)="logout()" class="dropdown-login" title="Videogelves | Cierra sesión">Cierra sesión</a></li>
               </ul>
             </div>
           </div>

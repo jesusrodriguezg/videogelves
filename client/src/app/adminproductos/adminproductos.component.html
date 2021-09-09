@@ -27,20 +27,21 @@
           <tbody>
             <tr *ngFor="let producto of productos">
               <th scope="row">{{producto.id_producto}}</th>
-              <td>{{producto.nombre_producto}}</td>
+              <td class="enlace-titulo" (click)="verDetalleProducto(producto.nombre_producto)">{{producto.nombre_producto}}</td>
               <td>{{producto.precio}} €</td>
               <td>{{producto.stock}}</td>
               <td>
-                <button type="button" class="btn btn-vg" (click)="editProductModal(producto.id_producto)" title="Editar producto"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-vg" (click)="editProductModal(producto.id_producto)" title="Editar producto"><i class="fas fa-edit"></i> Editar</button>
               </td>
               <td>
-                <button *ngIf="producto.stock == 0" type="button" class="btn btn-vg disabled" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i></button>
-                <button *ngIf="producto.stock != 0" type="button" class="btn btn-vg" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i></button>
+                <button *ngIf="producto.stock == 0" type="button" class="btn btn-vg disabled" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i> Borrar stock</button>
+                <button *ngIf="producto.stock != 0" type="button" class="btn btn-vg" (click)="deleteDialog(producto.id_producto)" title="Borrar stock"><i class="far fa-trash-alt"></i> Borrar stock</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <button type="button" class="btn btn-vg float-right mt-3" (click)="volverAdmin()" title="Volver al área de usuario"><i class="far fa-arrow-alt-circle-left"></i> Volver al área de usuario</button>
     </div>
   </div>
 </div>
